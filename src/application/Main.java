@@ -30,6 +30,7 @@ public class Main extends Application {
 							"application.css")
 							.toExternalForm());
 			primaryStage.setScene(scene);
+			primaryStage.setTitle("Abacus");
 			primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();
