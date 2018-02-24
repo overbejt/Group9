@@ -12,6 +12,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			//Enter a print statement that says your name below here
+			System.out.println("Added by Josh");
 			//BorderPane root = new BorderPane();
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("View.fxml"));
 			Parent root = loader.load();
