@@ -1,6 +1,8 @@
 
 /**
  * This is the main driver for the application
+ * 
+ * @version 0.1
  */
 package application;
 
@@ -40,4 +42,5 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-}
+
+}// End of the 'Main' class
