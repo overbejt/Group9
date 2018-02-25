@@ -1,4 +1,4 @@
-package application;
+package model;
 
 /**
  * This is the class that will be responsible for

@@ -23,13 +23,13 @@ public class Main extends Application {
 			// BorderPane root = new BorderPane();
 			FXMLLoader loader = new FXMLLoader(
 					getClass().getResource(
-							"View.fxml"));
+							"/view/View.fxml"));
 			Parent root = loader.load();
 			Scene scene = new Scene(root, 600,
 					400);
 			scene.getStylesheets()
 					.add(getClass().getResource(
-							"application.css")
+							"/view/application.css")
 							.toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Abacus");
