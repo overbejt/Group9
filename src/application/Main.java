@@ -20,6 +20,7 @@ public class Main extends Application {
 			// your name below here
 			System.out.println(
 					"Added and formatted by Josh");
+			System.out.println("Nicole Matthews");
 			// BorderPane root = new BorderPane();
 			FXMLLoader loader = new FXMLLoader(
 					getClass().getResource(
