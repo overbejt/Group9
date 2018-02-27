@@ -22,6 +22,8 @@ public class Main extends Application {
 					"Added and formatted by Josh");
 			System.out.println("Nicole Matthews");
 			System.out.println("Feiyu Wang");
+			System.out.println("Jacob Sandy");
+
 			System.out.println("I Added another print statement");
 			System.out.println("Git push test");
 			
