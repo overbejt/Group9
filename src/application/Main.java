@@ -23,6 +23,7 @@ public class Main extends Application {
 			System.out.println("Nicole Matthews");
 			
 			System.out.println("I Added another print statement");
+			System.out.println("Git push test");
 			
 			// BorderPane root = new BorderPane();
 			FXMLLoader loader = new FXMLLoader(
