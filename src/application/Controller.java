@@ -34,7 +34,7 @@ public class Controller {
     public void end() {
     	System.out.println("Controller/end method");
     	//save some files
-    	System.exit(0);
+    	System.exit(0);//End the program
     }//End of the 'end' method
     
 }//End of the 'Controller' class
