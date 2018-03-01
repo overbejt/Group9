@@ -32,7 +32,7 @@ public class Controller {
      * This is the method that will invoke the persistence methods when a user chooses to exit the program.
      */
     public void end() {
-    	System.out.println("saving files");
+    	System.out.println("Controller/end method");
     	//save some files
     	System.exit(0);
     }//End of the 'end' method
