@@ -27,11 +27,15 @@ public class Main extends Application {
 			System.out.println("I Added another print statement");
 			System.out.println("Git push test");
 			
-			// BorderPane root = new BorderPane();
+			
 			FXMLLoader loader = new FXMLLoader(
 					getClass().getResource(
 							"/view/View.fxml"));
 			Parent root = loader.load();
+			
+			//Getting the controller
+			Controller controller = loader.getController();
+			
 			Scene scene = new Scene(root, 600,
 					400);
 			scene.getStylesheets()
@@ -41,6 +45,14 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Abacus");
 			primaryStage.show();
+			
+			//Handle close action
+			primaryStage.setOnCloseRequest( event ->
+		    {
+		        System.out.println("Ready to go");
+		        controller.end();
+		    });
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
