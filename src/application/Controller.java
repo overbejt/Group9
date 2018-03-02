@@ -62,6 +62,22 @@ public class Controller {
 	}// End of the 'menuItemCloseClicked'method
 
 	/**
+	 * This is the method that will handle the
+	 * event that the user clicks the menu item
+	 * 'save'. It will invoke the methods for
+	 * saving the inventory and the user list.
+	 * 
+	 * @param e
+	 */
+	public void
+			menuItemSaveClicked(ActionEvent e) {
+
+		System.out.println(
+				"The save button was clicked");
+
+	}// End of the 'menuItemSaveClicked' method
+
+	/**
 	 * This is the method that will invoke the
 	 * persistence methods when a user chooses to
 	 * exit the program.

@@ -20,6 +20,9 @@
             <items>
               <MenuItem mnemonicParsing="false" text="Close" onAction="#menuItemCloseClicked"/>
             </items>
+            <items>
+              <MenuItem mnemonicParsing="false" text="Save" onAction="#menuItemSaveClicked"/>
+            </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items> 
