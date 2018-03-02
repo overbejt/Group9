@@ -58,7 +58,7 @@ public class Employee
 	/**
 	 * This is the method that will set an
 	 * employee's ID. It will take the epoch time
-	 * and store it in an integer. This value can
+	 * and store it in a long. This value can
 	 * never be changed. It's only purpose is to
 	 * serve as a key in a hashmap.
 	 */
@@ -114,7 +114,7 @@ public class Employee
 	 * 
 	 * @return
 	 */
-	public int getID() {
+	public long getID() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
