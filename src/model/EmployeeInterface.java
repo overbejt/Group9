@@ -5,7 +5,7 @@ package model;
  * information and functionality that will be
  * required by the Employee class.
  * 
- * @version 0.2
+ * @version 0.3
  */
 public interface EmployeeInterface {
 
