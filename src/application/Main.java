@@ -27,18 +27,19 @@ public class Main extends Application {
 			System.out.println("Feiyu Wang");
 			System.out.println("Jacob Sandy");
 
-			System.out.println("I Added another print statement");
+			System.out.println(
+					"I Added another print statement");
 			System.out.println("Git push test");
-			
-			
+
 			FXMLLoader loader = new FXMLLoader(
 					getClass().getResource(
 							"/view/View.fxml"));
 			Parent root = loader.load();
-			
-			//Getting the controller
-			Controller controller = loader.getController();
-			
+
+			// Getting the controller
+			Controller controller = loader
+					.getController();
+
 			Scene scene = new Scene(root, 600,
 					400);
 			scene.getStylesheets()
@@ -48,25 +49,34 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Abacus");
 			primaryStage.show();
-			
-			//Handle close action
-			primaryStage.setOnCloseRequest( event ->
-		    {
-		    	event.consume();//Stop from closing
-		    	
-		        System.out.println("Ready to go");
-		        
-		        //The alert box
-		        String msg = "Would you like to save the inventory?";
-		        Alert alert = new Alert(AlertType.CONFIRMATION, msg);
-		       
-		        alert.showAndWait()
-		        .filter(response -> response == ButtonType.OK)
-		        .ifPresent(response -> controller.end());
-		        System.exit(0);//Exiting the program
-		        
-		    });
-			
+
+			// Handle close action**************
+			primaryStage
+					.setOnCloseRequest(event -> {
+						event.consume();// Stop
+										// from
+										// closing
+
+						System.out.println(
+								"Ready to go");
+
+						// The alert box
+						String msg = "Would you like to save the inventory?";
+						Alert alert = new Alert(
+								AlertType.CONFIRMATION,
+								msg);
+
+						alert.showAndWait()
+								.filter(response -> response == ButtonType.OK)
+								.ifPresent(
+										response -> controller
+												.end());
+						System.exit(0);// Exiting
+										// the
+										// program
+
+					});
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
