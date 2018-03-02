@@ -2,7 +2,7 @@
 /**
  * This is the main driver for the application
  * 
- * @version 0.1
+ * @version 0.2
  */
 package application;
 

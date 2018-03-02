@@ -9,6 +9,13 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 
+/**
+ * This is the controller class. For now, it will
+ * be the go-between for the model class and the
+ * view classes.
+ * 
+ * @version 0.2
+ */
 public class Controller {
 
 	@FXML
