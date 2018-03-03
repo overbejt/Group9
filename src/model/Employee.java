@@ -9,17 +9,26 @@ package model;
  */
 public class Employee
 		implements EmployeeInterface {
+	
+	/**
+	 * This is the Constructor method.  
+	 * !It must invoke the setID() method!
+	 */
+	public Employee() {
+		this.setID();
+	}//End of the Constructor
 
 	/**
 	 * This is the method that will set an
 	 * employee's name. It will take in a string
 	 * containing a concatenation of their first
-	 * and last name.
+	 * and last name. 
 	 * 
 	 * @param name
 	 */
 	public void setName(String name) {
 		// TODO Auto-generated method stub
+		
 
 	}
 
