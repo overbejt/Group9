@@ -20,11 +20,9 @@ public class Controller {
 
 	@FXML
 	private TextField	fieldBtm;
-	@FXML
-	private Button		btn;
+	
 
-	@FXML
-	private MenuItem close;
+	
 
 	// called by the FXML loader after the labels
 	// declared above are injected:
