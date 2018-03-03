@@ -2,7 +2,7 @@
 /**
  * This is the main driver for the application
  * 
- * @version 0.2
+ * @version 0.3
  */
 package application;
 
@@ -10,9 +10,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -60,20 +57,7 @@ public class Main extends Application {
 						System.out.println(
 								"Ready to go");
 
-						// The alert box
-						String msg = "Would you like to save the inventory?";
-						Alert alert = new Alert(
-								AlertType.CONFIRMATION,
-								msg);
-
-						alert.showAndWait()
-								.filter(response -> response == ButtonType.OK)
-								.ifPresent(
-										response -> controller
-												.end());
-						System.exit(0);// Exiting
-										// the
-										// program
+						controller.end();
 
 					});
 

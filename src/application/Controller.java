@@ -4,9 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 
 /**
@@ -14,15 +12,12 @@ import javafx.scene.control.TextField;
  * be the go-between for the model class and the
  * view classes.
  * 
- * @version 0.2
+ * @version 0.3
  */
 public class Controller {
 
 	@FXML
-	private TextField	fieldBtm;
-	
-
-	
+	private TextField fieldBtm;
 
 	// called by the FXML loader after the labels
 	// declared above are injected:
@@ -52,17 +47,7 @@ public class Controller {
 	@FXML
 	public void
 			menuItemCloseClicked(ActionEvent e) {
-
-		// The alert box
-		String msg = "Would you like to save the inventory?";
-		Alert alert = new Alert(
-				AlertType.CONFIRMATION, msg);
-
-		alert.showAndWait().filter(
-				response -> response == ButtonType.OK)
-				.ifPresent(response -> end());
-		System.exit(0);// Exiting the program
-		// (redundant?)
+		end();
 
 	}// End of the 'menuItemCloseClicked'method
 
@@ -79,6 +64,8 @@ public class Controller {
 
 		System.out.println(
 				"The save button was clicked");
+		// Invoke the save method
+		save();
 
 	}// End of the 'menuItemSaveClicked' method
 
@@ -90,8 +77,29 @@ public class Controller {
 	public void end() {
 		System.out
 				.println("Controller/end method");
-		// save some files
-		System.exit(0);// End the program
+
+		// The alert box
+		String msg = "Would you like to save the inventory?";
+		Alert alert = new Alert(
+				AlertType.CONFIRMATION, msg);
+
+		// If click yes, then save. Else exit
+		alert.showAndWait().filter(
+				response -> response == ButtonType.OK)
+				.ifPresent(response -> save());
+		System.exit(0);// Exiting the program
+
 	}// End of the 'end' method
+
+	// <<<<<<<<<<<<<<<<<,>>>>>>>>>>>>>>>>
+
+	/**
+	 * This is the method that will save the
+	 * inventory and the employee list.
+	 */
+	public void save() {
+		System.out.println(
+				"The save method from the controller was called");
+	}// End of the 'save' method
 
 }// End of the 'Controller' class
