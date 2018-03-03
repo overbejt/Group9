@@ -1,13 +1,11 @@
 package model;
 
 /**
- * This is the class that will hold all of the
- * attributes of an item.
+ * This is the class that will hold all of the attributes of an item.
  * 
  * @version 0.1
  */
-public class Attributes
-		implements AttributesInterface {
+public class Attributes implements AttributesInterface {
 
 	// Instance variables
 	protected boolean shoes, pants, shirts;
@@ -17,8 +15,8 @@ public class Attributes
 	}// End of the Constructor
 
 	/**
-	 * This is the method that allows a user to
-	 * assert that the item is shoes
+	 * This is the method that allows a user to assert that the item
+	 * is shoes
 	 */
 	public void setShoes() {
 		// TODO Auto-generated method stub
@@ -26,8 +24,8 @@ public class Attributes
 	}
 
 	/**
-	 * This is the method that allows a user to
-	 * assert that the item is pants
+	 * This is the method that allows a user to assert that the item
+	 * is pants
 	 */
 	public void setPants() {
 		// TODO Auto-generated method stub
@@ -35,8 +33,8 @@ public class Attributes
 	}
 
 	/**
-	 * This is the method that allows a user to
-	 * assert that the item is a shirt
+	 * This is the method that allows a user to assert that the item
+	 * is a shirt
 	 */
 	public void setShirts() {
 		// TODO Auto-generated method stub
@@ -44,8 +42,8 @@ public class Attributes
 	}
 
 	/**
-	 * This is the method that will return true if
-	 * the item is asserted to be shoes
+	 * This is the method that will return true if the item is
+	 * asserted to be shoes
 	 * 
 	 * @return
 	 */
@@ -55,8 +53,8 @@ public class Attributes
 	}
 
 	/**
-	 * This is the method that will return true if
-	 * the item is asserted to be pants
+	 * This is the method that will return true if the item is
+	 * asserted to be pants
 	 * 
 	 * @return
 	 */
@@ -66,8 +64,8 @@ public class Attributes
 	}
 
 	/**
-	 * This is the method that will return true if
-	 * the item is assert to be a shirt
+	 * This is the method that will return true if the item is assert
+	 * to be a shirt
 	 * 
 	 * @return
 	 */

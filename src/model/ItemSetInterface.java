@@ -1,8 +1,8 @@
 package model;
 
 /**
- * This is going to be the interface that will
- * outline the Item Set class.
+ * This is going to be the interface that will outline the Item Set
+ * class.
  * 
  * @version 0.1
  */

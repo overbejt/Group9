@@ -1,8 +1,7 @@
 package model;
 
 /**
- * This is the interface that will be implemented
- * by the Item class.
+ * This is the interface that will be implemented by the Item class.
  * 
  * @version 0.1
  */

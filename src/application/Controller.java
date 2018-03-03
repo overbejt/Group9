@@ -8,9 +8,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 
 /**
- * This is the controller class. For now, it will
- * be the go-between for the model class and the
- * view classes.
+ * This is the controller class. For now, it will be the go-between
+ * for the model class and the view classes.
  * 
  * @version 0.3
  */
@@ -35,57 +34,48 @@ public class Controller {
 	}// End of the 'btnWasClicked' method
 
 	/**
-	 * This is the method that will perform
-	 * actions when the user clicks the close menu
-	 * item. It will display an alert box asking
-	 * if they want to save. Then, based on their
-	 * decision, it will either exit, or save and
-	 * then exit.
+	 * This is the method that will perform actions when the user
+	 * clicks the close menu item. It will display an alert box asking
+	 * if they want to save. Then, based on their decision, it will
+	 * either exit, or save and then exit.
 	 * 
 	 * @param e
 	 */
 	@FXML
-	public void
-			menuItemCloseClicked(ActionEvent e) {
+	public void menuItemCloseClicked(ActionEvent e) {
 		end();
 
 	}// End of the 'menuItemCloseClicked'method
 
 	/**
-	 * This is the method that will handle the
-	 * event that the user clicks the menu item
-	 * 'save'. It will invoke the methods for
+	 * This is the method that will handle the event that the user
+	 * clicks the menu item 'save'. It will invoke the methods for
 	 * saving the inventory and the user list.
 	 * 
 	 * @param e
 	 */
-	public void
-			menuItemSaveClicked(ActionEvent e) {
+	public void menuItemSaveClicked(ActionEvent e) {
 
-		System.out.println(
-				"The save button was clicked");
+		System.out.println("The save button was clicked");
 		// Invoke the save method
 		save();
 
 	}// End of the 'menuItemSaveClicked' method
 
 	/**
-	 * This is the method that will invoke the
-	 * persistence methods when a user chooses to
-	 * exit the program.
+	 * This is the method that will invoke the persistence methods
+	 * when a user chooses to exit the program.
 	 */
 	public void end() {
-		System.out
-				.println("Controller/end method");
+		System.out.println("Controller/end method");
 
 		// The alert box
 		String msg = "Would you like to save the inventory?";
-		Alert alert = new Alert(
-				AlertType.CONFIRMATION, msg);
+		Alert alert = new Alert(AlertType.CONFIRMATION, msg);
 
 		// If click yes, then save. Else exit
-		alert.showAndWait().filter(
-				response -> response == ButtonType.OK)
+		alert.showAndWait()
+				.filter(response -> response == ButtonType.OK)
 				.ifPresent(response -> save());
 		System.exit(0);// Exiting the program
 
@@ -94,8 +84,8 @@ public class Controller {
 	// <<<<<<<<<<<<<<<<<,>>>>>>>>>>>>>>>>
 
 	/**
-	 * This is the method that will save the
-	 * inventory and the employee list.
+	 * This is the method that will save the inventory and the
+	 * employee list.
 	 */
 	public void save() {
 		System.out.println(

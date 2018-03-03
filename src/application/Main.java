@@ -18,48 +18,41 @@ public class Main extends Application {
 		try {
 			// Enter a print statement that says
 			// your name below here
-			System.out.println(
-					"Added and formatted by Josh");
+			System.out.println("Added and formatted by Josh");
 			System.out.println("Nicole Matthews");
 			System.out.println("Feiyu Wang");
 			System.out.println("Jacob Sandy");
 
-			System.out.println(
-					"I Added another print statement");
+			System.out.println("I Added another print statement");
 			System.out.println("Git push test");
 
 			FXMLLoader loader = new FXMLLoader(
-					getClass().getResource(
-							"/view/View.fxml"));
+					getClass().getResource("/view/View.fxml"));
 			Parent root = loader.load();
 
 			// Getting the controller
-			Controller controller = loader
-					.getController();
+			Controller controller = loader.getController();
 
-			Scene scene = new Scene(root, 600,
-					400);
+			Scene scene = new Scene(root, 600, 400);
 			scene.getStylesheets()
-					.add(getClass().getResource(
-							"/view/application.css")
+					.add(getClass()
+							.getResource("/view/application.css")
 							.toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Abacus");
 			primaryStage.show();
 
 			// Handle close action**************
-			primaryStage
-					.setOnCloseRequest(event -> {
-						event.consume();// Stop
-										// from
-										// closing
+			primaryStage.setOnCloseRequest(event -> {
+				event.consume();// Stop
+								// from
+								// closing
 
-						System.out.println(
-								"Ready to go");
+				System.out.println("Ready to go");
 
-						controller.end();
+				controller.end();
 
-					});
+			});
 
 		} catch (Exception e) {
 			e.printStackTrace();
