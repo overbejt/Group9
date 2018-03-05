@@ -49,4 +49,13 @@ public interface AttributesInterface {
 	 */
 	public boolean isShirts();
 
+	/**
+	 * This is the method that will send back an integer describing
+	 * all of the attributes. 1=true, 0=false. The order will be:
+	 * {shoes, pants, shirts}.
+	 * 
+	 * @return
+	 */
+	public int getAttributes();
+
 }// End of the 'AttributesInterface' class

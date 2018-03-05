@@ -18,6 +18,7 @@ public class Attributes implements AttributesInterface {
 	 * This is the method that allows a user to assert that the item
 	 * is shoes
 	 */
+	@Override
 	public void setShoes() {
 		// TODO Auto-generated method stub
 
@@ -27,6 +28,7 @@ public class Attributes implements AttributesInterface {
 	 * This is the method that allows a user to assert that the item
 	 * is pants
 	 */
+	@Override
 	public void setPants() {
 		// TODO Auto-generated method stub
 
@@ -36,6 +38,7 @@ public class Attributes implements AttributesInterface {
 	 * This is the method that allows a user to assert that the item
 	 * is a shirt
 	 */
+	@Override
 	public void setShirts() {
 		// TODO Auto-generated method stub
 
@@ -47,6 +50,7 @@ public class Attributes implements AttributesInterface {
 	 * 
 	 * @return
 	 */
+	@Override
 	public boolean isShoes() {
 		// TODO Auto-generated method stub
 		return false;
@@ -58,6 +62,7 @@ public class Attributes implements AttributesInterface {
 	 * 
 	 * @return
 	 */
+	@Override
 	public boolean isPants() {
 		// TODO Auto-generated method stub
 		return false;
@@ -69,9 +74,23 @@ public class Attributes implements AttributesInterface {
 	 * 
 	 * @return
 	 */
+	@Override
 	public boolean isShirts() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	/**
+	 * This is the method that will send back an integer describing
+	 * all of the attributes. 1=true, 0=false. The order will be:
+	 * {shoes, pants, shirts}.
+	 * 
+	 * @return
+	 */
+	@Override
+	public int getAttributes() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }// End of the 'Attributes' class

@@ -23,6 +23,7 @@ public class Employee implements EmployeeInterface {
 	 * 
 	 * @param name
 	 */
+	@Override
 	public void setName(String name) {
 		// TODO Auto-generated method stub
 
@@ -35,6 +36,7 @@ public class Employee implements EmployeeInterface {
 	 * 
 	 * @param password
 	 */
+	@Override
 	public void setPassword(String password) {
 		// TODO Auto-generated method stub
 
@@ -51,6 +53,7 @@ public class Employee implements EmployeeInterface {
 	 * 
 	 * @param accessLevel
 	 */
+	@Override
 	public void setAccessLevel(int accessLevel) {
 		// TODO Auto-generated method stub
 
@@ -61,6 +64,7 @@ public class Employee implements EmployeeInterface {
 	 * the epoch time and store it in a long. This value can never be
 	 * changed. It's only purpose is to serve as a key in a hashmap.
 	 */
+	@Override
 	public void setID() {
 		// TODO Auto-generated method stub
 
@@ -71,6 +75,7 @@ public class Employee implements EmployeeInterface {
 	 * 
 	 * @return
 	 */
+	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
 		return null;
@@ -81,6 +86,7 @@ public class Employee implements EmployeeInterface {
 	 * 
 	 * @return
 	 */
+	@Override
 	public String getPassword() {
 		// TODO Auto-generated method stub
 		return null;
@@ -97,6 +103,7 @@ public class Employee implements EmployeeInterface {
 	 * 
 	 * @return
 	 */
+	@Override
 	public int getAccessLevel() {
 		// TODO Auto-generated method stub
 		return 0;
@@ -108,6 +115,7 @@ public class Employee implements EmployeeInterface {
 	 * 
 	 * @return
 	 */
+	@Override
 	public long getID() {
 		// TODO Auto-generated method stub
 		return 0;
