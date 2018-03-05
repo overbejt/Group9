@@ -23,7 +23,7 @@ public interface AttributesInterface {
 	 * This is the method that allows a user to assert that the item
 	 * is a shirt
 	 */
-	public void setShirts();
+	public void setShirts()throws NullPointerException;
 
 	/**
 	 * This is the method that will return true if the item is
@@ -31,7 +31,7 @@ public interface AttributesInterface {
 	 * 
 	 * @return
 	 */
-	public boolean isShoes();
+	public boolean isShoes()throws NullPointerException;
 
 	/**
 	 * This is the method that will return true if the item is
@@ -39,7 +39,7 @@ public interface AttributesInterface {
 	 * 
 	 * @return
 	 */
-	public boolean isPants();
+	public boolean isPants()throws NullPointerException;
 
 	/**
 	 * This is the method that will return true if the item is assert
@@ -47,7 +47,7 @@ public interface AttributesInterface {
 	 * 
 	 * @return
 	 */
-	public boolean isShirts();
+	public boolean isShirts()throws NullPointerException;
 
 	/**
 	 * This is the method that will send back an integer describing
@@ -56,6 +56,6 @@ public interface AttributesInterface {
 	 * 
 	 * @return
 	 */
-	public int getAttributes();
+	public int getAttributes()throws NullPointerException;
 
 }// End of the 'AttributesInterface' class
