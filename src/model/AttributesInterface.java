@@ -23,7 +23,7 @@ public interface AttributesInterface {
 	 * This is the method that allows a user to assert that the item
 	 * is a shirt
 	 */
-	public void setShirts()throws NullPointerException;
+	public void setShirts()throws NullPointerException; 
 
 	/**
 	 * This is the method that will return true if the item is
