@@ -1,5 +1,7 @@
 package model;
 
+import java.time.Instant;
+
 /**
  * This is the class that will hold all of the methods and information
  * about employees that have access to the software.
@@ -8,12 +10,20 @@ package model;
  */
 public class Employee implements EmployeeInterface {
 
+	// Instance variables
+	private String	name, password;
+	private int		accessLevel;
+	private Instant	id;
+
 	/**
 	 * This is the Constructor method. !It must invoke the setID()
 	 * method!
 	 */
 	public Employee() {
-		this.setID();
+		this.setID();// Must be invoked
+		this.name = null;
+		this.password = null;
+		this.accessLevel = -1;
 	}// End of the Constructor
 
 	/**
@@ -25,7 +35,7 @@ public class Employee implements EmployeeInterface {
 	 */
 	@Override
 	public void setName(String name) {
-		// TODO Auto-generated method stub
+		this.name = name;
 
 	}
 
@@ -61,12 +71,14 @@ public class Employee implements EmployeeInterface {
 
 	/**
 	 * This is the method that will set an employee's ID. It will take
-	 * the epoch time and store it in a long. This value can never be
-	 * changed. It's only purpose is to serve as a key in a hashmap.
+	 * the epoch time and store it in an Instant object. This value
+	 * can never be changed. It's only purpose is to serve as a key in
+	 * a HashMap.
 	 */
 	@Override
 	public void setID() {
-		// TODO Auto-generated method stub
+		// id = System.currentTimeMillis();
+		id = Instant.now();
 
 	}
 
