@@ -48,7 +48,7 @@ public class Employee implements EmployeeInterface {
 	 */
 	@Override
 	public void setPassword(String password) {
-		// TODO Auto-generated method stub
+		this.password = password;
 
 	}
 
@@ -65,7 +65,7 @@ public class Employee implements EmployeeInterface {
 	 */
 	@Override
 	public void setAccessLevel(int accessLevel) {
-		// TODO Auto-generated method stub
+		this.accessLevel = accessLevel;
 
 	}
 
