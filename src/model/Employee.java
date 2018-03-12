@@ -77,7 +77,6 @@ public class Employee implements EmployeeInterface {
 	 */
 	@Override
 	public void setID() {
-		// id = System.currentTimeMillis();
 		id = Instant.now();
 
 	}
@@ -89,8 +88,7 @@ public class Employee implements EmployeeInterface {
 	 */
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.name;
 	}
 
 	/**
@@ -100,8 +98,7 @@ public class Employee implements EmployeeInterface {
 	 */
 	@Override
 	public String getPassword() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.password;
 	}
 
 	/**
@@ -117,8 +114,7 @@ public class Employee implements EmployeeInterface {
 	 */
 	@Override
 	public int getAccessLevel() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.accessLevel;
 	}
 
 	/**
@@ -129,8 +125,7 @@ public class Employee implements EmployeeInterface {
 	 */
 	@Override
 	public long getID() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.id.getEpochSecond();
 	}
 
 }// End of the 'Employee' class
