@@ -26,6 +26,26 @@ public interface AttributesInterface {
 	public void setShirts(boolean state) throws NullPointerException;
 
 	/**
+	 * This is the method that will allow the user to set the quantity
+	 * of an item in inventory.
+	 * 
+	 * @param amt
+	 * @throws java.lang.NumberFormatException
+	 */
+	public void setQuantity(int amt)
+			throws java.lang.NumberFormatException;
+
+	/**
+	 * This is the method that will allow the user to set the size of
+	 * an item.
+	 * 
+	 * @param size
+	 * @throws java.lang.NumberFormatException
+	 */
+	public void setSize(int size)
+			throws java.lang.NumberFormatException;
+
+	/**
 	 * This is the method that will return true if the item is
 	 * asserted to be shoes
 	 * 
@@ -48,5 +68,14 @@ public interface AttributesInterface {
 	 * @return
 	 */
 	public boolean isShirts() throws NullPointerException;
+
+	/**
+	 * This is the method that will return the quantity of an item in
+	 * an inventory.
+	 * 
+	 * @return
+	 * @throws NullPointerException
+	 */
+	public int getQuantity() throws NullPointerException;
 
 }// End of the 'AttributesInterface' class
