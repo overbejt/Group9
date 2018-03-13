@@ -15,6 +15,9 @@ import application.EmployeeList;
 /**
  * This is the class that will be responsible for handling all of the
  * persistence of the software.
+ * <p>
+ * This class should probably also handle saving the Item Inventory
+ * </p>
  * 
  * @version 0.1
  */
