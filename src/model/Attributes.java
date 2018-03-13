@@ -23,7 +23,7 @@ public class Attributes implements AttributesInterface {
 	@Override
 	public void setShoes(boolean state) {
 		this.shoes = state;
-	}
+	}// End of the 'setShoes' method
 
 	/**
 	 * This is the method that allows a user to assert that the item
@@ -33,7 +33,7 @@ public class Attributes implements AttributesInterface {
 	public void setPants(boolean state) {
 		this.pants = state;
 
-	}
+	}// End of the 'setPants' method
 
 	/**
 	 * This is the method that allows a user to assert that the item
@@ -43,7 +43,7 @@ public class Attributes implements AttributesInterface {
 	public void setShirts(boolean state) {
 		this.shirts = state;
 
-	}
+	}// End of the 'setShirts' method
 
 	/**
 	 * This is the method that will return true if the item is
@@ -54,7 +54,7 @@ public class Attributes implements AttributesInterface {
 	@Override
 	public boolean isShoes() {
 		return this.shoes;
-	}
+	}// End of the 'isShoes' method
 
 	/**
 	 * This is the method that will return true if the item is
@@ -65,7 +65,7 @@ public class Attributes implements AttributesInterface {
 	@Override
 	public boolean isPants() {
 		return this.pants;
-	}
+	}// End of the 'isPants' method
 
 	/**
 	 * This is the method that will return true if the item is assert
@@ -76,7 +76,7 @@ public class Attributes implements AttributesInterface {
 	@Override
 	public boolean isShirts() {
 		return this.shirts;
-	}
+	}// End of the 'isShirts' method
 
 	/**
 	 * This is the method that will send back an integer describing
@@ -89,6 +89,6 @@ public class Attributes implements AttributesInterface {
 	public int getAttributes() {
 
 		return 0;
-	}
+	}// End of the 'getAttributes' method
 
 }// End of the 'Attributes' class
