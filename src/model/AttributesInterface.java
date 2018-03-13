@@ -3,7 +3,7 @@ package model;
 /**
  * This is the class that will hold the attributes of an item.
  * 
- * @version 0.1
+ * @version 0.2
  */
 public interface AttributesInterface {
 
@@ -77,5 +77,13 @@ public interface AttributesInterface {
 	 * @throws NullPointerException
 	 */
 	public int getQuantity() throws NullPointerException;
+
+	/**
+	 * This is the method that will return the size of an item.
+	 * 
+	 * @return
+	 * @throws NullPointerException
+	 */
+	public int getSize() throws NullPointerException;
 
 }// End of the 'AttributesInterface' class
