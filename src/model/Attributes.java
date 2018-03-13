@@ -78,17 +78,4 @@ public class Attributes implements AttributesInterface {
 		return this.shirts;
 	}// End of the 'isShirts' method
 
-	/**
-	 * This is the method that will send back an integer describing
-	 * all of the attributes. 1=true, 0=false. The order will be:
-	 * {shoes, pants, shirts}.
-	 * 
-	 * @return
-	 */
-	@Override
-	public int getAttributes() {
-
-		return 0;
-	}// End of the 'getAttributes' method
-
 }// End of the 'Attributes' class
