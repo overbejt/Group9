@@ -27,13 +27,13 @@ public class Persistence {
 	private File employeeList = new File("EmployeeList.txt");
 
 	// Creating necessary objects to serialize an object
-	private FileOutputStream		listOutput;
-	private BufferedOutputStream	bufferOut;
-	private ObjectOutputStream		outputFile;
+	private FileOutputStream		fileOutputStream;
+	private BufferedOutputStream	bufferedOutputStream;
+	private ObjectOutputStream		objectOutputStream;
 	// Output objects
-	private FileInputStream		employeeListStream;
-	private BufferedInputStream	bufferIn;
-	private ObjectInputStream	inputFile;
+	private FileInputStream		fileInputStream;
+	private BufferedInputStream	bufferedInputStream;
+	private ObjectInputStream	objectInputStream;
 
 	// Constructor
 	public Persistence() throws IOException, FileNotFoundException {
@@ -49,13 +49,13 @@ public class Persistence {
 	 */
 	void writeEmployeeList(EmployeeList list) throws IOException {
 
-		listOutput = new FileOutputStream(employeeList);
-		bufferOut = new BufferedOutputStream(listOutput);
-		outputFile = new ObjectOutputStream(bufferOut);
+		fileOutputStream = new FileOutputStream(employeeList);
+		bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
+		objectOutputStream = new ObjectOutputStream(bufferedOutputStream);
 
-		outputFile.writeObject(list);
+		objectOutputStream.writeObject(list);
 
-		outputFile.close();
+		objectOutputStream.close();
 
 	}// End of the 'writeEmployeeList' function
 
@@ -69,14 +69,14 @@ public class Persistence {
 	private EmployeeList readEmployeeList()
 			throws ClassNotFoundException, IOException {
 
-		employeeListStream = new FileInputStream(employeeList);
-		bufferIn = new BufferedInputStream(employeeListStream);
-		inputFile = new ObjectInputStream(bufferIn);
+		fileInputStream = new FileInputStream(employeeList);
+		bufferedInputStream = new BufferedInputStream(fileInputStream);
+		objectInputStream = new ObjectInputStream(bufferedInputStream);
 
 		// Getting the EmployeeList from the file
-		EmployeeList list = (EmployeeList) inputFile.readObject();
+		EmployeeList list = (EmployeeList) objectInputStream.readObject();
 		// Closing off the inputStream
-		inputFile.close();
+		objectInputStream.close();
 
 		// Sending the EmployeeList back
 		return list;
