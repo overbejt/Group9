@@ -11,7 +11,9 @@ public class Attributes implements AttributesInterface {
 	protected boolean shoes, pants, shirts;
 
 	public Attributes() {
-
+		this.shoes = false;
+		this.pants = false;
+		this.shirts = false;
 	}// End of the Constructor
 
 	/**
@@ -19,9 +21,8 @@ public class Attributes implements AttributesInterface {
 	 * is shoes
 	 */
 	@Override
-	public void setShoes() {
-		// TODO Auto-generated method stub
-
+	public void setShoes(boolean state) {
+		this.shoes = state;
 	}
 
 	/**
@@ -29,8 +30,8 @@ public class Attributes implements AttributesInterface {
 	 * is pants
 	 */
 	@Override
-	public void setPants() {
-		// TODO Auto-generated method stub
+	public void setPants(boolean state) {
+		this.pants = state;
 
 	}
 
@@ -39,8 +40,8 @@ public class Attributes implements AttributesInterface {
 	 * is a shirt
 	 */
 	@Override
-	public void setShirts() {
-		// TODO Auto-generated method stub
+	public void setShirts(boolean state) {
+		this.shirts = state;
 
 	}
 
@@ -52,8 +53,7 @@ public class Attributes implements AttributesInterface {
 	 */
 	@Override
 	public boolean isShoes() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.shoes;
 	}
 
 	/**
@@ -64,8 +64,7 @@ public class Attributes implements AttributesInterface {
 	 */
 	@Override
 	public boolean isPants() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.pants;
 	}
 
 	/**
@@ -76,8 +75,7 @@ public class Attributes implements AttributesInterface {
 	 */
 	@Override
 	public boolean isShirts() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.shirts;
 	}
 
 	/**
@@ -89,7 +87,7 @@ public class Attributes implements AttributesInterface {
 	 */
 	@Override
 	public int getAttributes() {
-		// TODO Auto-generated method stub
+
 		return 0;
 	}
 
