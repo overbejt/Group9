@@ -1,5 +1,9 @@
 package tests;
 
+import java.util.Scanner;
+
+import model.Employee;
+
 /**
  * I made this class file while in another branch.
  * Then I merged the branch back to the master
@@ -13,10 +17,14 @@ package tests;
  *
  */
 public class EmployeeTest {
-
+	static Employee newemplyee = new Employee();
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		onCreate();
+		System.out.println("Name: " + newemplyee.getName());
+		System.out.println("Password: " + newemplyee.getPassword());
+		System.out.println("AccessLevel: " + newemplyee.getAccessLevel());
+		onDestroy();
 	}// ENd of the 'main' method
 
 	/**
@@ -24,17 +32,27 @@ public class EmployeeTest {
 	 * instance of the object that is being
 	 * tested.
 	 */
-	public void onCreate() {
-
+	public static void onCreate() {
+		Scanner reader = new Scanner(System.in);
+		System.out.println("Enter the name of Employee");
+		String n = reader.next();
+		newemplyee.setName(n);
+		System.out.println("Set the password for Emplyee");
+		String p = reader.next();
+		newemplyee.setPassword(p);
+		System.out.println("Set the AccessLevel for Emplyee");
+		int a = reader.nextInt();
+		newemplyee.setAccessLevel(a);
+		reader.close();
 	}// End of the 'onCreate' method
-
+	
 	/**
 	 * This is the method that will assign the
 	 * object to null. That way memory can be
 	 * freed up.
 	 */
-	public void onDestroy() {
-
+	public static void onDestroy() {
+		newemplyee = null;
 	}// End of the 'onDestroy' method
 
 	/**
