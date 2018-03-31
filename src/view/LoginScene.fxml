@@ -44,7 +44,7 @@
                   </PasswordField>
                   <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" style="-fx-background-color: rgb(37, 116, 169);" text="Login" />
+                        <Button fx:id="logInBtn" mnemonicParsing="false" style="-fx-background-color: rgb(37, 116, 169);" text="Login" onAction="#loginBtnClicked" />
                      </children>
                   </HBox>
                </children>

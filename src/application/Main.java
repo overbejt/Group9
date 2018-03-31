@@ -16,18 +16,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			// Enter a print statement that says
-			// your name below here
-			// System.out.println("Added and formatted by Josh");
-			// System.out.println("Nicole Matthews");
-			// System.out.println("Feiyu Wang");
-			// System.out.println("Jacob Sandy");
-			//
-			// System.out.println("I Added another print statement");
-			// System.out.println("Git push test");
 
-			// FXMLLoader loader = new FXMLLoader(getClass()
-			// .getResource("/view/InventoryScene.fxml"));
 			FXMLLoader loader = new FXMLLoader(
 					getClass().getResource("/view/LoginScene.fxml"));
 
@@ -35,6 +24,10 @@ public class Main extends Application {
 
 			// Getting the controller
 			Controller controller = loader.getController();
+
+			// Giving the controller this instance of the primary
+			// stage
+			controller.setPrimaryStage(primaryStage);
 
 			Scene scene = new Scene(root, 600, 400);
 			scene.getStylesheets()
