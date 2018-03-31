@@ -55,6 +55,9 @@ public class Controller {
 	 * @param e
 	 */
 	public void menuItemSaveClicked(ActionEvent e) {
+		// For Testing and debugging
+		fieldBtm.setText("The save button was clicked");
+		fieldBtm.setVisible(true);
 
 		System.out.println("The save button was clicked");
 		// Invoke the save method
