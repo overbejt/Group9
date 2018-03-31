@@ -2,8 +2,18 @@
 .root{
     -fx-font-size: 12pt;
     -fx-font-family: "Courier New";
-    /*-fx-base: rgb(132, 145, 47);*/
-    -fx-base: grey;
-    /*-fx-background: rgb(225, 228, 203);*/
-    -fx-background: blue;
+   
+    /*-fx-base: grey;*/
+   	-fx-base: rgb(37, 116, 169);
+    /*-fx-base: 6c7a89ff;*/
+
+    /*-fx-background: blue;*/
+    -fx-background: rgb(108, 122, 137);
+    /*-fx-background: 4183d7ff;*/
+    
+}
+
+.login-screen{
+	 -fx-background: 4183d7ff;
+	 -fx-base: 6c7a89ff;
 }
