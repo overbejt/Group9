@@ -18,13 +18,13 @@ public class Main extends Application {
 		try {
 			// Enter a print statement that says
 			// your name below here
-			System.out.println("Added and formatted by Josh");
-			System.out.println("Nicole Matthews");
-			System.out.println("Feiyu Wang");
-			System.out.println("Jacob Sandy");
-
-			System.out.println("I Added another print statement");
-			System.out.println("Git push test");
+			// System.out.println("Added and formatted by Josh");
+			// System.out.println("Nicole Matthews");
+			// System.out.println("Feiyu Wang");
+			// System.out.println("Jacob Sandy");
+			//
+			// System.out.println("I Added another print statement");
+			// System.out.println("Git push test");
 
 			FXMLLoader loader = new FXMLLoader(
 					getClass().getResource("/view/View.fxml"));
@@ -40,6 +40,7 @@ public class Main extends Application {
 							.toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Abacus");
+			primaryStage.setMaximized(true);
 			primaryStage.show();
 
 			// Handle close action**************
