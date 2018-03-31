@@ -26,10 +26,10 @@ public class Main extends Application {
 			// System.out.println("I Added another print statement");
 			// System.out.println("Git push test");
 
-			FXMLLoader loader = new FXMLLoader(getClass()
-					.getResource("/view/InventoryScene.fxml"));
-			// FXMLLoader loader = new FXMLLoader(
-			// getClass().getResource("/view/LoginScene.fxml"));
+			// FXMLLoader loader = new FXMLLoader(getClass()
+			// .getResource("/view/InventoryScene.fxml"));
+			FXMLLoader loader = new FXMLLoader(
+					getClass().getResource("/view/LoginScene.fxml"));
 
 			Parent root = loader.load();
 
