@@ -65,21 +65,19 @@ public class ItemList implements Serializable {
 	 * 
 	 * @return The item list
 	 */
-	public HashMap getItemList() {
+	public HashMap<Long, Item> getItemList() {
 		return this.list;
 	}// End of the 'getItemList' method
 
 	/**
 	 * This is the method that allows you to set the item list. It
-	 * takes in an ItemList object. And calls on it's getItemList()
-	 * method. It can be used to point this ItemList to an already
-	 * existing one.
+	 * takes in a HashMap object. It can be used to point this
+	 * ItemList to an already existing one.
 	 * 
 	 * @param inList
-	 *            The ItemList to point this one to
 	 */
-	public void setItemList(ItemList inList) {
-		this.list = inList.getItemList();
+	public void setItemList(HashMap<Long, Item> inList) {
+		this.list = inList;
 	}// End of the 'setItemList' method
 
 	/**
