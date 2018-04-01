@@ -18,7 +18,7 @@ public class Item implements ItemInterface {
 	/**
 	 * Constructor
 	 */
-	public void Item() {
+	public Item() {
 		// Initializing instance variables and objects
 		attributes = new Attributes();
 		name = "";
