@@ -6,7 +6,7 @@ import java.time.Instant;
  * This is the class that will hold information about each item in the
  * inventory.
  * 
- * @version 0.1
+ * @version 1.1
  */
 public class Item implements ItemInterface {
 
@@ -32,8 +32,7 @@ public class Item implements ItemInterface {
 	 */
 	@Override
 	public void setName(String name) {
-		// TODO Auto-generated method stub
-
+		this.name = name;
 	}// End of the 'setName' method
 
 	/**
@@ -43,8 +42,7 @@ public class Item implements ItemInterface {
 	 */
 	@Override
 	public void setAttributes(Attributes attributes) {
-		// TODO Auto-generated method stub
-
+		this.attributes = attributes;
 	}// End of the 'setAttributes' method
 
 	/**
@@ -54,8 +52,7 @@ public class Item implements ItemInterface {
 	 */
 	@Override
 	public void setID() {
-		// TODO Auto-generated method stub
-
+		id = Instant.now();
 	}// End of the 'setID' method
 
 	/**
@@ -66,8 +63,7 @@ public class Item implements ItemInterface {
 	 */
 	@Override
 	public String getName() throws NullPointerException {
-		// TODO Auto-generated method stub
-		return null;
+		return name;
 	}// End of the 'getName' method
 
 	/**
@@ -79,8 +75,7 @@ public class Item implements ItemInterface {
 	 */
 	@Override
 	public Attributes getAttributes() throws NullPointerException {
-		// TODO Auto-generated method stub
-		return null;
+		return attributes;
 	}// End of the 'getAttributes' method
 
 	/**
@@ -92,8 +87,7 @@ public class Item implements ItemInterface {
 	 */
 	@Override
 	public long getID() throws NullPointerException {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.id.getEpochSecond();
 	}// End of the 'getID' method
 
 }// End of the 'Item' class
