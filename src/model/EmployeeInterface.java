@@ -50,6 +50,7 @@ public interface EmployeeInterface {
 	 * This is the method that will return the employee's name.
 	 * 
 	 * @return
+	 * @throws NullPointerException
 	 */
 	public String getName() throws NullPointerException;
 
@@ -57,6 +58,7 @@ public interface EmployeeInterface {
 	 * This is the method that will return the employee's password.
 	 * 
 	 * @return
+	 * @throws NullPointerException
 	 */
 	public String getPassword() throws NullPointerException;
 
@@ -70,6 +72,7 @@ public interface EmployeeInterface {
 	 * <b>*admin access level cannot be changed</b>
 	 * 
 	 * @return
+	 * @throws NullPointerException
 	 */
 	public int getAccessLevel() throws NullPointerException;
 
@@ -78,6 +81,7 @@ public interface EmployeeInterface {
 	 * It will serve as the key in a hashmap.
 	 * 
 	 * @return
+	 * @throws NullPointerException
 	 */
 	public long getID() throws NullPointerException;
 

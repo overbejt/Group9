@@ -41,10 +41,11 @@ public class EmployeeList implements Serializable {
 	 * This is the method that will remove an employee from the
 	 * employee list.
 	 * 
-	 * @param employee
+	 * @param id
+	 *            The id of the item to be removed
 	 */
-	public void removeEmployee(Employee employee) {
-		list.remove(employee.getID());
+	public void removeEmployee(long id) {
+		list.remove(id);
 	}// End of the 'removeEmployee' method
 
 	/**
@@ -52,7 +53,8 @@ public class EmployeeList implements Serializable {
 	 * in the Employee List.
 	 * 
 	 * @param id
-	 * @return
+	 *            The id of the employee requested
+	 * @return The employee requested
 	 */
 	public Employee getEmployee(long id) {
 		return list.get(id);
@@ -62,7 +64,7 @@ public class EmployeeList implements Serializable {
 	 * This is the method that will return the Employee list in the
 	 * form of a HashMap
 	 * 
-	 * @return
+	 * @return The list of employees in the system
 	 */
 	public HashMap getEmployeeList() {
 		return list;
