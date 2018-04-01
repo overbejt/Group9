@@ -1,9 +1,7 @@
-package application;
+package model;
 
 import java.io.Serializable;
 import java.util.HashMap;
-
-import model.Employee;
 
 /**
  * This is the class that will hold all of the employees. When an
@@ -36,7 +34,7 @@ public class EmployeeList implements Serializable {
 	 * @param employee
 	 */
 	public void addEmployee(Employee employee) {
-
+		list.put(employee.getID(), employee);
 	}// End of the 'addEmployee' method
 
 	/**
@@ -46,7 +44,7 @@ public class EmployeeList implements Serializable {
 	 * @param employee
 	 */
 	public void removeEmployee(Employee employee) {
-
+		list.remove(employee.getID());
 	}// End of the 'removeEmployee' method
 
 	/**
@@ -69,6 +67,18 @@ public class EmployeeList implements Serializable {
 	public HashMap getEmployeeList() {
 		return list;
 	}// End of the 'getEmployeeList' method
+
+	/**
+	 * This is the method that will allow you to point this object to
+	 * a different employee list. It will be implemented if there is
+	 * already an employee list on record.
+	 * 
+	 * @param inList
+	 *            The employee list that is already stored
+	 */
+	public void setEmployeeList(EmployeeList inList) {
+		this.list = inList.getEmployeeList();
+	}// End of the 'setEmployeeList' method
 
 	/**
 	 * This is the method that will clear the employee list.

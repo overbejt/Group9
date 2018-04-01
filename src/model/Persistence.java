@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import application.EmployeeList;
-
 /**
  * This is the class that will be responsible for handling all of the
  * persistence of the software.

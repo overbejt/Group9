@@ -2,9 +2,9 @@ package tests;
 
 import java.util.Scanner;
 
-import application.EmployeeList;
 import model.Attributes;
 import model.Employee;
+import model.EmployeeList;
 
 public class EmployeeListTest {
 	static Attributes newattribute = new Attributes();

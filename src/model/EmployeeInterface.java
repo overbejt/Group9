@@ -51,14 +51,14 @@ public interface EmployeeInterface {
 	 * 
 	 * @return
 	 */
-	public String getName()throws NullPointerException;
+	public String getName() throws NullPointerException;
 
 	/**
 	 * This is the method that will return the employee's password.
 	 * 
 	 * @return
 	 */
-	public String getPassword()throws NullPointerException;
+	public String getPassword() throws NullPointerException;
 
 	/**
 	 * This is the method that will return the employee's access level
@@ -79,8 +79,6 @@ public interface EmployeeInterface {
 	 * 
 	 * @return
 	 */
-	public long getID ()throws NullPointerException;
-	
-	
+	public long getID() throws NullPointerException;
 
 }// End of the 'EmployeedInterface' class
