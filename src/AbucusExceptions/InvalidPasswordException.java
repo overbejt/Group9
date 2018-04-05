@@ -6,6 +6,14 @@ package AbucusExceptions;
  * 
  * @version 1.0
  */
-public class InvalidPasswordException {
+public class InvalidPasswordException extends RuntimeException {
+
+	public InvalidPasswordException() {
+		this(null);
+	}// End of the Constructor
+
+	public InvalidPasswordException(String msg) {
+		super(msg);
+	}// End of the Overloaded Constructor
 
 }// End of the 'InvalidPasswordException' class

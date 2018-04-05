@@ -5,6 +5,14 @@ package AbucusExceptions;
  * 
  * @version 1.0
  */
-public class ItemNotFoundException {
+public class ItemNotFoundException extends RuntimeException {
+
+	public ItemNotFoundException() {
+		this(null);
+	}// End of the Constructor
+
+	public ItemNotFoundException(String msg) {
+		super(msg);
+	}// End of the Overloaded Constructor
 
 }// End of the 'ItemNotFoundException' class
