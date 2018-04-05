@@ -48,8 +48,10 @@ public class Persistence {
 	void writeEmployeeList(EmployeeList list) throws IOException {
 
 		fileOutputStream = new FileOutputStream(employeeList);
-		bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
-		objectOutputStream = new ObjectOutputStream(bufferedOutputStream);
+		bufferedOutputStream = new BufferedOutputStream(
+				fileOutputStream);
+		objectOutputStream = new ObjectOutputStream(
+				bufferedOutputStream);
 
 		objectOutputStream.writeObject(list);
 
@@ -64,15 +66,18 @@ public class Persistence {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	private EmployeeList readEmployeeList()
+	public EmployeeList readEmployeeList()
 			throws ClassNotFoundException, IOException {
 
 		fileInputStream = new FileInputStream(employeeList);
-		bufferedInputStream = new BufferedInputStream(fileInputStream);
-		objectInputStream = new ObjectInputStream(bufferedInputStream);
+		bufferedInputStream = new BufferedInputStream(
+				fileInputStream);
+		objectInputStream = new ObjectInputStream(
+				bufferedInputStream);
 
 		// Getting the EmployeeList from the file
-		EmployeeList list = (EmployeeList) objectInputStream.readObject();
+		EmployeeList list = (EmployeeList) objectInputStream
+				.readObject();
 		// Closing off the inputStream
 		objectInputStream.close();
 

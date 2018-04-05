@@ -1,5 +1,8 @@
 package application;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +14,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Admin;
+import model.Employee;
+import model.EmployeeList;
+import model.Persistence;
 
 /**
  * This is the controller class. For now, it will be the go-between
@@ -28,17 +35,45 @@ public class Controller {
 	@FXML
 	private Button		loginBtn;
 	private FXMLLoader	fxmlLoader;
+	// >>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<
+	// Instance objects
+	private Parent			parent;
+	private Persistence		persistence;
+	private EmployeeList	employeeList;
 
-	private Parent parent;
+	// >>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<
 
-	// called by the FXML loader after the labels
-	// declared above are injected:
-	public void initialize() {
+	/**
+	 * This is the method that will only run once on initialization.
+	 * It will initialize instance objects and variables. It will also
+	 * handle loading from local memory, if any exists.
+	 * 
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 * @throws FileNotFoundException
+	 */
+	public void initialize() throws ClassNotFoundException,
+			FileNotFoundException, IOException {
 
-		// do initialization and configuration
-		// work...
-		// usrNameField.setFocusTraversable(false);
-	}
+		persistence = new Persistence();
+
+		// Check if EmployeeList file exists
+		if (persistence.employeeListExists()) {
+			employeeList = persistence.readEmployeeList();
+		} // End of EmployeeList check
+		else {
+			employeeList = new EmployeeList();
+			// Creating an 'Admin' object
+			Employee admin = Admin.getAdminInstance();
+			// Adding 'Admin' to the EmployeeList
+			employeeList.addEmployee(admin);
+
+			// !!Needs Tested for weakness
+		}
+
+		// Check if ItemList file exists
+
+	}// End of the 'initialize' method
 
 	public void btnWasClicked(ActionEvent evt) {
 		fieldBtm.setText("An Item was added");
