@@ -22,7 +22,7 @@ public class Item implements ItemInterface {
 		// Initializing instance variables and objects
 		attributes = new Attributes();
 		name = "";
-		setID();
+		id = Instant.now();
 	}// End of the Constructor
 
 	/**
@@ -44,16 +44,6 @@ public class Item implements ItemInterface {
 	public void setAttributes(Attributes attributes) {
 		this.attributes = attributes;
 	}// End of the 'setAttributes' method
-
-	/**
-	 * This is the method that will set an item's ID. It will take the
-	 * epoch time and store it in a long. This value can never be
-	 * changed. It's only purpose is to serve as a key in a hashmap.
-	 */
-	@Override
-	public void setID() {
-		id = Instant.now();
-	}// End of the 'setID' method
 
 	/**
 	 * This is the method that will return the item's name.

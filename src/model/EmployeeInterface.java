@@ -40,13 +40,6 @@ public interface EmployeeInterface {
 	public void setAccessLevel(int accessLevel);
 
 	/**
-	 * This is the method that will set an employee's ID. It will take
-	 * the epoch time and store it in a long. This value can never be
-	 * changed. It's only purpose is to serve as a key in a hashmap.
-	 */
-	public void setID();
-
-	/**
 	 * This is the method that will return the employee's name.
 	 * 
 	 * @return

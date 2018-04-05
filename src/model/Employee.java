@@ -16,14 +16,13 @@ public class Employee implements EmployeeInterface {
 	private Instant	id;
 
 	/**
-	 * This is the Constructor method. !It must invoke the setID()
-	 * method!
+	 * This is the Constructor method.
 	 */
 	public Employee() {
-		this.setID();// Must be invoked
 		this.name = null;
 		this.password = null;
 		this.accessLevel = -1;
+		this.id = Instant.now();
 	}// End of the Constructor
 
 	/**
@@ -37,7 +36,7 @@ public class Employee implements EmployeeInterface {
 	public void setName(String name) {
 		this.name = name;
 
-	}
+	}// End of the 'setName' method
 
 	/**
 	 * This is the method that will set an employee's password. It
@@ -50,7 +49,7 @@ public class Employee implements EmployeeInterface {
 	public void setPassword(String password) {
 		this.password = password;
 
-	}
+	}// End of the 'setPassword' method
 
 	/**
 	 * This is the method that will set an employee's access level. It
@@ -67,19 +66,7 @@ public class Employee implements EmployeeInterface {
 	public void setAccessLevel(int accessLevel) {
 		this.accessLevel = accessLevel;
 
-	}
-
-	/**
-	 * This is the method that will set an employee's ID. It will take
-	 * the epoch time and store it in an Instant object. This value
-	 * can never be changed. It's only purpose is to serve as a key in
-	 * a HashMap.
-	 */
-	@Override
-	public void setID() {
-		id = Instant.now();
-
-	}
+	}// End of the 'setAccessLevel' method
 
 	/**
 	 * This is the method that will return the employee's name.
@@ -89,7 +76,7 @@ public class Employee implements EmployeeInterface {
 	@Override
 	public String getName() {
 		return this.name;
-	}
+	}// End of the 'getName' method
 
 	/**
 	 * This is the method that will return the employee's password.
@@ -99,7 +86,7 @@ public class Employee implements EmployeeInterface {
 	@Override
 	public String getPassword() {
 		return this.password;
-	}
+	}// End of the 'getPassword' method
 
 	/**
 	 * This is the method that will return the employee's access level
@@ -115,7 +102,7 @@ public class Employee implements EmployeeInterface {
 	@Override
 	public int getAccessLevel() {
 		return this.accessLevel;
-	}
+	}// End of the 'getAccessLevel' method
 
 	/**
 	 * This is the method that will return the employee's ID number.
@@ -126,6 +113,6 @@ public class Employee implements EmployeeInterface {
 	@Override
 	public long getID() {
 		return this.id.getEpochSecond();
-	}
+	}// End of the 'getId' method
 
 }// End of the 'Employee' class

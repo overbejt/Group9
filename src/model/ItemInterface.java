@@ -22,13 +22,6 @@ public interface ItemInterface {
 	public void setAttributes(Attributes attributes);
 
 	/**
-	 * This is the method that will set an item's ID. It will take the
-	 * epoch time and store it in a long. This value can never be
-	 * changed. It's only purpose is to serve as a key in a hashmap.
-	 */
-	public void setID();
-
-	/**
 	 * This is the method that will return the item's name.
 	 * 
 	 * @return
