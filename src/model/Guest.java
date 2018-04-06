@@ -3,33 +3,33 @@ package model;
 import java.time.Instant;
 
 /**
- * This is the class that will handle the Employee object 'Admin'. It
- * will implement the Singleton design pattern. None of the states
- * from 'Admin' can be changed. They can only be read by referenced.
+ * This is the class that will handle the Guest object. It will use
+ * the Singleton design pattern. This means that the states of the
+ * Guest object should not be able to be altered.
  * 
  * @version 1.0
  */
-public class Admin {
+public class Guest {
 
 	// Instance variables
 	private String	name, password;
 	private int		accessLevel;
 	private Instant	id;
 	// Declaring an instance of this class to hold the object
-	private static Admin admin;
+	private static Guest guest;
 
 	/**
 	 * Constructor
 	 */
-	private Admin() {
+	private Guest() {
 		this.id = Instant.now();// Setting the ID
-		this.name = "admin";// Setting the name
-		this.password = "admin";// Setting the password
-		this.accessLevel = 001;// Setting the Access Level
+		this.name = "guest";// Setting the name
+		this.password = "guest";// Setting the password
+		this.accessLevel = 000;// Setting the Access Level
 	}// End of the Constructor
 
 	/**
-	 * This is the method that will protect 'Admin' from ever creating
+	 * This is the method that will protect 'Guest' from ever creating
 	 * more than one Instance. And it will allow other classes to
 	 * access it by reference.
 	 * <p>
@@ -39,12 +39,12 @@ public class Admin {
 	 * 
 	 * @return
 	 */
-	public static Admin getAdminInstance() {
+	public static Guest getGuestInstance() {
 		// Check if an instance already exists
-		if (admin == null) {
-			admin = new Admin();
+		if (guest == null) {
+			guest = new Guest();
 		}
-		return admin;
+		return guest;
 	}// End of the 'getAdminInstance' method
 
 	/**
@@ -87,11 +87,11 @@ public class Admin {
 	 * This is the method that will return the employee's ID number.
 	 * It will serve as the key in a hashmap.
 	 * 
-	 * @return The Admin's ID number
+	 * @return The guest's ID number
 	 * @throws NullPointerException
 	 */
 	public long getID() throws NullPointerException {
 		return this.id.getEpochSecond();
 	}// End of the 'getId' method
 
-}// End of the 'Admin' class
+}// End of the 'Guest' class
