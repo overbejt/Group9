@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 import java.util.HashMap;
 
-import AbucusExceptions.AdminRemovalException;
+import AbucusExceptions.InvalidRemovalException;
 import AbucusExceptions.EmployeeExistsException;
 import AbucusExceptions.EmployeeNotFoundException;
 
@@ -51,6 +51,12 @@ public class EmployeeList implements Serializable {
 				// Check if 'Admin' object
 				list.put(((Admin) employee).getID(), employee);
 			}
+		} else if (employee.getClass() == Guest.class) {
+			// Make sure that the guest is not already in the list
+			if (!list.containsKey(((Guest) employee).getID())) {
+				// Check if 'Guest' object
+				list.put(((Guest) employee).getID(), employee);
+			}
 		}
 	}// End of the 'addEmployee' method
 
@@ -66,7 +72,7 @@ public class EmployeeList implements Serializable {
 		if (list.get(id) == Employee.class) {
 			list.remove(id);
 		} else {
-			throw new AdminRemovalException();
+			throw new InvalidRemovalException();
 		}
 	}// End of the 'removeEmployee' method
 

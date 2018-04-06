@@ -6,14 +6,14 @@ package AbucusExceptions;
  * 
  * @version 1.0
  */
-public class AdminRemovalException extends RuntimeException {
+public class InvalidRemovalException extends RuntimeException {
 
-	public AdminRemovalException() {
+	public InvalidRemovalException() {
 		this(null);
 	}// End of the Constructor
 
-	public AdminRemovalException(String msg) {
+	public InvalidRemovalException(String msg) {
 		super(msg);
 	}// End of the Overloaded Constructor
 
-}// End of the 'AdminRemovalException' class
+}// End of the 'InvalidRemovalException' class

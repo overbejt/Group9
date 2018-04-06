@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Admin;
 import model.EmployeeList;
+import model.Guest;
 import model.Persistence;
 
 /**
@@ -54,6 +55,7 @@ public class Controller {
 	public void initialize() throws ClassNotFoundException,
 			FileNotFoundException, IOException {
 
+		// Initializing the Persistence object
 		persistence = new Persistence();
 
 		// Check if EmployeeList file exists
@@ -66,6 +68,11 @@ public class Controller {
 			Admin admin = Admin.getAdminInstance();
 			// Adding 'Admin' to the EmployeeList
 			employeeList.addEmployee(admin);
+
+			// Creating a 'Guest' object
+			Guest guest = Guest.getGuestInstance();
+			// Adding 'Guest' to the EmployeeList
+			employeeList.addEmployee(guest);
 
 			// !!Needs Tested for weakness
 		}
