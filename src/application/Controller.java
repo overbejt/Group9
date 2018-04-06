@@ -81,43 +81,7 @@ public class Controller {
 
 	}// End of the 'initialize' method
 
-	public void btnWasClicked(ActionEvent evt) {
-		fieldBtm.setText("An Item was added");
-		fieldBtm.setVisible(true);
-		System.out.println("It was clicked");
-	}// End of the 'btnWasClicked' method
-
-	/**
-	 * This is the method that will perform actions when the user
-	 * clicks the close menu item. It will display an alert box asking
-	 * if they want to save. Then, based on their decision, it will
-	 * either exit, or save and then exit.
-	 * 
-	 * @param e
-	 */
-	@FXML
-	public void menuItemCloseClicked(ActionEvent e) {
-		end();
-
-	}// End of the 'menuItemCloseClicked'method
-
-	/**
-	 * This is the method that will handle the event that the user
-	 * clicks the menu item 'save'. It will invoke the methods for
-	 * saving the inventory and the user list.
-	 * 
-	 * @param e
-	 */
-	public void menuItemSaveClicked(ActionEvent e) {
-		// For Testing and debugging
-		fieldBtm.setText("The save button was clicked");
-		fieldBtm.setVisible(true);
-
-		System.out.println("The save button was clicked");
-		// Invoke the save method
-		save();
-
-	}// End of the 'menuItemSaveClicked' method
+	// <<<<<<<<<<<<<<Login Screen>>>>>>>>>>>>>>>>>>>>>>
 
 	/**
 	 * This is the method that will handle the user trying to log in.
@@ -164,6 +128,49 @@ public class Controller {
 
 	}// End of the 'menuItemSaveClicked' method
 
+	// <<<<<<<<<<<<<<Inventory Screen>>>>>>>>>>>>>>>>>>>>>>
+
+	/**
+	 * This is the method that will perform actions when the user
+	 * clicks the close menu item. It will display an alert box asking
+	 * if they want to save. Then, based on their decision, it will
+	 * either exit, or save and then exit.
+	 * 
+	 * @param e
+	 */
+	@FXML
+	public void menuItemCloseClicked(ActionEvent e) {
+		end();
+
+	}// End of the 'menuItemCloseClicked'method
+
+	public void btnWasClicked(ActionEvent evt) {
+		fieldBtm.setText("An Item was added");
+		fieldBtm.setVisible(true);
+		System.out.println("It was clicked");
+	}// End of the 'btnWasClicked' method
+
+	/**
+	 * This is the method that will handle the event that the user
+	 * clicks the menu item 'save'. It will invoke the methods for
+	 * saving the inventory and the user list.
+	 * 
+	 * @param e
+	 */
+	@FXML
+	public void menuItemSaveClicked(ActionEvent e) {
+		// For Testing and debugging
+		fieldBtm.setText("The save button was clicked");
+		fieldBtm.setVisible(true);
+
+		System.out.println("The save button was clicked");
+		// Invoke the save method
+		save();
+
+	}// End of the 'menuItemSaveClicked' method
+
+	// <<<<<<<<<<<<<<<<<Helper Methods>>>>>>>>>>>>>>>>
+
 	/**
 	 * This is the method that will allow this Controller class to
 	 * load new FXML files. Essentially switching the scenes when
@@ -193,8 +200,6 @@ public class Controller {
 		System.exit(0);// Exiting the program
 
 	}// End of the 'end' method
-
-	// <<<<<<<<<<<<<<<<<,>>>>>>>>>>>>>>>>
 
 	/**
 	 * This is the method that will save the inventory and the
