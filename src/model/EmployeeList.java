@@ -20,9 +20,7 @@ public class EmployeeList implements Serializable {
 	 */
 	private static final long serialVersionUID = 9162446095675838851L;
 
-	// Declaring instance variables
-	private Employee employee;
-
+	// Declaring a HashMap to store the employees
 	private HashMap<Long, Object> list;
 
 	// Constructor
@@ -91,7 +89,7 @@ public class EmployeeList implements Serializable {
 	 * 
 	 * @return The list of employees in the system
 	 */
-	public HashMap getEmployeeList() {
+	public HashMap<Long, Object> getEmployeeList() {
 		return list;
 	}// End of the 'getEmployeeList' method
 
