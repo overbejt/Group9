@@ -3,6 +3,10 @@ package model;
 import java.io.Serializable;
 import java.util.HashMap;
 
+import AbucusExceptions.AdminRemovalException;
+import AbucusExceptions.EmployeeExistsException;
+import AbucusExceptions.EmployeeNotFoundException;
+
 /**
  * This is the class that will hold all of the employees. When an
  * object of this class is initialized, it will be Serializable.
@@ -19,12 +23,12 @@ public class EmployeeList implements Serializable {
 	// Declaring instance variables
 	private Employee employee;
 
-	private HashMap<Long, Employee> list;
+	private HashMap<Long, Object> list;
 
 	// Constructor
 	public EmployeeList() {
 		// Initializing the employee list
-		list = new HashMap<Long, Employee>();
+		list = new HashMap<Long, Object>();
 	}// End of the Constructor
 
 	/**
@@ -33,8 +37,23 @@ public class EmployeeList implements Serializable {
 	 * 
 	 * @param employee
 	 */
-	public void addEmployee(Employee employee) {
-		list.put(employee.getID(), employee);
+	public void addEmployee(Object employee) {
+
+		// Check if Employee object
+		if (employee.getClass() == Employee.class) {
+			// Make sure that the employee doesn't already exist
+			if (list.containsKey(((Employee) employee).getID())) {
+				throw new EmployeeExistsException();
+			} else {
+				list.put(((Employee) employee).getID(), employee);
+			}
+		} else if (employee.getClass() == Admin.class) {
+			// Make sure that the admin is not already in the list
+			if (!list.containsKey(((Admin) employee).getID())) {
+				// Check if 'Admin' object
+				list.put(((Admin) employee).getID(), employee);
+			}
+		}
 	}// End of the 'addEmployee' method
 
 	/**
@@ -45,7 +64,12 @@ public class EmployeeList implements Serializable {
 	 *            The id of the item to be removed
 	 */
 	public void removeEmployee(long id) {
-		list.remove(id);
+		// Check to make sure that it is an Employee object
+		if (list.get(id) == Employee.class) {
+			list.remove(id);
+		} else {
+			throw new AdminRemovalException();
+		}
 	}// End of the 'removeEmployee' method
 
 	/**
@@ -56,7 +80,8 @@ public class EmployeeList implements Serializable {
 	 *            The id of the employee requested
 	 * @return The employee requested
 	 */
-	public Employee getEmployee(long id) {
+	public Object getEmployee(long id)
+			throws EmployeeNotFoundException {
 		return list.get(id);
 	}// End of the 'getEmployee' method
 

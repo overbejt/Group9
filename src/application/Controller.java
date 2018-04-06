@@ -15,7 +15,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Admin;
-import model.Employee;
 import model.EmployeeList;
 import model.Persistence;
 
@@ -64,7 +63,7 @@ public class Controller {
 		else {
 			employeeList = new EmployeeList();
 			// Creating an 'Admin' object
-			Employee admin = Admin.getAdminInstance();
+			Admin admin = Admin.getAdminInstance();
 			// Adding 'Admin' to the EmployeeList
 			employeeList.addEmployee(admin);
 

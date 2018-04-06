@@ -16,22 +16,16 @@ public class Admin {
 	private int		accessLevel;
 	private Instant	id;
 	// Declaring an instance of this class to hold the object
-	private static Admin	admin;
-	private static Employee	adminB;
+	private static Admin admin;
 
 	/**
 	 * Constructor
 	 */
 	private Admin() {
-		adminB = new Employee();
-		adminB.setAccessLevel(001);
-		adminB.setName("admin");
-		adminB.setPassword("admin");
-
-		// this.id = Instant.now();// Setting the ID
-		// this.name = "admin";// Setting the name
-		// this.password = "admin";// Setting the password
-		// this.accessLevel = 001;// Setting the Access Level
+		this.id = Instant.now();// Setting the ID
+		this.name = "admin";// Setting the name
+		this.password = "admin";// Setting the password
+		this.accessLevel = 001;// Setting the Access Level
 	}// End of the Constructor
 
 	/**
@@ -45,12 +39,12 @@ public class Admin {
 	 * 
 	 * @return
 	 */
-	public static Employee getAdminInstance() {
+	public static Admin getAdminInstance() {
 		// Check if an instance already exists
 		if (admin == null) {
 			admin = new Admin();
 		}
-		return adminB;
+		return admin;
 	}// End of the 'getAdminInstance' method
 
 	/**
