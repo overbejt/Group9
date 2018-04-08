@@ -1,36 +1,13 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
-.root{
-    -fx-font-size: 12pt;
-    -fx-font-family: "Courier New";
-   
-    /*-fx-base: grey;*/
-   	-fx-base: rgb(37, 116, 169);
-    /*-fx-base: 6c7a89ff;*/
 
-    /*-fx-background: blue;*/
-    -fx-background: rgb(108, 122, 137);
-    /*-fx-background: 4183d7ff;*/
-    
-}
 
-.login-screen{
-	 -fx-background: white;
-	 -fx-base: white;
-	 /*-fx-base: rgb(37, 116, 169);*/
-}
-
-/*
-.login-borderpane{
-	/*-fx-background-image: url('@../Assets/rect4524.png');
+#login-screen{
+	 -fx-background:  #282222;
 	
-	-fx-background-image: url(\"/Assets/rect4524.png\");
-	-fx-background-size: 500, 500;
-	-fx-background-repeat: no-repeat;
-}*/
+}
+#split-pane> .split-pane-divider{
+	-fx-box-border: transparent;
+	
+}
 
-/*
-#login-parent{
-	-fx-background-image: url(\"/Assets/rect4524.png\");
-	-fx-background-size: 500, 500;
-	-fx-background-repeat: no-repeat;
-}*/
+

@@ -18,7 +18,10 @@ public class Main extends Application {
 		try {
 
 			FXMLLoader loader = new FXMLLoader(
-					getClass().getResource("/view/LoginScene.fxml"));
+					getClass().getResource("/view/LoginBeta.fxml"));
+
+			// FXMLLoader loader = new FXMLLoader(
+			// getClass().getResource("/view/LoginScene.fxml"));
 
 			Parent root = loader.load();
 
