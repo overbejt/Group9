@@ -6,6 +6,7 @@ import java.io.IOException;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.RequiredFieldValidator;
 
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
@@ -32,11 +33,13 @@ public class Controller {
 
 	// >>>>>>>>>>>>Login Scene Instance variables<<<<<<<<<<<<<<<<<<<<<
 	@FXML
-	private JFXPasswordField	passwordField;
+	private JFXPasswordField		passwordField;
 	@FXML
-	private JFXTextField		userNameField;
+	private JFXTextField			userNameField;
 	@FXML
-	private JFXButton			loginBtn;
+	private JFXButton				loginBtn;
+	private RequiredFieldValidator	usrNameValidator;
+	private RequiredFieldValidator	passwordValidator;
 
 	// >>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<
 	// Instance objects
@@ -84,8 +87,6 @@ public class Controller {
 			// !!Needs Tested for weakness
 		}
 
-		// Check if ItemList file exists
-
 	}// End of the 'initialize' method
 
 	// <<<<<<<<<<<<<<Login Screen>>>>>>>>>>>>>>>>>>>>>>
@@ -104,13 +105,18 @@ public class Controller {
 
 		// Test if a user name was entered
 		if (userNameField.getText().trim().length() == 0) {
-			// userNameField.set
-
 			userNameField.pseudoClassStateChanged(errorClass, true);
+
 		} else {
-			// Invoke the 'loadInventoryScene' method
-			loadInventoryScene();
+			if (passwordField.getText().trim().length() == 0) {
+				passwordField.pseudoClassStateChanged(errorClass,
+						true);
+			} else {
+				// Invoke the 'loadInventoryScene' method
+				loadInventoryScene();
+			}
 		}
+
 		// Test the user name and their password.
 
 		// If valid, then switch to the inventory scene
