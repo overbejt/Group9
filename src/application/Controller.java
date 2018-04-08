@@ -6,6 +6,7 @@ import java.io.IOException;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXToggleButton;
 import com.jfoenix.validation.RequiredFieldValidator;
 
 import javafx.css.PseudoClass;
@@ -33,6 +34,8 @@ import model.Persistence;
 public class Controller {
 
 	// >>>>>>>>>>>>Login Scene Instance variables<<<<<<<<<<<<<<<<<<<<<
+	@FXML
+	private JFXToggleButton			guestToggle;
 	@FXML
 	private JFXPasswordField		passwordField;
 	@FXML
@@ -109,44 +112,52 @@ public class Controller {
 		boolean correctPassword = false;
 		boolean isAdmin = false;
 
-		// Test if a user name was entered
-		if (userNameField.getText().trim().length() == 0) {
-			userNameField.pseudoClassStateChanged(errorClass, true);
+		// Test if logging in as a guest
+		if (guestToggle.isSelected()) {
+			// Switch to Inventory scene
+			loadInventoryScene();
 		} else {
-			// Test if user name entered exists
-			String inputName = userNameField.getText();
-			// Test if in the employee list
-			if (inputName.equals("admin")) {
-				isAdmin = true;
-			} else if (employeeList.contains(inputName)) {
-				isEmployee = true;
-				currentEmployee = (Employee) employeeList
-						.getEmployee(inputName);
+			// Test if a user name was entered
+			if (userNameField.getText().trim().length() == 0) {
+				userNameField.pseudoClassStateChanged(errorClass,
+						true);
 			} else {
-				// Alert the user to not a valid user name
-			}
-		}
-		// Test if a password was entered
-		if (passwordField.getText().trim().length() == 0) {
-			passwordField.pseudoClassStateChanged(errorClass, true);
-		} else {
-			String inPassword = passwordField.getText();
-			if (isAdmin) {
-				if (inPassword.equals("admin")) {
+				// Test if user name entered exists
+				String inputName = userNameField.getText();
+				// Test if in the employee list
+				if (inputName.equals("admin")) {
+					isAdmin = true;
+				} else if (employeeList.contains(inputName)) {
+					isEmployee = true;
+					currentEmployee = (Employee) employeeList
+							.getEmployee(inputName);
+				} else {
+					// Alert the user to not a valid user name
+				}
+			} // End of user name verification
+				// Test if a password was entered
+			if (passwordField.getText().trim().length() == 0) {
+				passwordField.pseudoClassStateChanged(errorClass,
+						true);
+			} else {
+				String inPassword = passwordField.getText();
+				if (isAdmin) {
+					if (inPassword.equals("admin")) {
+						// Invoke the 'loadInventoryScene' method
+						loadInventoryScene();
+					}
+				}
+				// Test if good password
+				else if (inPassword
+						.equals(currentEmployee.getPassword())) {
 					// Invoke the 'loadInventoryScene' method
 					loadInventoryScene();
+				} else {
+					// Alert the user to bad input
 				}
-			}
-			// Test if good password
-			else if (inPassword
-					.equals(currentEmployee.getPassword())) {
-				// Invoke the 'loadInventoryScene' method
-				loadInventoryScene();
-			} else {
-				// Alert the user to bad input
-			}
 
-		}
+			} // End of password verification
+		} // End of guest test
 
 		// Test the user name and their password.
 
