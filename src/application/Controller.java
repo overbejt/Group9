@@ -19,6 +19,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import model.Admin;
+import model.Employee;
 import model.EmployeeList;
 import model.Guest;
 import model.Persistence;
@@ -48,6 +49,7 @@ public class Controller {
 	private Parent			parent;
 	private Persistence		persistence;
 	private EmployeeList	employeeList;
+	private Employee		currentEmployee;
 
 	// >>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<
 	private final PseudoClass errorClass = PseudoClass
@@ -103,18 +105,47 @@ public class Controller {
 
 		System.out.println("The login button was clicked");
 
+		boolean isEmployee = false;
+		boolean correctPassword = false;
+		boolean isAdmin = false;
+
 		// Test if a user name was entered
 		if (userNameField.getText().trim().length() == 0) {
 			userNameField.pseudoClassStateChanged(errorClass, true);
+		} else {
 			// Test if user name entered exists
-
+			String inputName = userNameField.getText();
+			// Test if in the employee list
+			if (inputName.equals("admin")) {
+				isAdmin = true;
+			} else if (employeeList.contains(inputName)) {
+				isEmployee = true;
+				currentEmployee = (Employee) employeeList
+						.getEmployee(inputName);
+			} else {
+				// Alert the user to not a valid user name
+			}
 		}
 		// Test if a password was entered
 		if (passwordField.getText().trim().length() == 0) {
 			passwordField.pseudoClassStateChanged(errorClass, true);
 		} else {
-			// Invoke the 'loadInventoryScene' method
-			loadInventoryScene();
+			String inPassword = passwordField.getText();
+			if (isAdmin) {
+				if (inPassword.equals("admin")) {
+					// Invoke the 'loadInventoryScene' method
+					loadInventoryScene();
+				}
+			}
+			// Test if good password
+			else if (inPassword
+					.equals(currentEmployee.getPassword())) {
+				// Invoke the 'loadInventoryScene' method
+				loadInventoryScene();
+			} else {
+				// Alert the user to bad input
+			}
+
 		}
 
 		// Test the user name and their password.
@@ -127,7 +158,7 @@ public class Controller {
 		// Or ask the manager to log them in and change their
 		// password
 
-	}// End of the 'menuItemSaveClicked' method
+	}// End of the 'loginBtnClicked' method
 
 	// <<<<<<<<<<<<<<Inventory Screen>>>>>>>>>>>>>>>>>>>>>>
 

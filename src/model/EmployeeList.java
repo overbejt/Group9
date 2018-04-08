@@ -2,10 +2,11 @@ package model;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Set;
 
-import AbucusExceptions.InvalidRemovalException;
 import AbucusExceptions.EmployeeExistsException;
 import AbucusExceptions.EmployeeNotFoundException;
+import AbucusExceptions.InvalidRemovalException;
 
 /**
  * This is the class that will hold all of the employees. When an
@@ -90,6 +91,36 @@ public class EmployeeList implements Serializable {
 	}// End of the 'getEmployee' method
 
 	/**
+	 * This is the method that will pass the reference to an Employee
+	 * in the list, based on their name.
+	 * 
+	 * @param name
+	 * @return The reference to the indicated employee
+	 */
+	public Object getEmployee(String name)
+			throws EmployeeNotFoundException {
+
+		Set entries = list.entrySet();
+		for (Object o : entries) {
+			if (o.getClass() == Employee.class) {
+				if (((Employee) o).getName().equals(name)) {
+					return o;
+				}
+			}
+			if (o.getClass() == Admin.class) {
+				if (((Admin) o).getName().equals(name)) {
+					return o;
+				}
+			}
+			if (((Guest) o).getName().equals(name)) {
+				return o;
+			}
+		}
+		throw new EmployeeNotFoundException();
+
+	}// End of the 'getEmployee' method
+
+	/**
 	 * This is the method that will return the Employee list in the
 	 * form of a HashMap
 	 * 
@@ -98,6 +129,35 @@ public class EmployeeList implements Serializable {
 	public HashMap<Long, Object> getEmployeeList() {
 		return list;
 	}// End of the 'getEmployeeList' method
+
+	/**
+	 * This is the method that will check if a certain employee is in
+	 * the list.
+	 * 
+	 * @param name
+	 *            The name of the employee being searched
+	 * @return True if the employee is in the list. False if not.
+	 */
+	public boolean contains(String name) {
+		Set entries = list.entrySet();
+		for (Object o : entries) {
+			if (o.getClass() == Employee.class) {
+				if (((Employee) o).getName().equals(name)) {
+					return true;
+				}
+			}
+			if (o.getClass() == Admin.class) {
+				if (((Admin) o).getName().equals(name)) {
+					return true;
+				}
+			}
+			if (((Guest) o).getName().equals(name)) {
+				return true;
+			}
+		}
+		return false;
+
+	}// End of the 'contains' method
 
 	/**
 	 * This is the method that will allow you to point this object to
