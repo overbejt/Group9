@@ -7,6 +7,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
+import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,10 +30,11 @@ import model.Persistence;
  */
 public class Controller {
 
+	// >>>>>>>>>>>>Login Scene Instance variables<<<<<<<<<<<<<<<<<<<<<
 	@FXML
 	private JFXPasswordField	passwordField;
 	@FXML
-	private JFXTextField		usrNameField;
+	private JFXTextField		userNameField;
 	@FXML
 	private JFXButton			loginBtn;
 
@@ -45,6 +47,8 @@ public class Controller {
 	private EmployeeList	employeeList;
 
 	// >>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<
+	private final PseudoClass errorClass = PseudoClass
+			.getPseudoClass("error");
 
 	/**
 	 * This is the method that will only run once on initialization.
@@ -96,7 +100,19 @@ public class Controller {
 	@FXML
 	public void loginBtnClicked(ActionEvent e) {
 
+		System.out.println("The login button was clicked");
+
+		// Test if a user name was entered
+		if (userNameField.getText().trim().length() == 0) {
+			// userNameField.set
+
+			userNameField.pseudoClassStateChanged(errorClass, true);
+		} else {
+			// Invoke the 'loadInventoryScene' method
+			loadInventoryScene();
+		}
 		// Test the user name and their password.
+
 		// If valid, then switch to the inventory scene
 
 		// Or allow to log in as a guest
@@ -104,10 +120,6 @@ public class Controller {
 
 		// Or ask the manager to log them in and change their
 		// password
-
-		System.out.println("The login button was clicked");
-		// Invoke the 'loadInventoryScene' method
-		loadInventoryScene();
 
 	}// End of the 'menuItemSaveClicked' method
 
