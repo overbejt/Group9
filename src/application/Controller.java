@@ -96,38 +96,18 @@ public class Controller {
 	@FXML
 	public void loginBtnClicked(ActionEvent e) {
 
-		try {
-			// Test the user name and their password.
-			// If valid, then switch to the inventory scene
+		// Test the user name and their password.
+		// If valid, then switch to the inventory scene
 
-			// Or allow to log in as a guest
-			// Then switch to the inventory scene
+		// Or allow to log in as a guest
+		// Then switch to the inventory scene
 
-			// Or ask the manager to log them in and change their
-			// password
+		// Or ask the manager to log them in and change their
+		// password
 
-			System.out.println("The login button was clicked");
-
-			// Switching to the inventory scene
-			fxmlLoader = new FXMLLoader(getClass()
-					.getResource("/view/InventoryScene.fxml"));
-
-			parent = fxmlLoader.load();// Loading the new FXML file
-
-			Scene scene = new Scene(parent, 600, 400);
-			scene.getStylesheets()
-					.add(getClass()
-							.getResource("/view/application.css")
-							.toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.setTitle("Abacus");
-			primaryStage.setMaximized(true);// Maximizing
-			primaryStage.setFullScreen(true);// Setting to full screen
-			primaryStage.show();
-
-		} catch (Exception err) {
-			System.out.println(err);
-		}
+		System.out.println("The login button was clicked");
+		// Invoke the 'loadInventoryScene' method
+		loadInventoryScene();
 
 	}// End of the 'menuItemSaveClicked' method
 
@@ -211,5 +191,32 @@ public class Controller {
 		System.out.println(
 				"The save method from the controller was called");
 	}// End of the 'save' method
+
+	/**
+	 * This is a private helper method that will load the inventory
+	 * scene.
+	 */
+	private void loadInventoryScene() {
+		try {
+			// Switching to the inventory scene
+			fxmlLoader = new FXMLLoader(getClass()
+					.getResource("/view/InventoryScene.fxml"));
+
+			parent = fxmlLoader.load();// Loading the new FXML file
+
+			Scene scene = new Scene(parent, 600, 400);
+			scene.getStylesheets()
+					.add(getClass()
+							.getResource("/view/application.css")
+							.toExternalForm());
+			primaryStage.setScene(scene);
+			primaryStage.setTitle("Abacus");
+			primaryStage.setMaximized(true);// Maximizing
+			primaryStage.setFullScreen(true);// Setting to full screen
+			primaryStage.show();
+		} catch (Exception err) {
+
+		}
+	}// End of the 'loadInventoryScene' method
 
 }// End of the 'Controller' class
