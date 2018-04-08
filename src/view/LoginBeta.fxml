@@ -52,7 +52,7 @@
                <children>
                   <VBox layoutX="4.0" layoutY="129.0">
                      <children>
-                        <JFXTextField focusColor="#e7c518" prefHeight="27.0" prefWidth="200.0" promptText="Username" unFocusColor="#c3b7b7">
+                        <JFXTextField fx:id="userNameField" focusColor="#e7c518" prefHeight="27.0" prefWidth="200.0" promptText="Username" unFocusColor="#c3b7b7">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
@@ -68,7 +68,7 @@
                               <Insets bottom="7.5" left="5.0" right="5.0" top="7.5" />
                            </VBox.margin>
                         </JFXPasswordField>
-                        <JFXButton id="login-button" prefHeight="27.0" prefWidth="200.0" text="Sign In" textFill="#d6d6d6">
+                        <JFXButton onAction="#loginBtnClicked" id="login-button" fx:id="loginBtn" prefHeight="27.0" prefWidth="200.0" text="Sign In" textFill="#d6d6d6">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>

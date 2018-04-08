@@ -3,6 +3,10 @@ package application;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,9 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Admin;
 import model.EmployeeList;
@@ -27,16 +29,17 @@ import model.Persistence;
  */
 public class Controller {
 
-	private Stage		primaryStage;
 	@FXML
-	private TextField	fieldBtm;
+	private JFXPasswordField	passwordField;
 	@FXML
-	private TextField	usrNameField;
+	private JFXTextField		usrNameField;
 	@FXML
-	private Button		loginBtn;
-	private FXMLLoader	fxmlLoader;
+	private JFXButton			loginBtn;
+
 	// >>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<
 	// Instance objects
+	private Stage			primaryStage;
+	private FXMLLoader		fxmlLoader;
 	private Parent			parent;
 	private Persistence		persistence;
 	private EmployeeList	employeeList;
@@ -145,8 +148,7 @@ public class Controller {
 	}// End of the 'menuItemCloseClicked'method
 
 	public void btnWasClicked(ActionEvent evt) {
-		fieldBtm.setText("An Item was added");
-		fieldBtm.setVisible(true);
+
 		System.out.println("It was clicked");
 	}// End of the 'btnWasClicked' method
 
@@ -160,8 +162,8 @@ public class Controller {
 	@FXML
 	public void menuItemSaveClicked(ActionEvent e) {
 		// For Testing and debugging
-		fieldBtm.setText("The save button was clicked");
-		fieldBtm.setVisible(true);
+		// fieldBtm.setText("The save button was clicked");
+		// fieldBtm.setVisible(true);
 
 		System.out.println("The save button was clicked");
 		// Invoke the save method
