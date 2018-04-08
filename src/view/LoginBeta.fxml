@@ -16,7 +16,7 @@
 
 <BorderPane id="login-screen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
    <center>
-      <HBox id="login-screen" alignment="CENTER" fillHeight="false" BorderPane.alignment="CENTER">
+      <HBox id="login-screen" alignment="CENTER" fillHeight="false" minHeight="400.0" minWidth="650.0" BorderPane.alignment="CENTER">
          <children>
             <AnchorPane id="login-left" prefHeight="400.0" prefWidth="418.0">
                <children>
@@ -78,7 +78,7 @@
                               <JFXButton id="login-button" fx:id="loginBtn" alignment="CENTER" contentDisplay="TEXT_ONLY" onAction="#loginBtnClicked" prefHeight="27.0" prefWidth="100.0" text="Sign In" textFill="#d6d6d6">
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
+                                 </padding> 
                                  <HBox.margin>
                                     <Insets top="15.0" />
                                  </HBox.margin>

@@ -7,7 +7,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
-import com.jfoenix.validation.RequiredFieldValidator;
 
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
@@ -35,15 +34,13 @@ public class Controller {
 
 	// >>>>>>>>>>>>Login Scene Instance variables<<<<<<<<<<<<<<<<<<<<<
 	@FXML
-	private JFXToggleButton			guestToggle;
+	private JFXToggleButton		guestToggle;
 	@FXML
-	private JFXPasswordField		passwordField;
+	private JFXPasswordField	passwordField;
 	@FXML
-	private JFXTextField			userNameField;
+	private JFXTextField		userNameField;
 	@FXML
-	private JFXButton				loginBtn;
-	private RequiredFieldValidator	usrNameValidator;
-	private RequiredFieldValidator	passwordValidator;
+	private JFXButton			loginBtn;
 
 	// >>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<
 	// Instance objects
@@ -54,9 +51,13 @@ public class Controller {
 	private EmployeeList	employeeList;
 	private Employee		currentEmployee;
 
+	private boolean	isEmployee	= false;
+	private boolean	isAdmin		= false;
+	private boolean	isGuest		= false;
+
 	// >>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<
 	private final PseudoClass errorClass = PseudoClass
-			.getPseudoClass("error");
+			.getPseudoClass("error");// For input validation
 
 	/**
 	 * This is the method that will only run once on initialization.
@@ -108,12 +109,12 @@ public class Controller {
 
 		System.out.println("The login button was clicked");
 
-		boolean isEmployee = false;
 		boolean correctPassword = false;
-		boolean isAdmin = false;
 
 		// Test if logging in as a guest
 		if (guestToggle.isSelected()) {
+			// Switch 'isGuest' for use later
+			isGuest = true;
 			// Switch to Inventory scene
 			loadInventoryScene();
 		} else {
