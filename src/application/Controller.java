@@ -106,15 +106,15 @@ public class Controller {
 		// Test if a user name was entered
 		if (userNameField.getText().trim().length() == 0) {
 			userNameField.pseudoClassStateChanged(errorClass, true);
+			// Test if user name entered exists
 
+		}
+		// Test if a password was entered
+		if (passwordField.getText().trim().length() == 0) {
+			passwordField.pseudoClassStateChanged(errorClass, true);
 		} else {
-			if (passwordField.getText().trim().length() == 0) {
-				passwordField.pseudoClassStateChanged(errorClass,
-						true);
-			} else {
-				// Invoke the 'loadInventoryScene' method
-				loadInventoryScene();
-			}
+			// Invoke the 'loadInventoryScene' method
+			loadInventoryScene();
 		}
 
 		// Test the user name and their password.
