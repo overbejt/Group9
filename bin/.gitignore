@@ -1,4 +1,9 @@
-/model/
-/application/
-/AbucusExceptions/
+/.DS_Store
+/Assets/
+/Documents/
 /JavaDocs/
+/AbucusExceptions/
+/application/
+/model/
+/tests/
+/view/
