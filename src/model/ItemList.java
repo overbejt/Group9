@@ -19,7 +19,7 @@ public class ItemList implements Serializable {
 	private static HashMap<Long, Item> list;
 
 	// Constructor
-	public static void ItemList() {
+	public ItemList() {
 
 		// Initializing the item list
 		list = new HashMap<Long, Item>();
