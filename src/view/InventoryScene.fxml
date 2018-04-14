@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -18,7 +18,7 @@
             <items>
               <MenuItem mnemonicParsing="false" text="Save" />
                   <MenuItem mnemonicParsing="false" text="Save as..." />
-                  <MenuItem mnemonicParsing="false" text="Quit" />
+                  <MenuItem id="menuExitItem" mnemonicParsing="false" onAction="#menuItemCloseClicked" text="Exit" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
@@ -48,7 +48,7 @@
       <VBox prefHeight="375.0" prefWidth="188.0" style="-fx-background-color: #282222;" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" prefHeight="51.0" prefWidth="209.0" text="Sort your inventory by.." textAlignment="CENTER" textFill="WHITE" />
-            <JFXRadioButton prefHeight="60.0" prefWidth="202.0" text="Size" textFill="WHITE" />
+            <JFXRadioButton prefHeight="60.0" prefWidth="202.0" style="-fx-toggle-color: #e7c518;" text="Size" textFill="WHITE" />
             <JFXRadioButton prefHeight="60.0" prefWidth="202.0" text="Price" textFill="WHITE" />
             <JFXRadioButton layoutX="10.0" layoutY="85.0" prefHeight="60.0" prefWidth="202.0" text="Quantity" textFill="WHITE" />
             <JFXRadioButton layoutX="10.0" layoutY="160.0" prefHeight="60.0" prefWidth="202.0" text="Name" textFill="WHITE" />

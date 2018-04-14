@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import model.Admin;
 import model.Employee;
@@ -41,6 +42,10 @@ public class Controller {
 	private JFXTextField		userNameField;
 	@FXML
 	private JFXButton			loginBtn;
+
+	// >>>>>>>>>>>>Inventory Scene Instance variables<<<<<<<<<<<<<<<<<
+	@FXML
+	private MenuItem menuExitItem;
 
 	// >>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<
 	// Instance objects

@@ -32,10 +32,15 @@
 /*This is the method that will Let the user 
  * know that they need to fill in a field
  */
-.text-field:error {
+.text-field:error { 
   -fx-border-color: #282222;
   -fx-border-width: 5px;
   
+}
+
+/*Inventory Scene */
+.jfx-radio-button {
+    -fx-selected-color: yellow;
 }
 
 
