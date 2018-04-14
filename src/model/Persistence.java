@@ -45,7 +45,8 @@ public class Persistence {
 	 * @param list
 	 * @throws IOException
 	 */
-	void writeEmployeeList(EmployeeList list) throws IOException {
+	public void writeEmployeeList(EmployeeList list)
+			throws IOException {
 
 		fileOutputStream = new FileOutputStream(employeeList);
 		bufferedOutputStream = new BufferedOutputStream(
