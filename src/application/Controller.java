@@ -18,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import model.Admin;
@@ -47,6 +48,12 @@ public class Controller {
 	// >>>>>>>>>>>>Inventory Scene Instance variables<<<<<<<<<<<<<<<<<
 	@FXML
 	private MenuItem		menuExitItem;
+	@FXML
+	private Menu			menuEdit;
+	@FXML
+	private MenuItem		menuAddEmployee;
+	@FXML
+	private MenuItem		menuRemoveEmployee;
 	@FXML
 	private JFXRadioButton	sizeRdBtn;
 	@FXML
@@ -127,10 +134,11 @@ public class Controller {
 
 		// Test if logging in as a guest
 		if (guestToggle.isSelected()) {
-			// Switch 'isGuest' for use later
-			isGuest = true;
+
+			isGuest = true;// Setting the user state
 			// Switch to Inventory scene
 			loadInventoryScene();
+
 		} else {
 			// Test if a user name was entered
 			if (userNameField.getText().trim().length() == 0) {
@@ -143,7 +151,6 @@ public class Controller {
 				if (inputName.equals("admin")) {
 					isAdmin = true;
 				} else if (employeeList.contains(inputName)) {
-					isEmployee = true;
 					currentEmployee = (Employee) employeeList
 							.getEmployee(inputName);
 				} else {
@@ -158,6 +165,7 @@ public class Controller {
 				String inPassword = passwordField.getText();
 				if (isAdmin) {
 					if (inPassword.equals("admin")) {
+						isAdmin = true;// Setting the user sate
 						// Invoke the 'loadInventoryScene' method
 						loadInventoryScene();
 					}
@@ -165,8 +173,10 @@ public class Controller {
 				// Test if good password
 				else if (inPassword
 						.equals(currentEmployee.getPassword())) {
+					isEmployee = true; // Setting the user state
 					// Invoke the 'loadInventoryScene' method
 					loadInventoryScene();
+
 				} else {
 					// Alert the user to bad input
 				}
@@ -174,15 +184,13 @@ public class Controller {
 			} // End of password verification
 		} // End of guest test
 
-		// Test the user name and their password.
-
-		// If valid, then switch to the inventory scene
-
-		// Or allow to log in as a guest
-		// Then switch to the inventory scene
-
-		// Or ask the manager to log them in and change their
-		// password
+		System.out.println("?");
+		// try {
+		// // Removing the ability to add/remove Employees
+		// disableEmployeeListEdit();
+		// } catch (Exception err) {
+		// System.out.println(err);
+		// }
 
 	}// End of the 'loginBtnClicked' method
 
@@ -307,6 +315,18 @@ public class Controller {
 		}
 	}// End of the 'nameRadioClicked' method
 
+	/**
+	 * This is the method that will filter Edit options based on which
+	 * user is logged in.
+	 * 
+	 * @param e
+	 */
+	@FXML
+	public void menuEditClicked() {
+		System.out.println("The Menu item 'Edit' was clicked");
+		disableEmployeeListEdit();
+	}// End of the 'menuEditClicked' method
+
 	// <<<<<<<<<<<<<<<<<Helper Methods>>>>>>>>>>>>>>>>
 
 	/**
@@ -374,5 +394,26 @@ public class Controller {
 
 		}
 	}// End of the 'loadInventoryScene' method
+
+	/**
+	 * This is a private helper class that will make prevent anyone
+	 * but 'admin' and a manager from being able to edit the employee
+	 * list.
+	 */
+	private void disableEmployeeListEdit() {
+		if (isEmployee || isGuest) {
+			menuAddEmployee.setDisable(true);
+			menuRemoveEmployee.setDisable(true);
+		}
+	}// End of the 'disableEmployeeListEdit' method
+
+	/**
+	 * This is the method that will reset all of the user states.
+	 */
+	private void resetUserState() {
+		isGuest = false;
+		isAdmin = false;
+		isEmployee = false;
+	}// End of the 'resetUserState' method
 
 }// End of the 'Controller' class
