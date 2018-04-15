@@ -126,7 +126,7 @@ public class Controller {
 	 * @param e
 	 */
 	@FXML
-	public void loginBtnClicked(ActionEvent e) {
+	public void loginBtnClicked() {
 
 		System.out.println("The login button was clicked");
 
@@ -136,8 +136,10 @@ public class Controller {
 		if (guestToggle.isSelected()) {
 
 			isGuest = true;// Setting the user state
+			System.out.println("Guest Logged In: " + isGuest);
 			// Switch to Inventory scene
 			loadInventoryScene();
+			System.out.println("Guest Logged In: " + isGuest);
 
 		} else {
 			// Test if a user name was entered
@@ -149,7 +151,7 @@ public class Controller {
 				String inputName = userNameField.getText();
 				// Test if in the employee list
 				if (inputName.equals("admin")) {
-					isAdmin = true;
+					isAdmin = true;// Might not be the best place
 				} else if (employeeList.contains(inputName)) {
 					currentEmployee = (Employee) employeeList
 							.getEmployee(inputName);
@@ -324,7 +326,9 @@ public class Controller {
 	@FXML
 	public void menuEditClicked() {
 		System.out.println("The Menu item 'Edit' was clicked");
+		System.out.println("Guest: " + isGuest);
 		disableEmployeeListEdit();
+
 	}// End of the 'menuEditClicked' method
 
 	// <<<<<<<<<<<<<<<<<Helper Methods>>>>>>>>>>>>>>>>
@@ -400,11 +404,13 @@ public class Controller {
 	 * but 'admin' and a manager from being able to edit the employee
 	 * list.
 	 */
+	@FXML
 	private void disableEmployeeListEdit() {
-		if (isEmployee || isGuest) {
-			menuAddEmployee.setDisable(true);
-			menuRemoveEmployee.setDisable(true);
-		}
+
+		System.out.println("disabled");
+		menuAddEmployee.setDisable(true);
+		menuRemoveEmployee.setDisable(true);
+
 	}// End of the 'disableEmployeeListEdit' method
 
 	/**
