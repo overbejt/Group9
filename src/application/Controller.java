@@ -327,7 +327,9 @@ public class Controller {
 	public void menuEditClicked() {
 		System.out.println("The Menu item 'Edit' was clicked");
 		System.out.println("Guest: " + isGuest);
-		disableEmployeeListEdit();
+		if (isEmployee || isGuest) {
+			disableEmployeeListEdit();
+		}
 
 	}// End of the 'menuEditClicked' method
 
@@ -381,6 +383,9 @@ public class Controller {
 			// Switching to the inventory scene
 			fxmlLoader = new FXMLLoader(getClass()
 					.getResource("/view/InventoryScene.fxml"));
+
+			// To keep the states of everything in this controller
+			fxmlLoader.setController(this);
 
 			parent = fxmlLoader.load();// Loading the new FXML file
 
