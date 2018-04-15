@@ -16,7 +16,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" text="Save" />
+              <MenuItem onAction="#menuItemSaveClicked" mnemonicParsing="false" text="Save" />
                   <MenuItem mnemonicParsing="false" text="Save as..." />
                   <MenuItem id="menuExitItem" mnemonicParsing="false" onAction="#menuItemCloseClicked" text="Exit" />
             </items>
@@ -48,10 +48,10 @@
       <VBox prefHeight="375.0" prefWidth="188.0" style="-fx-background-color: #282222;" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" prefHeight="51.0" prefWidth="209.0" text="Sort your inventory by.." textAlignment="CENTER" textFill="WHITE" />
-            <JFXRadioButton prefHeight="60.0" prefWidth="202.0" style="-fx-toggle-color: #e7c518;" text="Size" textFill="WHITE" />
-            <JFXRadioButton prefHeight="60.0" prefWidth="202.0" text="Price" textFill="WHITE" />
-            <JFXRadioButton layoutX="10.0" layoutY="85.0" prefHeight="60.0" prefWidth="202.0" text="Quantity" textFill="WHITE" />
-            <JFXRadioButton layoutX="10.0" layoutY="160.0" prefHeight="60.0" prefWidth="202.0" text="Name" textFill="WHITE" />
+            <JFXRadioButton onAction="#sizeRadioClicked" fx:id="sizeRdBtn" prefHeight="60.0" prefWidth="202.0" style="-fx-toggle-color: #e7c518;" text="Size" textFill="WHITE" />
+            <JFXRadioButton onAction="#priceRadioClicked" fx:id="priceRdBtn" prefHeight="60.0" prefWidth="202.0" text="Price" textFill="WHITE" />
+            <JFXRadioButton onAction="#quantityRadioClicked" fx:id="quantityRdBtn" layoutX="10.0" layoutY="85.0" prefHeight="60.0" prefWidth="202.0" text="Quantity" textFill="WHITE" />
+            <JFXRadioButton onAction="#nameRadioClicked" fx:id="nameRdBtn" layoutX="10.0" layoutY="160.0" prefHeight="60.0" prefWidth="202.0" text="Name" textFill="WHITE" />
          </children>
       </VBox>
    </right>

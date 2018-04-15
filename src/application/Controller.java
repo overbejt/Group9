@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 
@@ -45,7 +46,15 @@ public class Controller {
 
 	// >>>>>>>>>>>>Inventory Scene Instance variables<<<<<<<<<<<<<<<<<
 	@FXML
-	private MenuItem menuExitItem;
+	private MenuItem		menuExitItem;
+	@FXML
+	private JFXRadioButton	sizeRdBtn;
+	@FXML
+	private JFXRadioButton	priceRdBtn;
+	@FXML
+	private JFXRadioButton	quantityRdBtn;
+	@FXML
+	private JFXRadioButton	nameRdBtn;
 
 	// >>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<
 	// Instance objects
@@ -216,6 +225,87 @@ public class Controller {
 		save();
 
 	}// End of the 'menuItemSaveClicked' method
+
+	/**
+	 * This is the method that will sort all the items in the
+	 * inventory based on their size.
+	 */
+	@FXML
+	public void sizeRadioClicked() {
+		if (priceRdBtn.isSelected()) {
+			priceRdBtn.setSelected(false);
+		}
+		if (quantityRdBtn.isSelected()) {
+			quantityRdBtn.setSelected(false);
+		}
+		if (nameRdBtn.isSelected()) {
+			nameRdBtn.setSelected(false);
+		}
+		if (sizeRdBtn.isSelected()) {
+			System.out.println("The Size Radio Button was clicked");
+		}
+	}// End of the 'sizeRadioClicked' method
+
+	/**
+	 * This is the method that will sort all the items in the
+	 * inventory based on their price.
+	 */
+	@FXML
+	public void priceRadioClicked() {
+		if (sizeRdBtn.isSelected()) {
+			sizeRdBtn.setSelected(false);
+		}
+		if (quantityRdBtn.isSelected()) {
+			quantityRdBtn.setSelected(false);
+		}
+		if (nameRdBtn.isSelected()) {
+			nameRdBtn.setSelected(false);
+		}
+		if (priceRdBtn.isSelected()) {
+			System.out.println("The Price Radio Button was clicked");
+		}
+	}// End of the 'priceRadioClicked' method
+
+	/**
+	 * This is the method that will sort all the items in the
+	 * inventory based on their quantity.
+	 */
+	@FXML
+	public void quantityRadioClicked() {
+		if (sizeRdBtn.isSelected()) {
+			sizeRdBtn.setSelected(false);
+		}
+		if (priceRdBtn.isSelected()) {
+			priceRdBtn.setSelected(false);
+		}
+		if (nameRdBtn.isSelected()) {
+			nameRdBtn.setSelected(false);
+		}
+		if (quantityRdBtn.isSelected()) {
+			System.out
+					.println("The Quantity Radio Button was clicked");
+		}
+	}// End of the 'quantityRadioClicked' method
+
+	/**
+	 * This is the method that will sort all the items in the
+	 * inventory based on their name.
+	 */
+	@FXML
+	public void nameRadioClicked() {
+		if (priceRdBtn.isSelected()) {
+			priceRdBtn.setSelected(false);
+		}
+		if (quantityRdBtn.isSelected()) {
+			quantityRdBtn.setSelected(false);
+		}
+		if (sizeRdBtn.isSelected()) {
+			sizeRdBtn.setSelected(false);
+		}
+		if (nameRdBtn.isSelected()) {
+			System.out.println("The name Radio Button was clicked");
+		}
+	}// End of the 'nameRadioClicked' method
 
 	// <<<<<<<<<<<<<<<<<Helper Methods>>>>>>>>>>>>>>>>
 
