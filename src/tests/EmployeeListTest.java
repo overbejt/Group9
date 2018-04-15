@@ -1,87 +1,87 @@
 package tests;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import java.util.Scanner;
+import java.util.HashMap;
+
+import org.junit.Assert;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import model.Attributes;
 import model.Employee;
 import model.EmployeeList;
+import model.Item;
+import model.ItemList;
 
 public class EmployeeListTest {
-	static Attributes newattribute = new Attributes();
-	static EmployeeList newEL = new EmployeeList();
-	static boolean end = true;
 	
-	public static void main(String[] args) {
-		Scanner reader = new Scanner(System.in);
-		onCreate();
-		System.out.println(newEL.getEmployeeList());
-//		onRemove();
-		System.out.println(newEL.getEmployeeList());
-		onDestroy();
-		reader.close();
-	}// ENd of the 'main' method
+	private static EmployeeList newEL = new EmployeeList();
 	
-	/**
-	 * This is the method that will create a new
-	 * instance of the object that is being
-	 * tested.
-	 */
-	public static void onCreate() {
-		boolean end = true;
-		Scanner reader = new Scanner(System.in);
-		
-		while(end) {
-			newEL.addEmployee(EmployeeTest.newemplyee);
-			System.out.println("Do you want to create more emplyee in the list? please input yes or no");
-			String n = reader.nextLine();
-			if(n.replaceAll("\\s+","").toLowerCase().equals("yes")) {
-				end = false;
-			}
-		}
-		
-		reader.close();
-	}// End of the 'onCreate' method
-	
-//	public static void onRemove() {
-//		boolean end = true;
-//		Scanner reader = new Scanner(System.in);
-//		
-//		while(end) {
-//			System.out.println("please input the name of the emplyee that you want to remove");
-//			String n1 = reader.nextLine();
-//			if(newEL.getEmployeeList().containsValue(n1)){
-//			newEL.removeEmployee(n1);
-//			}
-//			newEL.removeEmployee(EmployeeTest.newemplyee);
-//			System.out.println("Do you want to remove more emplyee in the list? please input yes or no");
-//			String n = reader.nextLine();
-//			if(n.replaceAll("\\s+","").toLowerCase().equals("yes")) {
-//				end = false;
-//			}
-//		}
-//		
-//		reader.close();
-//	}// End of the 'onCreate' method
-	
-	/**
-	 * This is the method that will assign the
-	 * object to null. That way memory can be
-	 * freed up.
-	 */
-	public static void onDestroy() {
-		newEL.clearList();
-		}// End of the 'onDestroy' method
+	@BeforeEach
+	void setUp() throws Exception {
+		newEL = new EmployeeList();
+	}// End of the 'setUp' method
 
-	/**
-	 * This is the method that will handle
-	 * printing to the console. It's not
-	 * necessary, But I find Java's implementation
-	 * to be tedious.
-	 * 
-	 * @param msg
-	 */
-	public void print(String msg) {
-		System.out.println(msg);
-	}// End of the 'print' method
+	@AfterEach
+	void tearDown() throws Exception {
+		newEL = null;
+	}// End of the 'tearDown' method
+
+	@Test
+	void testItem() throws Exception {
+		newEL = new EmployeeList();
+
+		assert (true);
+	}// End of the 'testItem' method
+	
+	@Test
+	void testEmployeeList() {
+		assertNotNull(newEL);
+	}// End of the 'testItemList' method
+	
+	@Test
+	void testAddEmployee() {
+		Employee original = new Employee();
+		newEL.addEmployee(original);
+		assertEquals(original, newEL.getEmployee(original.getID()));
+	}
+
+	@Test
+	void testRemoveEmployee() {
+		Employee employee = new Employee();
+		newEL.addEmployee(employee);
+		newEL.removeEmployee(employee.getID());
+		boolean isEmpty = newEL.getEmployeeList().isEmpty();
+		assertEquals(true, isEmpty);
+	}
+	
+	@Test
+	void testGetEmployeeList() {
+		Employee employee = new Employee();
+		employee.setName("Sanity Check");
+		newEL.addEmployee(employee);
+		HashMap<Long, Object> sample = newEL.getEmployeeList();
+		assertEquals(newEL.getEmployeeList(), sample);
+	}
+	
+	@Test
+	void testSetItemList() {
+		EmployeeList employeeList = new EmployeeList();
+		Employee employee = new Employee();
+		employee.setName("Sanity Check");
+		employeeList.addEmployee(employee);
+		newEL.setEmployeeList(employeeList);
+		assertEquals(newEL.getEmployeeList(), employeeList.getEmployeeList());
+	}
+
+	@Test
+	void testClearList() {
+		newEL.clearList();
+		boolean expected = true;
+		boolean result = newEL.getEmployeeList().isEmpty();
+		assertEquals(expected, result);
+	}
 
 }

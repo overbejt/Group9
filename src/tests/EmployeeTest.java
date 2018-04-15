@@ -1,6 +1,12 @@
 package tests;
 
-import java.util.Scanner;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.junit.Assert;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import model.Employee;
 
@@ -17,54 +23,63 @@ import model.Employee;
  *
  */
 public class EmployeeTest {
-	static Employee newemplyee = new Employee();
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		onCreate();
-		System.out.println("Name: " + newemplyee.getName());
-		System.out.println("Password: " + newemplyee.getPassword());
-		System.out.println("AccessLevel: " + newemplyee.getAccessLevel());
-		onDestroy();
-	}// ENd of the 'main' method
-
-	/**
-	 * This is the method that will create a new
-	 * instance of the object that is being
-	 * tested.
-	 */
-	public static void onCreate() {
-		Scanner reader = new Scanner(System.in);
-		System.out.println("Enter the name of Employee");
-		String n = reader.next();
-		newemplyee.setName(n);
-		System.out.println("Set the password for Emplyee");
-		String p = reader.next();
-		newemplyee.setPassword(p);
-		System.out.println("Set the AccessLevel for Emplyee");
-		int a = reader.nextInt();
-		newemplyee.setAccessLevel(a);
-		reader.close();
-	}// End of the 'onCreate' method
+	public static Employee employee;
 	
-	/**
-	 * This is the method that will assign the
-	 * object to null. That way memory can be
-	 * freed up.
-	 */
-	public static void onDestroy() {
-		newemplyee = null;
+	@BeforeEach
+	public void onCreate() throws Exception {
+		employee = new Employee();
+	}// End of the 'onCreate' method
+
+	@AfterEach
+	public void onDestroy() throws Exception {
+		employee = null;
 	}// End of the 'onDestroy' method
 
-	/**
-	 * This is the method that will handle
-	 * printing to the console. It's not
-	 * necessary, But I find Java's implementation
-	 * to be tedious.
-	 * 
-	 * @param msg
-	 */
-	public void print(String msg) {
-		System.out.println(msg);
-	}// End of the 'print' method
+	@Test
+	void testItem() throws Exception {
+		employee = new Employee();
+
+		assert (true);
+	}// End of the 'testItem' method
+
+	@Test
+	void testNameandPassword() {
+		System.out.println("Testing if name and password is empty");
+		employee.setName("");
+		employee.setPassword("");
+		assertEquals(employee.getName(), "");
+		assertEquals(employee.getPassword(), "");
+		System.out.println("Testing if name and password is spacebars");
+		employee.setName("          ");
+		employee.setPassword("          ");
+		assertEquals(employee.getName(), "          ");
+		assertEquals(employee.getPassword(), "          ");
+		System.out.println("Testing if name and password is !@#%@$%#$789/*-");
+		employee.setName("!@#%@$%#$789/*-");
+		employee.setPassword("!@#%@$%#$789/*-");
+		assertEquals(employee.getName(), "!@#%@$%#$789/*-");
+		assertEquals(employee.getPassword(), "!@#%@$%#$789/*-");
+		System.out.println("Testing if name and password is null");
+		employee.setName(null);
+		employee.setPassword(null);
+		assertEquals(employee.getName(), null);
+		assertEquals(employee.getPassword(), null);
+		Assert.fail("Name and password shouldn't been able to set to null");
+	}// End of the 'testNameandPassword' method
+	
+	@Test
+	void testAccessLevelandID() {
+		System.out.println("Testing if AccessLevel is 0");
+		employee.setAccessLevel(0);
+		assertEquals(employee.getAccessLevel(), 0);
+		System.out.println("Testing if AccessLevel is 1000");
+		employee.setAccessLevel(1000);
+		assertEquals(employee.getAccessLevel(), 1000);
+		System.out.println("Testing if AccessLevel is -50");
+		employee.setAccessLevel(-50);
+		assertEquals(employee.getAccessLevel(), -50);
+		System.out.println("Testing if able to get ID");
+		assertNotNull(employee.getID());
+	}
 
 }// End of the 'EmployeeTest' class

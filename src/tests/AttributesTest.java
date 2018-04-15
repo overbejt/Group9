@@ -1,75 +1,80 @@
 package tests;
 
-import java.util.Scanner;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import model.Attributes;
+import model.Item;
 
+/**
+ * This is the test case for the Item class. It is using the JUnit 5
+ * library and it is the Jupiter version.
+ * 
+ * @version 1.0
+ */
 public class AttributesTest {
+
+	public static Attributes newattribute;
 	
-	static Attributes newattribute = new Attributes();
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		onCreate();
-		System.out.println("Quantity: " + newattribute.getQuantity());
-		System.out.println("Size: " + newattribute.getSize());
-		System.out.println("is Shoes? " + newattribute.isShoes() );
-		System.out.println("is Shirts? " + newattribute.isShirts() );
-		System.out.println("is Pants? " + newattribute.isPants() );
-		onDestroy();
-	}// ENd of the 'main' method
-	
-	/**
-	 * This is the method that will create a new
-	 * instance of the object that is being
-	 * tested.
-	 */
-	public static void onCreate() {
-		
-		Scanner reader = new Scanner(System.in);
-		
-		System.out.println("Is the product shoes, pants or shirts? ");
-		String n = reader.nextLine();
-		if(n.replaceAll("\\s+","").toLowerCase().equals("shoes")) {
-			newattribute.setShoes(true);
-		}
-		if(n.replaceAll("\\s+","").toLowerCase().equals("pants")) {
-			newattribute.setPants(true);
-		}
-		if(n.replaceAll("\\s+","").toLowerCase().equals("shirts")) {
-			newattribute.setShirts(true);
-		}
-		
-		System.out.println("Set the quantity");
-		int a = reader.nextInt();
-		newattribute.setQuantity(a);
-		
-		System.out.println("Set the size");
-		int a1 = reader.nextInt();
-		newattribute.setSize(a1);
-		
-		reader.close();
+	@BeforeEach
+	public void onCreate() throws Exception {
+		newattribute = new Attributes();
 	}// End of the 'onCreate' method
-	
-	/**
-	 * This is the method that will assign the
-	 * object to null. That way memory can be
-	 * freed up.
-	 */
-	public static void onDestroy() {
+
+	@AfterEach
+	public void onDestroy() throws Exception {
 		newattribute = null;
 	}// End of the 'onDestroy' method
 
-	/**
-	 * This is the method that will handle
-	 * printing to the console. It's not
-	 * necessary, But I find Java's implementation
-	 * to be tedious.
-	 * 
-	 * @param msg
-	 */
-	public void print(String msg) {
-		System.out.println(msg);
-	}// End of the 'print' method
+	@Test
+	void testItem() throws Exception {
+		newattribute = new Attributes();
+
+		assert (true);
+	}// End of the 'testItem' method
+
+	@Test
+	void testvariables() {
+		System.out.println("Testing seters and geters");
+		newattribute.setShoes(true);
+		newattribute.setPants(true);
+		newattribute.setShirts(true);
+		boolean resultShoes = newattribute.isShoes();
+		boolean resultPants = newattribute.isPants();
+		boolean resultShirts = newattribute.isShirts();
+		assertEquals(resultShoes, true);
+		assertEquals(resultPants, true);
+		assertEquals(resultShirts, true);
+		newattribute.setShoes(false);
+		newattribute.setPants(false);
+		newattribute.setShirts(false);
+		resultShoes = newattribute.isShoes();
+		resultPants = newattribute.isPants();
+		resultShirts = newattribute.isShirts();
+		assertEquals(resultShoes, false);
+		assertEquals(resultPants, false);
+		assertEquals(resultShirts, false);
+		System.out.println("Testing set Quantity and Size to 10");
+		newattribute.setQuantity(10);
+		newattribute.setSize(10);
+		assertEquals(newattribute.getQuantity(), 10);
+		assertEquals(newattribute.getSize(), 10);
+		System.out.println("Testing set Quantity and Size to 0");
+		newattribute.setQuantity(0);
+		newattribute.setSize(0);
+		assertEquals(newattribute.getQuantity(), 0);
+		assertEquals(newattribute.getSize(), 0);
+		System.out.println("Testing set Quantity and Size to -10");
+		newattribute.setQuantity(-10);
+		newattribute.setSize(-10);
+		assertEquals(newattribute.getQuantity(), -10);
+		assertEquals(newattribute.getSize(), -10);
+	}// End of the 'testvariables' method
+
 
 }
