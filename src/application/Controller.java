@@ -55,6 +55,10 @@ public class Controller {
 	@FXML
 	private MenuItem		menuRemoveEmployee;
 	@FXML
+	private MenuItem		menuAddItem;
+	@FXML
+	private MenuItem		menuRemoveItem;
+	@FXML
 	private JFXRadioButton	sizeRdBtn;
 	@FXML
 	private JFXRadioButton	priceRdBtn;
@@ -327,8 +331,14 @@ public class Controller {
 	public void menuEditClicked() {
 		System.out.println("The Menu item 'Edit' was clicked");
 		System.out.println("Guest: " + isGuest);
+
+		// Only admin and managers are allowed to add/remove employees
 		if (isEmployee || isGuest) {
 			disableEmployeeListEdit();
+		}
+		// Guests are not allowed to edit anything
+		if (isGuest) {
+			disableItemListEdit();
 		}
 
 	}// End of the 'menuEditClicked' method
@@ -405,8 +415,8 @@ public class Controller {
 	}// End of the 'loadInventoryScene' method
 
 	/**
-	 * This is a private helper class that will make prevent anyone
-	 * but 'admin' and a manager from being able to edit the employee
+	 * This is a private helper class that will prevent anyone but
+	 * 'admin' and a manager from being able to edit the employee
 	 * list.
 	 */
 	@FXML
@@ -417,6 +427,16 @@ public class Controller {
 		menuRemoveEmployee.setDisable(true);
 
 	}// End of the 'disableEmployeeListEdit' method
+
+	/**
+	 * This is a private helper method that will prevent Guests from
+	 * being able to edit the Item List.
+	 */
+	@FXML
+	private void disableItemListEdit() {
+		menuAddItem.setDisable(true);
+		menuRemoveItem.setDisable(true);
+	}// End of the 'disableItemListEdit' method
 
 	/**
 	 * This is the method that will reset all of the user states.
