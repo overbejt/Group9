@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.time.Instant;
 
 /**
@@ -9,7 +10,12 @@ import java.time.Instant;
  * 
  * @version 1.0
  */
-public class Admin {
+public class Admin implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	// Instance variables
 	private String	name, password;

@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.time.Instant;
 
 /**
@@ -8,7 +9,12 @@ import java.time.Instant;
  * 
  * @version 0.1
  */
-public class Employee implements EmployeeInterface {
+public class Employee implements EmployeeInterface, Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	// Instance variables
 	private String	name, password;

@@ -382,6 +382,12 @@ public class Controller {
 	private void save() {
 		System.out.println(
 				"The save method from the controller was called");
+		try {
+			persistence.writeEmployeeList(employeeList);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}// End of the 'save' method
 
 	/**
