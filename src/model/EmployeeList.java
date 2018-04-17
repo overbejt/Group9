@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Set;
 
 import AbucusExceptions.EmployeeExistsException;
 import AbucusExceptions.EmployeeNotFoundException;
@@ -22,12 +21,12 @@ public class EmployeeList implements Serializable {
 	private static final long serialVersionUID = 9162446095675838851L;
 
 	// Declaring a HashMap to store the employees
-	private HashMap<Long, Object> list;
+	private HashMap<String, Object> list;
 
 	// Constructor
 	public EmployeeList() {
 		// Initializing the employee list
-		list = new HashMap<Long, Object>();
+		list = new HashMap<String, Object>();
 	}// End of the Constructor
 
 	/**
@@ -85,40 +84,42 @@ public class EmployeeList implements Serializable {
 	 *            The id of the employee requested
 	 * @return The employee requested
 	 */
-	public Object getEmployee(long id)
+	public Object getEmployee(String id)
 			throws EmployeeNotFoundException {
 		return list.get(id);
 	}// End of the 'getEmployee' method
 
-	/**
-	 * This is the method that will pass the reference to an Employee
-	 * in the list, based on their name.
-	 * 
-	 * @param name
-	 * @return The reference to the indicated employee
-	 */
-	public Object getEmployee(String name)
-			throws EmployeeNotFoundException {
-
-		Set entries = list.entrySet();
-		for (Object o : entries) {
-			if (o.getClass() == Employee.class) {
-				if (((Employee) o).getName().equals(name)) {
-					return o;
-				}
-			}
-			if (o.getClass() == Admin.class) {
-				if (((Admin) o).getName().equals(name)) {
-					return o;
-				}
-			}
-			if (((Guest) o).getName().equals(name)) {
-				return o;
-			}
-		}
-		throw new EmployeeNotFoundException();
-
-	}// End of the 'getEmployee' method
+	//
+	// /**
+	// * This is the method that will pass the reference to an
+	// Employee
+	// * in the list, based on their name.
+	// *
+	// * @param name
+	// * @return The reference to the indicated employee
+	// */
+	// public Object getEmployee(String name)
+	// throws EmployeeNotFoundException {
+	//
+	// Set entries = list.entrySet();
+	// for (Object o : entries) {
+	// if (o.getClass() == Employee.class) {
+	// if (((Employee) o).getName().equals(name)) {
+	// return o;
+	// }
+	// }
+	// if (o.getClass() == Admin.class) {
+	// if (((Admin) o).getName().equals(name)) {
+	// return o;
+	// }
+	// }
+	// if (((Guest) o).getName().equals(name)) {
+	// return o;
+	// }
+	// }
+	// throw new EmployeeNotFoundException();
+	//
+	// }// End of the 'getEmployee' method
 
 	/**
 	 * This is the method that will return the Employee list in the
@@ -126,7 +127,7 @@ public class EmployeeList implements Serializable {
 	 * 
 	 * @return The list of employees in the system
 	 */
-	public HashMap<Long, Object> getEmployeeList() {
+	public HashMap<String, Object> getEmployeeList() {
 		return list;
 	}// End of the 'getEmployeeList' method
 
@@ -139,23 +140,12 @@ public class EmployeeList implements Serializable {
 	 * @return True if the employee is in the list. False if not.
 	 */
 	public boolean contains(String name) {
-		Set entries = list.entrySet();
-		for (Object o : entries) {
-			if (o.getClass() == Employee.class) {
-				if (((Employee) o).getName().equals(name)) {
-					return true;
-				}
-			}
-			if (o.getClass() == Admin.class) {
-				if (((Admin) o).getName().equals(name)) {
-					return true;
-				}
-			}
-			if (((Guest) o).getName().equals(name)) {
-				return true;
-			}
-		}
-		return false;
+
+		String id = "";
+		name.toLowerCase();
+		name.trim();
+		id = name;
+		return list.containsKey(id);
 
 	}// End of the 'contains' method
 

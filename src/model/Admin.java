@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.time.Instant;
 
 /**
  * This is the class that will handle the Employee object 'Admin'. It
@@ -20,7 +19,7 @@ public class Admin implements Serializable {
 	// Instance variables
 	private String	name, password;
 	private int		accessLevel;
-	private Instant	id;
+	private String	id;
 	// Declaring an instance of this class to hold the object
 	private static Admin admin;
 
@@ -28,7 +27,7 @@ public class Admin implements Serializable {
 	 * Constructor
 	 */
 	private Admin() {
-		this.id = Instant.now();// Setting the ID
+		this.id = "admin";// Setting the ID
 		this.name = "admin";// Setting the name
 		this.password = "admin";// Setting the password
 		this.accessLevel = 001;// Setting the Access Level
@@ -90,14 +89,14 @@ public class Admin implements Serializable {
 	}// End of the 'getAccessLevel' method
 
 	/**
-	 * This is the method that will return the employee's ID number.
-	 * It will serve as the key in a hashmap.
+	 * This is the method that will return the employee's ID. It will
+	 * serve as the key in a hashmap.
 	 * 
-	 * @return The Admin's ID number
+	 * @return The Admin's ID
 	 * @throws NullPointerException
 	 */
-	public long getID() throws NullPointerException {
-		return this.id.getEpochSecond();
+	public String getID() throws NullPointerException {
+		return this.id;
 	}// End of the 'getId' method
 
 }// End of the 'Admin' class

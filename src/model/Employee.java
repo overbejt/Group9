@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.time.Instant;
 
 /**
  * This is the class that will hold all of the methods and information
@@ -17,18 +16,19 @@ public class Employee implements EmployeeInterface, Serializable {
 	private static final long serialVersionUID = 1L;
 
 	// Instance variables
-	private String	name, password;
+	private String	firstName, lastName, password;
 	private int		accessLevel;
-	private Instant	id;
+	private String	id;
 
 	/**
 	 * This is the Constructor method.
 	 */
 	public Employee() {
-		this.name = null;
+		this.firstName = null;
+		this.lastName = null;
 		this.password = null;
 		this.accessLevel = -1;
-		this.id = Instant.now();
+		this.id = null;
 	}// End of the Constructor
 
 	/**
@@ -39,8 +39,12 @@ public class Employee implements EmployeeInterface, Serializable {
 	 * @param name
 	 */
 	@Override
-	public void setName(String name) {
-		this.name = name;
+	public void setName(String fname, String lname) {
+		this.firstName = fname;
+		this.lastName = lname;
+
+		// Now the id can be set
+		setId();
 
 	}// End of the 'setName' method
 
@@ -75,13 +79,28 @@ public class Employee implements EmployeeInterface, Serializable {
 	}// End of the 'setAccessLevel' method
 
 	/**
+	 * This is the method that will generate the id. It is a private
+	 * helper method. It will take the first name, and the last name
+	 * and convert both to all lower case. Then it will remove all
+	 * whitespace. Finally it will concatenate both the first and last
+	 * names.
+	 */
+	private void setId() {
+		firstName.toLowerCase();
+		firstName.trim();
+		lastName.toLowerCase();
+		lastName.trim();
+		id = firstName + lastName;
+	}// End of the 'setId' method
+
+	/**
 	 * This is the method that will return the employee's name.
 	 * 
 	 * @return
 	 */
 	@Override
 	public String getName() {
-		return this.name;
+		return this.firstName + " " + this.lastName;
 	}// End of the 'getName' method
 
 	/**
@@ -111,14 +130,14 @@ public class Employee implements EmployeeInterface, Serializable {
 	}// End of the 'getAccessLevel' method
 
 	/**
-	 * This is the method that will return the employee's ID number.
-	 * It will serve as the key in a hashmap.
+	 * This is the method that will return the employee's ID. It will
+	 * serve as the key in a hashmap.
 	 * 
 	 * @return
 	 */
 	@Override
-	public long getID() {
-		return this.id.getEpochSecond();
+	public String getID() {
+		return id;
 	}// End of the 'getId' method
 
 }// End of the 'Employee' class

@@ -15,7 +15,7 @@ public interface EmployeeInterface {
 	 * 
 	 * @param name
 	 */
-	public void setName(String name);
+	public void setName(String fname, String lname);
 
 	/**
 	 * This is the method that will set an employee's password. It
@@ -70,12 +70,12 @@ public interface EmployeeInterface {
 	public int getAccessLevel() throws NullPointerException;
 
 	/**
-	 * This is the method that will return the employee's ID number.
-	 * It will serve as the key in a hashmap.
+	 * This is the method that will return the employee's ID. It will
+	 * serve as the key in a hashmap.
 	 * 
 	 * @return
 	 * @throws NullPointerException
 	 */
-	public long getID() throws NullPointerException;
+	public String getID() throws NullPointerException;
 
 }// End of the 'EmployeedInterface' class

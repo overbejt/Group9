@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.time.Instant;
 
 /**
  * This is the class that will handle the Guest object. It will use
@@ -20,7 +19,7 @@ public class Guest implements Serializable {
 	// Instance variables
 	private String	name, password;
 	private int		accessLevel;
-	private Instant	id;
+	private String	id;
 	// Declaring an instance of this class to hold the object
 	private static Guest guest;
 
@@ -28,7 +27,7 @@ public class Guest implements Serializable {
 	 * Constructor
 	 */
 	private Guest() {
-		this.id = Instant.now();// Setting the ID
+		this.id = "guest";// Setting the ID
 		this.name = "guest";// Setting the name
 		this.password = "guest";// Setting the password
 		this.accessLevel = 000;// Setting the Access Level
@@ -90,14 +89,14 @@ public class Guest implements Serializable {
 	}// End of the 'getAccessLevel' method
 
 	/**
-	 * This is the method that will return the employee's ID number.
-	 * It will serve as the key in a hashmap.
+	 * This is the method that will return the employee's ID. It will
+	 * serve as the key in a hashmap.
 	 * 
-	 * @return The guest's ID number
+	 * @return The guest's ID
 	 * @throws NullPointerException
 	 */
-	public long getID() throws NullPointerException {
-		return this.id.getEpochSecond();
+	public String getID() throws NullPointerException {
+		return this.id;
 	}// End of the 'getId' method
 
 }// End of the 'Guest' class

@@ -26,6 +26,7 @@ import model.Employee;
 import model.EmployeeList;
 import model.Guest;
 import model.Persistence;
+import view.AddEmployeeDialog;
 
 /**
  * This is the controller class. For now, it will be the go-between
@@ -342,6 +343,19 @@ public class Controller {
 		}
 
 	}// End of the 'menuEditClicked' method
+
+	/**
+	 * This is the method that will handle an event where a user
+	 * clicked the add Employee button.
+	 */
+	@FXML
+	public void menuAddEmployeeClicked() {
+		System.out.println("The ADD Employee button was clicked");
+
+		// Need to create an input box
+		AddEmployeeDialog employeeAdded = new AddEmployeeDialog();
+		employeeAdded.showAndWait();
+	}// End of the 'menuAddEmployeeClicked' method
 
 	// <<<<<<<<<<<<<<<<<Helper Methods>>>>>>>>>>>>>>>>
 
