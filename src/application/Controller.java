@@ -410,7 +410,7 @@ public class Controller {
 			primaryStage.setFullScreen(true);// Setting to full screen
 			primaryStage.show();
 		} catch (Exception err) {
-
+			// It should catch this
 		}
 	}// End of the 'loadInventoryScene' method
 
