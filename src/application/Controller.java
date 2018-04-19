@@ -354,7 +354,9 @@ public class Controller {
 
 		// Need to create an input box
 		AddEmployeeDialog employeeAdded = new AddEmployeeDialog();
+
 		employeeAdded.showAndWait();
+
 	}// End of the 'menuAddEmployeeClicked' method
 
 	// <<<<<<<<<<<<<<<<<Helper Methods>>>>>>>>>>>>>>>>
