@@ -13,6 +13,7 @@ import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -20,13 +21,15 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.Admin;
 import model.Employee;
 import model.EmployeeList;
 import model.Guest;
 import model.Persistence;
-import view.AddEmployeeDialog;
 
 /**
  * This is the controller class. For now, it will be the go-between
@@ -352,10 +355,38 @@ public class Controller {
 	public void menuAddEmployeeClicked() {
 		System.out.println("The ADD Employee button was clicked");
 
-		// Need to create an input box
-		AddEmployeeDialog employeeAdded = new AddEmployeeDialog();
+		// // Need to create an input box
+		// AddEmployeeDialog employeeAdded = new AddEmployeeDialog();
+		//
+		// employeeAdded.showAndWait();
 
-		employeeAdded.showAndWait();
+		GridPane grid = new GridPane();
+		TextField userName = new TextField();
+		TextField password = new TextField();
+		TextInputDialog addEmployeeDialog = new TextInputDialog();
+
+		addEmployeeDialog.setTitle("Add Employee");
+		addEmployeeDialog.setHeaderText("This is the header");
+		addEmployeeDialog.setContentText("This is the content text");
+
+		userName.setPromptText("Employee Name");
+		password.setPromptText("Employee Password");
+
+		grid.setHgap(10);
+		grid.setVgap(10);
+		grid.setPadding(new Insets(20, 150, 10, 10));
+
+		grid.add(userName, 1, 0);
+		grid.add(password, 1, 1);
+		addEmployeeDialog.getDialogPane().setContent(grid);
+
+		addEmployeeDialog.showAndWait();
+
+		System.out.println("maybe");
+
+		// addEmployeeDialog.showAndWait()
+		// .filter(response -> response == ButtonType.OK)
+		// .ifPresent(response -> save());
 
 	}// End of the 'menuAddEmployeeClicked' method
 
@@ -468,5 +499,9 @@ public class Controller {
 		isAdmin = false;
 		isEmployee = false;
 	}// End of the 'resetUserState' method
+
+	private boolean validateNewEmployee() {
+		return false;
+	}
 
 }// End of the 'Controller' class
