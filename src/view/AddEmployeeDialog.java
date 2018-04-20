@@ -1,9 +1,12 @@
 package view;
 
 import javafx.geometry.Insets;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.GridPane;
+import javafx.util.Pair;
 
 /**
  * This is the class that will handle the dialog pop-up when a user
@@ -17,13 +20,27 @@ public class AddEmployeeDialog {
 	private TextField	userName;
 	private TextField	password;
 
+	private ButtonType okDoneBtnType;
+
 	// Instance variables
-	private TextInputDialog employeeAdded;
+	private static Dialog<Pair<String, String>> employeeAdded;
 
 	// Constructor
-	public AddEmployeeDialog() {
+	private AddEmployeeDialog() {
 		initDialog();// Initializing
 	}// End of Constructor
+
+	/**
+	 * This is the method that will return the wrapped TextInputDialog
+	 * object
+	 * 
+	 * @return
+	 */
+	@SuppressWarnings("rawtypes")
+	public static Dialog getAddEmployeePopup() {
+		new AddEmployeeDialog();
+		return employeeAdded;
+	}// End of the 'getAddEmployeePopup' method
 
 	/**
 	 * This is the method that will initialize the grid pane.
@@ -49,14 +66,26 @@ public class AddEmployeeDialog {
 	}// End of the 'initFields' method
 
 	/**
+	 * This is the method that will initialize the button type for the
+	 * Dialog
+	 */
+	private void initBtnType() {
+		okDoneBtnType = new ButtonType("Add Employee",
+				ButtonData.OK_DONE);
+
+	}// End of the 'initBtnType' method
+
+	/**
 	 * This is the method that will initialize the dialog box.
 	 */
 	private void initDialog() {
 
-		employeeAdded = new TextInputDialog();
+		employeeAdded = new Dialog<>();
 		employeeAdded.setTitle("Add Employee");
 		employeeAdded.setHeaderText("This is the header");
 		employeeAdded.setContentText("This is the content text");
+
+		initBtnType();// Initializing the button
 		initGridPane();// Initializing the gridpane
 		initFields();// Initializing the Textfields
 		assemble();// Putting it all together
@@ -67,19 +96,23 @@ public class AddEmployeeDialog {
 	 * layout, and add the to the dialog box.
 	 */
 	private void assemble() {
+		// Adding the buttons
+		employeeAdded.getDialogPane().getButtonTypes()
+				.addAll(okDoneBtnType, ButtonType.CANCEL);
 		grid.add(userName, 1, 0);
 		grid.add(password, 1, 1);
 		employeeAdded.getDialogPane().setContent(grid);// Adding
 														// children to
 														// parent
+
 	}// End of the 'assemble' method
 
 	/**
-	 * This is the method that will invoke the showAndWait method from
-	 * the super class.
+	 * // * This is the method that will invoke the showAndWait method
+	 * from // * the super class. //
 	 */
-	public void showAndWait() {
-		employeeAdded.showAndWait();
-	}// End of the 'showAndWait' method
+	// public void showAndWait() {
+	// employeeAdded.showAndWait();
+	// }// End of the 'showAndWait' method
 
 }// End of the 'AddEmployeeDialog' class

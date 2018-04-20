@@ -13,23 +13,21 @@ import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.Admin;
 import model.Employee;
 import model.EmployeeList;
 import model.Guest;
 import model.Persistence;
+import view.AddEmployeeDialog;
 
 /**
  * This is the controller class. For now, it will be the go-between
@@ -360,27 +358,34 @@ public class Controller {
 		//
 		// employeeAdded.showAndWait();
 
-		GridPane grid = new GridPane();
-		TextField userName = new TextField();
-		TextField password = new TextField();
-		TextInputDialog addEmployeeDialog = new TextInputDialog();
+		// GridPane grid = new GridPane();
+		// TextField userName = new TextField();
+		// TextField password = new TextField();
+		// TextInputDialog addEmployeeDialog = new TextInputDialog();
+		//
+		// addEmployeeDialog.setTitle("Add Employee");
+		// addEmployeeDialog.setHeaderText("This is the header");
+		// addEmployeeDialog.setContentText("This is the content
+		// text");
+		//
+		// userName.setPromptText("Employee Name");
+		// password.setPromptText("Employee Password");
+		//
+		// grid.setHgap(10);
+		// grid.setVgap(10);
+		// grid.setPadding(new Insets(20, 150, 10, 10));
+		//
+		// grid.add(userName, 1, 0);
+		// grid.add(password, 1, 1);
+		// addEmployeeDialog.getDialogPane().setContent(grid);
+		//
+		// addEmployeeDialog.showAndWait();
 
-		addEmployeeDialog.setTitle("Add Employee");
-		addEmployeeDialog.setHeaderText("This is the header");
-		addEmployeeDialog.setContentText("This is the content text");
-
-		userName.setPromptText("Employee Name");
-		password.setPromptText("Employee Password");
-
-		grid.setHgap(10);
-		grid.setVgap(10);
-		grid.setPadding(new Insets(20, 150, 10, 10));
-
-		grid.add(userName, 1, 0);
-		grid.add(password, 1, 1);
-		addEmployeeDialog.getDialogPane().setContent(grid);
-
-		addEmployeeDialog.showAndWait();
+		@SuppressWarnings("rawtypes")
+		Dialog addEmployeePopup = AddEmployeeDialog
+				.getAddEmployeePopup();
+		System.out.println("1");
+		addEmployeePopup.showAndWait();
 
 		System.out.println("maybe");
 
