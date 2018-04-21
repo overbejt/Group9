@@ -355,6 +355,7 @@ public class Controller {
 	public void menuAddEmployeeClicked() {
 		System.out.println("The ADD Employee button was clicked");
 
+		// Getting the wrapped dialog for the add employee popup
 		@SuppressWarnings("rawtypes")
 		Dialog addEmployeePopup = AddEmployeeDialog
 				.getAddEmployeePopup();
@@ -364,14 +365,13 @@ public class Controller {
 		// .ifPresent(response -> System.out
 		// .println("An Employee was added"));
 
+		// Creating an optional pair to hold the input
 		Optional<Pair<String, String>> result = addEmployeePopup
 				.showAndWait();
 
 		System.out.println(result.toString());
 
 		System.out.println("maybe");
-
-		// addEmployeeDialog.showAndWait()
 
 	}// End of the 'menuAddEmployeeClicked' method
 
@@ -485,8 +485,19 @@ public class Controller {
 		isEmployee = false;
 	}// End of the 'resetUserState' method
 
-	private boolean validateNewEmployee() {
-		return false;
-	}
+	/**
+	 * This is the method that will validate the input from the add
+	 * employee pop-up. It will take in an optional pair that should
+	 * contain the new employee's name and their password.
+	 * 
+	 * @return
+	 */
+	private void validateNewEmployee(
+			Optional<Pair<String, String>> input) {
+
+		// Getting the pair for processing
+		Pair<String, String> pair = input.get();
+
+	}// End of the 'validateNewEmployee' method
 
 }// End of the 'Controller' class
