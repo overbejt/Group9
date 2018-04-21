@@ -105,6 +105,16 @@ public class AddEmployeeDialog {
 														// children to
 														// parent
 
+		// Convert the result to a username-password-pair when the
+		// login button is clicked.
+		employeeAdded.setResultConverter(dialogButton -> {
+			if (dialogButton == okDoneBtnType) {
+				return new Pair<>(userName.getText(),
+						password.getText());
+			}
+			return null;
+		});
+
 	}// End of the 'assemble' method
 
 	/**

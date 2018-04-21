@@ -2,6 +2,7 @@ package application;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Optional;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
@@ -22,6 +23,7 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 import model.Admin;
 import model.Employee;
 import model.EmployeeList;
@@ -353,45 +355,23 @@ public class Controller {
 	public void menuAddEmployeeClicked() {
 		System.out.println("The ADD Employee button was clicked");
 
-		// // Need to create an input box
-		// AddEmployeeDialog employeeAdded = new AddEmployeeDialog();
-		//
-		// employeeAdded.showAndWait();
-
-		// GridPane grid = new GridPane();
-		// TextField userName = new TextField();
-		// TextField password = new TextField();
-		// TextInputDialog addEmployeeDialog = new TextInputDialog();
-		//
-		// addEmployeeDialog.setTitle("Add Employee");
-		// addEmployeeDialog.setHeaderText("This is the header");
-		// addEmployeeDialog.setContentText("This is the content
-		// text");
-		//
-		// userName.setPromptText("Employee Name");
-		// password.setPromptText("Employee Password");
-		//
-		// grid.setHgap(10);
-		// grid.setVgap(10);
-		// grid.setPadding(new Insets(20, 150, 10, 10));
-		//
-		// grid.add(userName, 1, 0);
-		// grid.add(password, 1, 1);
-		// addEmployeeDialog.getDialogPane().setContent(grid);
-		//
-		// addEmployeeDialog.showAndWait();
-
 		@SuppressWarnings("rawtypes")
 		Dialog addEmployeePopup = AddEmployeeDialog
 				.getAddEmployeePopup();
-		System.out.println("1");
-		addEmployeePopup.showAndWait();
+
+		// addEmployeePopup.showAndWait()
+		// .filter(response -> response == ButtonData.OK_DONE)
+		// .ifPresent(response -> System.out
+		// .println("An Employee was added"));
+
+		Optional<Pair<String, String>> result = addEmployeePopup
+				.showAndWait();
+
+		System.out.println(result.toString());
 
 		System.out.println("maybe");
 
 		// addEmployeeDialog.showAndWait()
-		// .filter(response -> response == ButtonType.OK)
-		// .ifPresent(response -> save());
 
 	}// End of the 'menuAddEmployeeClicked' method
 
