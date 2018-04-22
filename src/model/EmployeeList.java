@@ -70,9 +70,15 @@ public class EmployeeList implements Serializable {
 	 * @param id
 	 *            The id of the item to be removed
 	 */
-	public void removeEmployee(long id) {
+	public void removeEmployee(String id) {
+
+		// Formating input
+		id = id.toLowerCase();
+		id = id.trim();
+		id.replaceAll("\\s", "");
+
 		// Check to make sure that it is an Employee object
-		if (list.get(id) == Employee.class) {
+		if (list.get(id) instanceof Employee) {
 			list.remove(id);
 		} else {
 			throw new InvalidRemovalException();
@@ -89,8 +95,11 @@ public class EmployeeList implements Serializable {
 	 */
 	public Object getEmployee(String id)
 			throws EmployeeNotFoundException {
+		// Formatting Input
 		id = id.toLowerCase();// tmp
 		id = id.trim();//
+		id.replaceAll("\\s", "");
+
 		return list.get(id);
 	}// End of the 'getEmployee' method
 
@@ -146,11 +155,20 @@ public class EmployeeList implements Serializable {
 	 */
 	public boolean contains(String name) {
 
-		String id = "";
+		// Formating the input
 		name = name.toLowerCase();
 		name = name.trim();
-		id = name;
-		return list.containsKey(id);
+		name.replaceAll("\\s", "");
+
+		System.out.println("id: " + name);
+
+		Object object = list.get(name);
+		if (object == null) {
+			return false;
+		} else {
+			return true;
+		}
+		// return list.containsKey(id);
 
 	}// End of the 'contains' method
 

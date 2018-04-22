@@ -147,10 +147,9 @@ public class Controller {
 		if (guestToggle.isSelected()) {
 
 			isGuest = true;// Setting the user state
-			System.out.println("Guest Logged In: " + isGuest);
+
 			// Switch to Inventory scene
 			loadInventoryScene();
-			System.out.println("Guest Logged In: " + isGuest);
 
 		} else {
 			// Test if a user name was entered
@@ -160,6 +159,17 @@ public class Controller {
 			} else {
 				// Test if user name entered exists
 				String inputName = userNameField.getText();
+				inputName = inputName.replaceAll("\\s", "");
+
+				//
+				System.out.println(inputName);
+
+				System.out.println(employeeList.contains(inputName));
+
+				String why = inputName;
+				why = why.replaceAll("\\s", "");
+				System.out.println("why: " + why);
+				//
 
 				// Test if in the employee list
 				if (inputName.equals("admin")) {

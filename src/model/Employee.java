@@ -91,6 +91,7 @@ public class Employee implements EmployeeInterface, Serializable {
 		lastName = lastName.toLowerCase();
 		lastName = lastName.trim();
 		id = firstName + lastName;
+		id.replaceAll("\\s", "");
 	}// End of the 'setId' method
 
 	/**
