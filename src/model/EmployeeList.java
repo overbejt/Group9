@@ -157,7 +157,8 @@ public class EmployeeList implements Serializable {
 	}// End of the 'clearList' method
 
 	/**
-	 * Overriding the toString method
+	 * Overriding the toString method. It will return a string in the
+	 * form of [id: object.toString()].
 	 */
 	public String show() {
 		// Initializing a String to hold the concatenated results

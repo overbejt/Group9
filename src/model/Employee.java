@@ -91,7 +91,7 @@ public class Employee implements EmployeeInterface, Serializable {
 		lastName = lastName.toLowerCase();
 		lastName = lastName.trim();
 		id = firstName + lastName;
-		id.replaceAll("\\s", "");
+		id = id.replaceAll("\\s", "");
 	}// End of the 'setId' method
 
 	/**
@@ -141,6 +141,10 @@ public class Employee implements EmployeeInterface, Serializable {
 		return id;
 	}// End of the 'getId' method
 
+	/**
+	 * Overriding the toString() method. With will return a string in
+	 * the form of [name: password].
+	 */
 	public String toString() {
 		String result = "[";
 		result += firstName.toLowerCase();
@@ -149,6 +153,6 @@ public class Employee implements EmployeeInterface, Serializable {
 		result += password;
 		result += "]";
 		return result;
-	}
+	}// End of the 'toString' method
 
 }// End of the 'Employee' class
