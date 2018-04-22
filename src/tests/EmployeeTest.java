@@ -11,20 +11,17 @@ import org.junit.jupiter.api.Test;
 import model.Employee;
 
 /**
- * I made this class file while in another branch.
- * Then I merged the branch back to the master
- * branch. And now this file is serving as an
- * example of what can be done to make a test
- * class. The results cat either be written in a
- * table, OR, you could program it to write the
- * results to a csv file for excel.
+ * I made this class file while in another branch. Then I merged the
+ * branch back to the master branch. And now this file is serving as
+ * an example of what can be done to make a test class. The results
+ * cat either be written in a table, OR, you could program it to write
+ * the results to a csv file for excel.
  * 
  * @author Josh Overbeck
- *
  */
 public class EmployeeTest {
 	public static Employee employee;
-	
+
 	@BeforeEach
 	public void onCreate() throws Exception {
 		employee = new Employee();
@@ -45,28 +42,31 @@ public class EmployeeTest {
 	@Test
 	void testNameandPassword() {
 		System.out.println("Testing if name and password is empty");
-		employee.setName("");
+		employee.setName("", "");
 		employee.setPassword("");
 		assertEquals(employee.getName(), "");
 		assertEquals(employee.getPassword(), "");
-		System.out.println("Testing if name and password is spacebars");
-		employee.setName("          ");
+		System.out
+				.println("Testing if name and password is spacebars");
+		employee.setName("          ", "          ");
 		employee.setPassword("          ");
 		assertEquals(employee.getName(), "          ");
 		assertEquals(employee.getPassword(), "          ");
-		System.out.println("Testing if name and password is !@#%@$%#$789/*-");
-		employee.setName("!@#%@$%#$789/*-");
+		System.out.println(
+				"Testing if name and password is !@#%@$%#$789/*-");
+		employee.setName("!@#%@$%#$789/*-", "!@#%@$%#$789/*-");
 		employee.setPassword("!@#%@$%#$789/*-");
 		assertEquals(employee.getName(), "!@#%@$%#$789/*-");
 		assertEquals(employee.getPassword(), "!@#%@$%#$789/*-");
 		System.out.println("Testing if name and password is null");
-		employee.setName(null);
+		employee.setName(null, null);
 		employee.setPassword(null);
 		assertEquals(employee.getName(), null);
 		assertEquals(employee.getPassword(), null);
-		Assert.fail("Name and password shouldn't been able to set to null");
+		Assert.fail(
+				"Name and password shouldn't been able to set to null");
 	}// End of the 'testNameandPassword' method
-	
+
 	@Test
 	void testAccessLevelandID() {
 		System.out.println("Testing if AccessLevel is 0");
