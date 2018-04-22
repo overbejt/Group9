@@ -370,6 +370,7 @@ public class Controller {
 				.showAndWait();
 
 		System.out.println(result.toString());
+		validateNewEmployee(result);// Validate input
 
 		System.out.println("maybe");
 
@@ -497,6 +498,12 @@ public class Controller {
 
 		// Getting the pair for processing
 		Pair<String, String> pair = input.get();
+
+		String userName = pair.getKey();
+		String password = pair.getValue();
+
+		System.out.println("Employee: " + userName);
+		System.out.println("Password: " + password);
 
 	}// End of the 'validateNewEmployee' method
 
