@@ -82,8 +82,9 @@ public class AddEmployeeDialog {
 
 		employeeAdded = new Dialog<>();
 		employeeAdded.setTitle("Add Employee");
-		employeeAdded.setHeaderText("This is the header");
-		employeeAdded.setContentText("This is the content text");
+		employeeAdded.setHeaderText(
+				"Enter the Employee's name and password");
+		// employeeAdded.setContentText("This is the content text");
 
 		initBtnType();// Initializing the button
 		initGridPane();// Initializing the gridpane
@@ -116,13 +117,5 @@ public class AddEmployeeDialog {
 		});
 
 	}// End of the 'assemble' method
-
-	/**
-	 * // * This is the method that will invoke the showAndWait method
-	 * from // * the super class. //
-	 */
-	// public void showAndWait() {
-	// employeeAdded.showAndWait();
-	// }// End of the 'showAndWait' method
 
 }// End of the 'AddEmployeeDialog' class

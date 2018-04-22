@@ -159,17 +159,8 @@ public class Controller {
 			} else {
 				// Test if user name entered exists
 				String inputName = userNameField.getText();
+				// Format input
 				inputName = inputName.replaceAll("\\s", "");
-
-				//
-				System.out.println(inputName);
-
-				System.out.println(employeeList.contains(inputName));
-
-				String why = inputName;
-				why = why.replaceAll("\\s", "");
-				System.out.println("why: " + why);
-				//
 
 				// Test if in the employee list
 				if (inputName.equals("admin")) {
@@ -381,6 +372,7 @@ public class Controller {
 
 		validateNewEmployee(result);// Validate input
 
+		// TEMP
 		System.out.println("Employee List: " + employeeList.show());
 
 	}// End of the 'menuAddEmployeeClicked' method
@@ -425,10 +417,11 @@ public class Controller {
 		System.out.println(
 				"The save method from the controller was called");
 		try {
+			// Saving the Employee List
 			persistence.writeEmployeeList(employeeList);
-		} catch (IOException e) {
+		} catch (IOException err) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			err.printStackTrace();
 		}
 	}// End of the 'save' method
 
@@ -504,61 +497,66 @@ public class Controller {
 	 */
 	private void validateNewEmployee(
 			Optional<Pair<String, String>> input) {
+		// Test for empty input
+		if (input.isPresent()) {
+			// Getting the pair for processing
+			Pair<String, String> pair = input.get();
 
-		// Getting the pair for processing
-		Pair<String, String> pair = input.get();
+			// Get the employee's name
+			String newEmpName = pair.getKey();
+			// Get the employee's password
+			String newEmpPassword = pair.getValue();
 
-		// Get the employee's name
-		String newEmpName = pair.getKey();
-		// Get the employee's password
-		String newEmpPassword = pair.getValue();
+			// Test if employee already exists
+			if (!employeeList.contains(newEmpName)) {
+				// Test if the user entered an employee name
+				if (newEmpName != null) {
+					// Test if the user entered an employee password
+					if (newEmpPassword != null) {
+						try {
+							// Split the name up
+							String[] names = newEmpName.split(" ");
+							String firstName = names[0];
+							String lastName = names[1];
 
-		// Test if employee already exists
-		if (!employeeList.contains(newEmpName)) {
-			// Test if the user entered an employee name
-			if (newEmpName != null) {
-				// Test if the user entered an employee password
-				if (newEmpPassword != null) {
-					try {
-						// Split the name up
-						String[] names = newEmpName.split(" ");
-						String firstName = names[0];
-						String lastName = names[1];
+							// Create new Employee
+							Employee newEmployee = new Employee();
+							newEmployee.setName(firstName, lastName);
 
-						// Create new Employee
-						Employee newEmployee = new Employee();
-						newEmployee.setName(firstName, lastName);
+							// Set the new employee's password
+							newEmployee.setPassword(newEmpPassword);
 
-						// Set the new employee's password
-						newEmployee.setPassword(newEmpPassword);
+							// Add the new employee to the list
+							employeeList.addEmployee(newEmployee);
 
-						// Add the new employee to the list
-						employeeList.addEmployee(newEmployee);
-
-					} catch (Exception err) {
+						} catch (Exception err) {
+							System.out.println(
+									"The Employee was not added successfully");
+						}
+					} else {
+						// Alert the user to the bad input
 						System.out.println(
-								"The Employee was not added successfully");
+								"New employee password not entered");
 					}
+
 				} else {
 					// Alert the user to the bad input
-					System.out.println(
-							"New employee password not entered");
+					System.out
+							.println("New employee name not entered");
 				}
 
 			} else {
-				// Alert the user to the bad input
-				System.out.println("New employee name not entered");
+
+				System.out.println("The Employee Already exits");
+
+				// Let the user know that the employee is already in
+				// the
+				// list
+				throw new EmployeeExistsException();
+
 			}
 
-		} else {
-
-			System.out.println("The Employee Already exits");
-
-			// Let the user know that the employee is already in the
-			// list
-			throw new EmployeeExistsException();
-
-		}
+		} // End of test for cancel button
 
 	}// End of the 'validateNewEmployee' method
 

@@ -96,44 +96,12 @@ public class EmployeeList implements Serializable {
 	public Object getEmployee(String id)
 			throws EmployeeNotFoundException {
 		// Formatting Input
-		id = id.toLowerCase();// tmp
-		id = id.trim();//
+		id = id.toLowerCase();
+		id = id.trim();
 		id.replaceAll("\\s", "");
 
 		return list.get(id);
 	}// End of the 'getEmployee' method
-
-	//
-	// /**
-	// * This is the method that will pass the reference to an
-	// Employee
-	// * in the list, based on their name.
-	// *
-	// * @param name
-	// * @return The reference to the indicated employee
-	// */
-	// public Object getEmployee(String name)
-	// throws EmployeeNotFoundException {
-	//
-	// Set entries = list.entrySet();
-	// for (Object o : entries) {
-	// if (o.getClass() == Employee.class) {
-	// if (((Employee) o).getName().equals(name)) {
-	// return o;
-	// }
-	// }
-	// if (o.getClass() == Admin.class) {
-	// if (((Admin) o).getName().equals(name)) {
-	// return o;
-	// }
-	// }
-	// if (((Guest) o).getName().equals(name)) {
-	// return o;
-	// }
-	// }
-	// throw new EmployeeNotFoundException();
-	//
-	// }// End of the 'getEmployee' method
 
 	/**
 	 * This is the method that will return the Employee list in the
@@ -160,15 +128,12 @@ public class EmployeeList implements Serializable {
 		name = name.trim();
 		name.replaceAll("\\s", "");
 
-		System.out.println("id: " + name);
-
 		Object object = list.get(name);
 		if (object == null) {
 			return false;
 		} else {
 			return true;
 		}
-		// return list.containsKey(id);
 
 	}// End of the 'contains' method
 
