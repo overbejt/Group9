@@ -140,4 +140,14 @@ public class Employee implements EmployeeInterface, Serializable {
 		return id;
 	}// End of the 'getId' method
 
+	public String toString() {
+		String result = "[";
+		result += firstName.toLowerCase();
+		result += lastName.toLowerCase();
+		result += " : ";
+		result += password;
+		result += "]";
+		return result;
+	}
+
 }// End of the 'Employee' class

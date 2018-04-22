@@ -2,6 +2,8 @@ package model;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import AbucusExceptions.EmployeeExistsException;
 import AbucusExceptions.EmployeeNotFoundException;
@@ -168,4 +170,62 @@ public class EmployeeList implements Serializable {
 		list.clear();
 	}// End of the 'clearList' method
 
+	/**
+	 * Overriding the toString method
+	 */
+	public String show() {
+		// Initializing a String to hold the concatenated results
+		String result = "";
+
+		// Get the keys
+		// Set<Entry<String, Object>> entries = list.entrySet();
+		Set<Entry<String, Object>> entries = list.entrySet();
+
+		// Iterator itr = list.entrySet().iterator();
+		// while(itr.hasNext()) {
+		//
+		// }
+
+		// Loop through all the employees
+		for (Entry<String, Object> k : entries) {
+
+			result += "[";
+			result += k.getKey();
+			result += " : ";
+			result += k.getValue();
+			result += "]";
+
+			// // Test if current is Employee object
+			// if (o.getClass() == Employee.class) {
+			// // // Get the next Employee in the list
+			// // Employee employee = (Employee) o;
+			// // // Concatenate
+			// // result += "[" + employee.getName() + " : "
+			// // + employee.getPassword() + "]\t";
+			// o.toString();
+			// System.out.println("Sup");
+			//
+			// }
+			// // Test if current is Admin oject
+			// if (o.getClass() == Admin.class) {
+			// // Get the Admin in the list
+			// Admin admin = (Admin) o;
+			// // Concatenate
+			// result += "[" + admin.getName() + " : "
+			// + admin.getPassword() + "]\t";
+			// }
+			// // Test if current is Guest object
+			// if (o.getClass() == Guest.class) {
+			// Guest guest = (Guest) o;
+			// // Concatenate
+			// result += "[" + guest.getName() + " : "
+			// + guest.getPassword() + "]\t";
+			// }
+
+		} // End of loop
+
+		// Send back the string
+		return result;
+
+	}// End of the 'toString' method
 }// End of the 'EmployeeList' class

@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 
+import AbucusExceptions.EmployeeExistsException;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -360,19 +361,15 @@ public class Controller {
 		Dialog addEmployeePopup = AddEmployeeDialog
 				.getAddEmployeePopup();
 
-		// addEmployeePopup.showAndWait()
-		// .filter(response -> response == ButtonData.OK_DONE)
-		// .ifPresent(response -> System.out
-		// .println("An Employee was added"));
-
 		// Creating an optional pair to hold the input
 		Optional<Pair<String, String>> result = addEmployeePopup
 				.showAndWait();
 
-		System.out.println(result.toString());
+		// System.out.println(result.toString());
+
 		validateNewEmployee(result);// Validate input
 
-		System.out.println("maybe");
+		System.out.println("Employee List: " + employeeList.show());
 
 	}// End of the 'menuAddEmployeeClicked' method
 
@@ -499,11 +496,57 @@ public class Controller {
 		// Getting the pair for processing
 		Pair<String, String> pair = input.get();
 
-		String userName = pair.getKey();
-		String password = pair.getValue();
+		// Get the employee's name
+		String newEmpName = pair.getKey();
+		// Get the employee's password
+		String newEmpPassword = pair.getValue();
 
-		System.out.println("Employee: " + userName);
-		System.out.println("Password: " + password);
+		// Test if employee already exists
+		if (!employeeList.contains(newEmpName)) {
+			// Test if the user entered an employee name
+			if (newEmpName != null) {
+				// Test if the user entered an employee password
+				if (newEmpPassword != null) {
+					try {
+						// Split the name up
+						String[] names = newEmpName.split(" ");
+						String firstName = names[0];
+						String lastName = names[1];
+
+						// Create new Employee
+						Employee newEmployee = new Employee();
+						newEmployee.setName(firstName, lastName);
+
+						// Set the new employee's password
+						newEmployee.setPassword(newEmpPassword);
+
+						// Add the new employee to the list
+						employeeList.addEmployee(newEmployee);
+
+					} catch (Exception err) {
+						System.out.println(
+								"The Employee was not added successfully");
+					}
+				} else {
+					// Alert the user to the bad input
+					System.out.println(
+							"New employee password not entered");
+				}
+
+			} else {
+				// Alert the user to the bad input
+				System.out.println("New employee name not entered");
+			}
+
+		} else {
+
+			System.out.println("The Employee Already exits");
+
+			// Let the user know that the employee is already in the
+			// list
+			throw new EmployeeExistsException();
+
+		}
 
 	}// End of the 'validateNewEmployee' method
 
