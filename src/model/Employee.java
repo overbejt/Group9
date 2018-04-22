@@ -86,10 +86,10 @@ public class Employee implements EmployeeInterface, Serializable {
 	 * names.
 	 */
 	private void setId() {
-		firstName.toLowerCase();
-		firstName.trim();
-		lastName.toLowerCase();
-		lastName.trim();
+		firstName = firstName.toLowerCase();
+		firstName = firstName.trim();
+		lastName = lastName.toLowerCase();
+		lastName = lastName.trim();
 		id = firstName + lastName;
 	}// End of the 'setId' method
 

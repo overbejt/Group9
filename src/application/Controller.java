@@ -107,6 +107,8 @@ public class Controller {
 		// Check if EmployeeList file exists
 		if (persistence.employeeListExists()) {
 			employeeList = persistence.readEmployeeList();
+			System.out
+					.println("Employee List: " + employeeList.show());
 		} // End of EmployeeList check
 		else {
 			employeeList = new EmployeeList();
@@ -158,14 +160,18 @@ public class Controller {
 			} else {
 				// Test if user name entered exists
 				String inputName = userNameField.getText();
+
 				// Test if in the employee list
 				if (inputName.equals("admin")) {
 					isAdmin = true;// Might not be the best place
+
 				} else if (employeeList.contains(inputName)) {
+
 					currentEmployee = (Employee) employeeList
 							.getEmployee(inputName);
 				} else {
 					// Alert the user to not a valid user name
+					System.out.println("Invalid User Name");
 				}
 			} // End of user name verification
 				// Test if a password was entered
@@ -174,34 +180,30 @@ public class Controller {
 						true);
 			} else {
 				String inPassword = passwordField.getText();
+				inPassword = inPassword.trim();//
 				if (isAdmin) {
 					if (inPassword.equals("admin")) {
 						isAdmin = true;// Setting the user sate
 						// Invoke the 'loadInventoryScene' method
 						loadInventoryScene();
 					}
-				}
-				// Test if good password
-				else if (inPassword
+				} else if (inPassword
 						.equals(currentEmployee.getPassword())) {
+
+					// Test if good password
 					isEmployee = true; // Setting the user state
 					// Invoke the 'loadInventoryScene' method
 					loadInventoryScene();
 
 				} else {
 					// Alert the user to bad input
+					System.out.println("Invalid Input");
 				}
 
 			} // End of password verification
 		} // End of guest test
 
 		System.out.println("?");
-		// try {
-		// // Removing the ability to add/remove Employees
-		// disableEmployeeListEdit();
-		// } catch (Exception err) {
-		// System.out.println(err);
-		// }
 
 	}// End of the 'loginBtnClicked' method
 

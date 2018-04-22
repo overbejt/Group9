@@ -40,20 +40,21 @@ public class EmployeeList implements Serializable {
 	public void addEmployee(Object employee) {
 
 		// Check if Employee object
-		if (employee.getClass() == Employee.class) {
+		if (employee instanceof Employee) {
 			// Make sure that the employee doesn't already exist
 			if (list.containsKey(((Employee) employee).getID())) {
 				throw new EmployeeExistsException();
 			} else {
-				list.put(((Employee) employee).getID(), employee);
+				String id = ((Employee) employee).getID();
+				list.put(id, employee);
 			}
-		} else if (employee.getClass() == Admin.class) {
+		} else if (employee instanceof Admin) {
 			// Make sure that the admin is not already in the list
 			if (!list.containsKey(((Admin) employee).getID())) {
 				// Check if 'Admin' object
 				list.put(((Admin) employee).getID(), employee);
 			}
-		} else if (employee.getClass() == Guest.class) {
+		} else if (employee instanceof Guest) {
 			// Make sure that the guest is not already in the list
 			if (!list.containsKey(((Guest) employee).getID())) {
 				// Check if 'Guest' object
@@ -88,6 +89,8 @@ public class EmployeeList implements Serializable {
 	 */
 	public Object getEmployee(String id)
 			throws EmployeeNotFoundException {
+		id = id.toLowerCase();// tmp
+		id = id.trim();//
 		return list.get(id);
 	}// End of the 'getEmployee' method
 
@@ -144,8 +147,8 @@ public class EmployeeList implements Serializable {
 	public boolean contains(String name) {
 
 		String id = "";
-		name.toLowerCase();
-		name.trim();
+		name = name.toLowerCase();
+		name = name.trim();
 		id = name;
 		return list.containsKey(id);
 
@@ -177,50 +180,18 @@ public class EmployeeList implements Serializable {
 		// Initializing a String to hold the concatenated results
 		String result = "";
 
-		// Get the keys
-		// Set<Entry<String, Object>> entries = list.entrySet();
+		// Get the entries
 		Set<Entry<String, Object>> entries = list.entrySet();
-
-		// Iterator itr = list.entrySet().iterator();
-		// while(itr.hasNext()) {
-		//
-		// }
 
 		// Loop through all the employees
 		for (Entry<String, Object> k : entries) {
 
+			// Concatenate to result
 			result += "[";
 			result += k.getKey();
 			result += " : ";
 			result += k.getValue();
 			result += "]";
-
-			// // Test if current is Employee object
-			// if (o.getClass() == Employee.class) {
-			// // // Get the next Employee in the list
-			// // Employee employee = (Employee) o;
-			// // // Concatenate
-			// // result += "[" + employee.getName() + " : "
-			// // + employee.getPassword() + "]\t";
-			// o.toString();
-			// System.out.println("Sup");
-			//
-			// }
-			// // Test if current is Admin oject
-			// if (o.getClass() == Admin.class) {
-			// // Get the Admin in the list
-			// Admin admin = (Admin) o;
-			// // Concatenate
-			// result += "[" + admin.getName() + " : "
-			// + admin.getPassword() + "]\t";
-			// }
-			// // Test if current is Guest object
-			// if (o.getClass() == Guest.class) {
-			// Guest guest = (Guest) o;
-			// // Concatenate
-			// result += "[" + guest.getName() + " : "
-			// + guest.getPassword() + "]\t";
-			// }
 
 		} // End of loop
 
@@ -228,4 +199,5 @@ public class EmployeeList implements Serializable {
 		return result;
 
 	}// End of the 'toString' method
+
 }// End of the 'EmployeeList' class
