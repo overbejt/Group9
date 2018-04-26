@@ -28,6 +28,7 @@ import javafx.util.Pair;
 import model.Admin;
 import model.Employee;
 import model.EmployeeList;
+import model.EmployeePopupNode;
 import model.Guest;
 import model.Persistence;
 import view.AddEmployeeDialog;
@@ -365,7 +366,7 @@ public class Controller {
 				.getAddEmployeePopup();
 
 		// Creating an optional pair to hold the input
-		Optional<Pair<String, String>> result = addEmployeePopup
+		Optional<EmployeePopupNode> result = addEmployeePopup
 				.showAndWait();
 
 		// System.out.println(result.toString());

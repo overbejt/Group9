@@ -4,9 +4,10 @@ import javafx.geometry.Insets;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.util.Pair;
+import model.EmployeePopupNode;
 
 /**
  * This is the class that will handle the dialog pop-up when a user
@@ -14,16 +15,20 @@ import javafx.util.Pair;
  */
 public class AddEmployeeDialog {
 
-	// Create the username and password labels and fields.
+	// Instance variables
 	private GridPane grid;
 
-	private TextField	userName;
-	private TextField	password;
+	private TextField	firstName;
+	private TextField	lastName;
+	private TextField	passwordA;
+	private TextField	passwordB;
 
-	private ButtonType okDoneBtnType;
+	private RadioButton	isEmployee;
+	private RadioButton	isManager;
+	private ButtonType	okDoneBtnType;
 
-	// Instance variables
-	private static Dialog<Pair<String, String>> employeeAdded;
+	// private static Dialog<Pair<String, String>> employeeAdded;
+	private static Dialog<EmployeePopupNode> employeeAdded;
 
 	// Constructor
 	private AddEmployeeDialog() {
@@ -57,11 +62,15 @@ public class AddEmployeeDialog {
 	 */
 	private void initFields() {
 		// Initialize the text fields
-		userName = new TextField();
-		password = new TextField();
+		firstName = new TextField();
+		lastName = new TextField();
+		passwordA = new TextField();
+		passwordB = new TextField();
 		// Set the prompt texts
-		userName.setPromptText("Employee Name");
-		password.setPromptText("Employee Password");
+		firstName.setPromptText("First Name");
+		lastName.setPromptText("Last Name");
+		passwordA.setPromptText("Employee Password");
+		passwordB.setPromptText("Confirm Employee Password");
 
 	}// End of the 'initFields' method
 
@@ -100,18 +109,23 @@ public class AddEmployeeDialog {
 		// Adding the buttons
 		employeeAdded.getDialogPane().getButtonTypes()
 				.addAll(okDoneBtnType, ButtonType.CANCEL);
-		grid.add(userName, 1, 0);
-		grid.add(password, 1, 1);
-		employeeAdded.getDialogPane().setContent(grid);// Adding
-														// children to
-														// parent
+		grid.add(firstName, 1, 0);
+		grid.add(lastName, 1, 1);
+		grid.add(passwordA, 1, 2);
+		grid.add(passwordB, 1, 3);
+		grid.add(isEmployee, 1, 4);
+		grid.add(isManager, 2, 4);
+		// Adding children to parent
+		employeeAdded.getDialogPane().setContent(grid);
 
-		// Convert the result to a username-password-pair when the
+		// Convert the result to EmployeePopupNode when the
 		// login button is clicked.
 		employeeAdded.setResultConverter(dialogButton -> {
 			if (dialogButton == okDoneBtnType) {
-				return new Pair<>(userName.getText(),
-						password.getText());
+				return new EmployeePopupNode(firstName.getText(),
+						lastName.getText(), passwordA.getText(),
+						passwordB.getText(), isEmployee.isSelected(),
+						isManager.isSelected());
 			}
 			return null;
 		});

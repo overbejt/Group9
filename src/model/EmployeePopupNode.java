@@ -1,34 +1,32 @@
 package model;
 
-import javafx.scene.control.RadioButton;
-
 /**
  * This is the class that will hold the input from the AddEmployee Pop
  * up.
  */
-public class EmployePopupNode {
+public class EmployeePopupNode {
 	// Declaring instance variables
-	private String		firstName;
-	private String		lastName;
-	private String		passwordA;
-	private String		passwordB;
-	private RadioButton	isEmployee;
-	private RadioButton	isManager;
+	private String	firstName;
+	private String	lastName;
+	private String	passwordA;
+	private String	passwordB;
+	private boolean	isEmployee;
+	private boolean	isManager;
 
 	// Constructor
-	public EmployePopupNode() {
+	public EmployeePopupNode() {
 		firstName = "";
 		lastName = "";
 		passwordA = "";
 		passwordB = "";
-		isEmployee = new RadioButton();
-		isManager = new RadioButton();
+		isEmployee = false;
+		isManager = false;
 	}// End of Constructor
 
 	// Overloaded Constructor
-	public EmployePopupNode(String firstName, String lastName,
-			String passwordA, String passwordB,
-			RadioButton isEmployee, RadioButton isManager) {
+	public EmployeePopupNode(String firstName, String lastName,
+			String passwordA, String passwordB, boolean isEmployee,
+			boolean isManager) {
 
 		// Initializing instance variables with data passed through
 		this.firstName = firstName;
@@ -56,11 +54,11 @@ public class EmployePopupNode {
 		return passwordB;
 	}// End of the 'getPasswordB' method
 
-	public RadioButton getIsEmployee() {
+	public boolean getIsEmployee() {
 		return isEmployee;
 	}// End of the 'getIsEmployee' method
 
-	public RadioButton getIsManager() {
+	public boolean getIsManager() {
 		return isManager;
 	}// End of the 'getIsManager' method
 }// End of the 'EmployeePopupNode' class
