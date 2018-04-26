@@ -53,7 +53,7 @@ public class AddEmployeeDialog {
 	private void initGridPane() {
 		grid = new GridPane();
 		grid.setHgap(10);
-		grid.setVgap(10);
+		grid.setVgap(20);
 		grid.setPadding(new Insets(20, 150, 10, 10));
 	}// End of the 'initGridPane' method1
 
@@ -73,6 +73,16 @@ public class AddEmployeeDialog {
 		passwordB.setPromptText("Confirm Employee Password");
 
 	}// End of the 'initFields' method
+
+	/**
+	 * This is the method that will initialize the radio buttons for
+	 * the user to decide between whether an employee or a manager is
+	 * added.
+	 */
+	private void initRadioButtons() {
+		isEmployee = new RadioButton("Employee");
+		isManager = new RadioButton("Manager");
+	}// End of the 'initRadioButtons'
 
 	/**
 	 * This is the method that will initialize the button type for the
@@ -98,6 +108,7 @@ public class AddEmployeeDialog {
 		initBtnType();// Initializing the button
 		initGridPane();// Initializing the gridpane
 		initFields();// Initializing the Textfields
+		initRadioButtons();// Initializing the RadioButtons
 		assemble();// Putting it all together
 	}// End of the 'init' method
 
