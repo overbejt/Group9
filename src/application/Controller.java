@@ -10,7 +10,6 @@ import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 
-import AbucusExceptions.EmployeeExistsException;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -517,43 +516,63 @@ public class Controller {
 
 			// Test if employee already exists
 			if (!employeeList.contains(key)) {
-				// Test if the user entered an employee first name
+				// Test if the user entered the employee first name
 				if (firstName != null) {
+					// Test if the user entered the employee's last
+					// name
 					if (lastName != null) {
-						// Test if the user entered an employee
-						// password
-						if (newEmpPassword != null) {
-							try {
-								// Split the name up
-								String[] names = newEmpName
-										.split(" ");
-								String firstName = names[0];
-								String lastName = names[1];
+						// Test if the user entered passwordA
+						if (passwordA != null) {
+							// Test if the user entered passwordB
+							if (passwordB != null) {
 
-								// Create new Employee
-								Employee newEmployee = new Employee();
-								newEmployee.setName(firstName,
-										lastName);
+								// Test if passworA matches passwordB
+								if (passwordA.equals(passwordB)) {
 
-								// Set the new employee's password
-								newEmployee
-										.setPassword(newEmpPassword);
+									// Create new Employee
+									Employee newEmployee = new Employee();
+									newEmployee.setName(firstName,
+											lastName);
 
-								// Add the new employee to the list
-								employeeList.addEmployee(newEmployee);
+									// Set the new employee's
+									// password
+									newEmployee
+											.setPassword(passwordA);
 
-							} catch (Exception err) {
-								System.out.println(
-										"The Employee was not added successfully");
+									// Add the new employee to the
+									// list
+									employeeList
+											.addEmployee(newEmployee);
+								} else {
+									// Alert the user to the bad first
+									// name
+									String msg = "New employee not added. Passwords do not match";
+									System.out.println(msg);
+									Alert err = new Alert(
+											AlertType.CONFIRMATION,
+											msg);
+									err.show();
+								}
+
+							} else {
+								// Alert the user to missing passwordB
+								String msg = "New employee not added.  New employee's confirmed password is missing";
+								System.out.println(msg);
+								Alert err = new Alert(
+										AlertType.CONFIRMATION, msg);
+								err.show();
 							}
 						} else {
-							// Alert the user to the bad input
-							System.out.println(
-									"New employee password not entered");
+							// Alert the user to missing passwordA
+							String msg = "New employee not added.  New employee's password not entered";
+							System.out.println(msg);
+							Alert err = new Alert(
+									AlertType.CONFIRMATION, msg);
+							err.show();
 						}
 					} else {
 						// Alert the user to bad last name
-						String msg = "New employee's last name not entered";
+						String msg = "New employee not added.  New employee's last name not entered";
 						System.out.println(msg);
 						Alert err = new Alert(AlertType.CONFIRMATION,
 								msg);
@@ -562,7 +581,7 @@ public class Controller {
 
 				} else {
 					// Alert the user to the bad first name
-					String msg = "New employee's first name not entered";
+					String msg = "New employee not added.  New employee's first name not entered";
 					System.out.println(msg);
 					Alert err = new Alert(AlertType.CONFIRMATION,
 							msg);
@@ -571,12 +590,11 @@ public class Controller {
 
 			} else {
 
-				System.out.println("The Employee Already exits");
-
-				// Let the user know that the employee is already in
-				// the
-				// list
-				throw new EmployeeExistsException();
+				// Alert the user that the employee already exists
+				String msg = "New employee not added.  Employee already exists";
+				System.out.println(msg);
+				Alert err = new Alert(AlertType.CONFIRMATION, msg);
+				err.show();
 
 			}
 
