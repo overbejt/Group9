@@ -24,7 +24,6 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
-import javafx.util.Pair;
 import model.Admin;
 import model.Employee;
 import model.EmployeeList;
@@ -365,7 +364,7 @@ public class Controller {
 		Dialog addEmployeePopup = AddEmployeeDialog
 				.getAddEmployeePopup();
 
-		// Creating an optional pair to hold the input
+		// Creating an optional node to hold the input
 		Optional<EmployeePopupNode> result = addEmployeePopup
 				.showAndWait();
 
@@ -491,59 +490,83 @@ public class Controller {
 
 	/**
 	 * This is the method that will validate the input from the add
-	 * employee pop-up. It will take in an optional pair that should
+	 * employee pop-up. It will take in an optional node that should
 	 * contain the new employee's name and their password.
 	 * 
 	 * @return
 	 */
-	private void validateNewEmployee(
-			Optional<Pair<String, String>> input) {
+	private void
+			validateNewEmployee(Optional<EmployeePopupNode> input) {
 		// Test for empty input
 		if (input.isPresent()) {
-			// Getting the pair for processing
-			Pair<String, String> pair = input.get();
+			// Getting the node for processing
+			EmployeePopupNode node = input.get();
 
 			// Get the employee's name
-			String newEmpName = pair.getKey();
+			String firstName = node.getFirstName();
+			String lastName = node.getLastName();
 			// Get the employee's password
-			String newEmpPassword = pair.getValue();
+			String passwordA = node.getPasswordA();
+			String passwordB = node.getPasswordB();
+			// Get the employee's access rights
+			boolean newIsEmployee = node.getIsEmployee();
+			boolean newIsManager = node.getIsManager();
+
+			// Format the key
+			String key = firstName + lastName;
 
 			// Test if employee already exists
-			if (!employeeList.contains(newEmpName)) {
-				// Test if the user entered an employee name
-				if (newEmpName != null) {
-					// Test if the user entered an employee password
-					if (newEmpPassword != null) {
-						try {
-							// Split the name up
-							String[] names = newEmpName.split(" ");
-							String firstName = names[0];
-							String lastName = names[1];
+			if (!employeeList.contains(key)) {
+				// Test if the user entered an employee first name
+				if (firstName != null) {
+					if (lastName != null) {
+						// Test if the user entered an employee
+						// password
+						if (newEmpPassword != null) {
+							try {
+								// Split the name up
+								String[] names = newEmpName
+										.split(" ");
+								String firstName = names[0];
+								String lastName = names[1];
 
-							// Create new Employee
-							Employee newEmployee = new Employee();
-							newEmployee.setName(firstName, lastName);
+								// Create new Employee
+								Employee newEmployee = new Employee();
+								newEmployee.setName(firstName,
+										lastName);
 
-							// Set the new employee's password
-							newEmployee.setPassword(newEmpPassword);
+								// Set the new employee's password
+								newEmployee
+										.setPassword(newEmpPassword);
 
-							// Add the new employee to the list
-							employeeList.addEmployee(newEmployee);
+								// Add the new employee to the list
+								employeeList.addEmployee(newEmployee);
 
-						} catch (Exception err) {
+							} catch (Exception err) {
+								System.out.println(
+										"The Employee was not added successfully");
+							}
+						} else {
+							// Alert the user to the bad input
 							System.out.println(
-									"The Employee was not added successfully");
+									"New employee password not entered");
 						}
 					} else {
-						// Alert the user to the bad input
-						System.out.println(
-								"New employee password not entered");
+						// Alert the user to bad last name
+						String msg = "New employee's last name not entered";
+						System.out.println(msg);
+						Alert err = new Alert(AlertType.CONFIRMATION,
+								msg);
+						err.show();
 					}
 
 				} else {
-					// Alert the user to the bad input
-					System.out
-							.println("New employee name not entered");
+					// Alert the user to the bad first name
+					String msg = "New employee's first name not entered";
+					System.out.println(msg);
+					Alert err = new Alert(AlertType.CONFIRMATION,
+							msg);
+					err.show();
 				}
 
 			} else {
