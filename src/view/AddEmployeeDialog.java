@@ -134,6 +134,10 @@ public class AddEmployeeDialog {
 	 * layout, and add the to the dialog box.
 	 */
 	private void assemble() {
+
+		// Invoke the function that will style the pop up
+		setStyle();
+
 		// Adding the buttons
 		employeeAdded.getDialogPane().getButtonTypes()
 				.addAll(okDoneBtnType, ButtonType.CANCEL);
@@ -159,5 +163,20 @@ public class AddEmployeeDialog {
 		});
 
 	}// End of the 'assemble' method
+
+	/**
+	 * This is the method that will allow the add employee pop to by
+	 * styled. It will call on classes in the application.css file.
+	 */
+	private void setStyle() {
+
+		// Set the style sheet
+		employeeAdded.getDialogPane().getStylesheets()
+				.add(getClass().getResource("/view/application.css")
+						.toExternalForm());
+
+		// Set the background color?
+		employeeAdded.getDialogPane().getStyleClass().add("myDialog");
+	}// End of the 'setStyle' method
 
 }// End of the 'AddEmployeeDialog' class

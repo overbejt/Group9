@@ -512,19 +512,20 @@ public class Controller {
 			boolean newIsManager = node.getIsManager();
 
 			// Format the key
+
 			String key = firstName + lastName;
 
 			// Test if employee already exists
 			if (!employeeList.contains(key)) {
 				// Test if the user entered the employee first name
-				if (firstName != null) {
+				if (firstName.trim().length() != 0) {
 					// Test if the user entered the employee's last
 					// name
-					if (lastName != null) {
+					if (lastName.trim().length() != 0) {
 						// Test if the user entered passwordA
-						if (passwordA != null) {
+						if (passwordA.trim().length() != 0) {
 							// Test if the user entered passwordB
-							if (passwordB != null) {
+							if (passwordB.trim().length() != 0) {
 
 								// Test if passworA matches passwordB
 								if (passwordA.equals(passwordB)) {
@@ -539,10 +540,35 @@ public class Controller {
 									newEmployee
 											.setPassword(passwordA);
 
+									// Set the employee's access Level
+									// Test is new Employee is just an
+									// employee
+									if (newIsEmployee) {
+										newEmployee
+												.setAccessLevel(100);
+									}
+									// Test if new Employee is a
+									// manager
+									if (newIsManager) {
+										newEmployee
+												.setAccessLevel(010);
+									}
+
 									// Add the new employee to the
 									// list
 									employeeList
 											.addEmployee(newEmployee);
+
+									// Save the employeeList
+									try {
+										persistence.writeEmployeeList(
+												employeeList);
+									} catch (IOException e) {
+										// TODO Auto-generated catch
+										// block
+										e.printStackTrace();
+									}
+
 								} else {
 									// Alert the user to the bad first
 									// name
