@@ -6,6 +6,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import model.EmployeePopupNode;
 
@@ -23,6 +24,7 @@ public class AddEmployeeDialog {
 	private TextField	passwordA;
 	private TextField	passwordB;
 
+	private ToggleGroup	toggleGroup;
 	private RadioButton	isEmployee;
 	private RadioButton	isManager;
 	private ButtonType	okDoneBtnType;
@@ -80,8 +82,23 @@ public class AddEmployeeDialog {
 	 * added.
 	 */
 	private void initRadioButtons() {
+
+		// Initialize the toggle group
+		toggleGroup = new ToggleGroup();
+
+		/*
+		 * Initializing isEmployee, adding it to the toggle group, and
+		 * making isEmployee selected by default
+		 */
 		isEmployee = new RadioButton("Employee");
+		isEmployee.setToggleGroup(toggleGroup);
+		isEmployee.setSelected(true);
+
+		// Initializing isManager
 		isManager = new RadioButton("Manager");
+		// Adding it to the toggle group
+		isManager.setToggleGroup(toggleGroup);
+
 	}// End of the 'initRadioButtons'
 
 	/**
