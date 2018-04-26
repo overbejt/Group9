@@ -81,6 +81,7 @@ public class Controller {
 	private Employee		currentEmployee;
 
 	private boolean	isEmployee	= false;
+	private boolean	isManager	= false;
 	private boolean	isAdmin		= false;
 	private boolean	isGuest		= false;
 
@@ -191,7 +192,16 @@ public class Controller {
 						.equals(currentEmployee.getPassword())) {
 
 					// Test if good password
-					isEmployee = true; // Setting the user state
+
+					// Test if manager
+					if (currentEmployee.getAccessLevel() == 10) {
+						isManager = true;
+					}
+					// Test if Employee
+					if (currentEmployee.getAccessLevel() == 100) {
+						isEmployee = true; // Setting the user state
+					}
+
 					// Invoke the 'loadInventoryScene' method
 					loadInventoryScene();
 
