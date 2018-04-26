@@ -25,4 +25,18 @@ public class EmployePopupNode {
 		isManager = new RadioButton();
 	}// End of Constructor
 
+	// Overloaded Constructor
+	public EmployePopupNode(String firstName, String lastName,
+			String passwordA, String passwordB,
+			RadioButton isEmployee, RadioButton isManager) {
+
+		// Initializing instance variables with data passed through
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.passwordA = passwordA;
+		this.passwordB = passwordB;
+		this.isEmployee = isEmployee;
+		this.isManager = isManager;
+	}// End of the Overloaded Constructor
+
 }// End of the 'EmployeePopupNode' class
