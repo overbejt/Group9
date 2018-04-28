@@ -3,6 +3,9 @@ package model;
 import java.io.Serializable;
 import java.util.HashMap;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
+
 /**
  * This is going to be the class that will store the inventory.
  * 
@@ -16,13 +19,15 @@ public class ItemList implements Serializable {
 	private static final long serialVersionUID = 1359781794835268746L;
 
 	// The inventory will be stored in a hashmap
-	private static HashMap<Long, Item> list;
+	private static HashMap<Long, Item>	list;
+	private ObservableMap<Long, Item>	map;
 
 	// Constructor
 	public ItemList() {
 
 		// Initializing the item list
 		list = new HashMap<Long, Item>();
+		map = FXCollections.observableMap(list);
 
 	}// End of the Constructor
 
@@ -34,7 +39,9 @@ public class ItemList implements Serializable {
 	 *            The new item to be added to the inventory
 	 */
 	public void addItem(Item newItem) {
-		list.put(newItem.getID(), newItem);
+
+		map.put(newItem.getID(), newItem);
+
 	}// End of the 'addItem' method
 
 	/**
@@ -44,7 +51,9 @@ public class ItemList implements Serializable {
 	 *            The id of the item to be removed from the inventory
 	 */
 	public void removeItem(Long id) {
-		list.remove(id);
+
+		map.remove(id);
+
 	}// End of the 'removeItem' method
 
 	/**
@@ -56,7 +65,9 @@ public class ItemList implements Serializable {
 	 * @return The requested item
 	 */
 	public Item getItem(Long id) {
-		return list.get(id);
+
+		return map.get(id);
+
 	}// End of the 'getItem' method
 
 	/**
@@ -65,8 +76,10 @@ public class ItemList implements Serializable {
 	 * 
 	 * @return The item list
 	 */
-	public HashMap<Long, Item> getItemList() {
-		return this.list;
+	public ObservableMap<Long, Item> getItemList() {
+
+		return this.map;
+
 	}// End of the 'getItemList' method
 
 	/**
@@ -76,15 +89,19 @@ public class ItemList implements Serializable {
 	 * 
 	 * @param inList
 	 */
-	public void setItemList(HashMap<Long, Item> inList) {
-		this.list = inList;
+	public void setItemList(ObservableMap<Long, Item> inList) {
+
+		this.map = inList;
+
 	}// End of the 'setItemList' method
 
 	/**
 	 * This is the method that will clear the list of all items.
 	 */
 	public void clearList() {
-		list.clear();
+
+		map.clear();
+
 	}// End of the 'clearList' method
 
 }// End of the 'ItemList' class
