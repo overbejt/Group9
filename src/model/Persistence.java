@@ -22,7 +22,9 @@ import java.io.ObjectOutputStream;
 public class Persistence {
 
 	// Making a file to hold where the EmployeeList will be stored
-	private File employeeList = new File("EmployeeList.txt");
+	private File employeeList = new File("EmployeeList.josh");
+	// Making a file to hold where the ItemList will be stored
+	private File itemList = new File("ItemList.josh");
 
 	// Creating necessary objects to serialize an object
 	private FileOutputStream		fileOutputStream;
@@ -61,8 +63,29 @@ public class Persistence {
 	}// End of the 'writeEmployeeList' function
 
 	/**
-	 * This is the function that will read the EmployeeList from a
-	 * file.
+	 * This is the function that will write the Item List to the file.
+	 * 
+	 * @param list
+	 * @throws IOException
+	 */
+	public void writeItemList(ItemList list) throws IOException {
+
+		fileOutputStream = new FileOutputStream(itemList);
+
+		bufferedOutputStream = new BufferedOutputStream(
+				fileOutputStream);
+
+		objectOutputStream = new ObjectOutputStream(
+				bufferedOutputStream);
+
+		objectOutputStream.writeObject(list);
+
+		objectOutputStream.close();
+
+	}// End of the 'writeItemList' method
+
+	/**
+	 * This is the method that will read the EmployeeList from a file.
 	 * 
 	 * @throws IOException
 	 * @throws ClassNotFoundException
@@ -88,6 +111,31 @@ public class Persistence {
 	}// End of the 'readEmployeeList' function
 
 	/**
+	 * This is the method that will read the Item List from a file.
+	 * 
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	public ItemList readItemList()
+			throws ClassNotFoundException, IOException {
+
+		fileInputStream = new FileInputStream(itemList);
+		bufferedInputStream = new BufferedInputStream(
+				fileInputStream);
+		objectInputStream = new ObjectInputStream(
+				bufferedInputStream);
+
+		// Getting the EmployeeList from the file
+		ItemList list = (ItemList) objectInputStream.readObject();
+		// Closing off the inputStream
+		objectInputStream.close();
+
+		// Sending the EmployeeList back
+		return list;
+
+	}// End of the 'readItemList' method
+
+	/**
 	 * This is the function that will return true if a file containing
 	 * the Employee List exists, and false if no file exists. It works
 	 * just as if you were to invoke the '.exists()' function on a
@@ -101,5 +149,19 @@ public class Persistence {
 		return employeeList.exists();
 
 	}// End of the 'employeeListExists' function
+
+	/**
+	 * This is the function that will return true if a file containing
+	 * the Item List exists, and false if no file exists. It works
+	 * just as if you were to invoke the '.exists()' function on a
+	 * File object.
+	 * 
+	 * @return
+	 */
+	public boolean itemListExists() {
+
+		return itemList.exists();
+
+	}// End of the 'itemListExists' method
 
 }// End of the 'Persistence' class

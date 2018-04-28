@@ -28,6 +28,7 @@ import model.Employee;
 import model.EmployeeList;
 import model.EmployeePopupNode;
 import model.Guest;
+import model.ItemList;
 import model.Persistence;
 import view.AddEmployeeDialog;
 
@@ -79,6 +80,7 @@ public class Controller {
 	private Persistence		persistence;
 	private EmployeeList	employeeList;
 	private Employee		currentEmployee;
+	private ItemList		itemList;
 
 	private boolean	isEmployee	= false;
 	private boolean	isManager	= false;
@@ -88,6 +90,7 @@ public class Controller {
 	// >>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<
 	private final PseudoClass errorClass = PseudoClass
 			.getPseudoClass("error");// For input validation
+	// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 	/**
 	 * This is the method that will only run once on initialization.
@@ -124,6 +127,8 @@ public class Controller {
 
 			// !!Needs Tested for weakness
 		}
+
+		// Check if ItemList file exists
 
 	}// End of the 'initialize' method
 
