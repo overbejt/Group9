@@ -9,6 +9,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
 import model.Item;
 import model.ItemList;
 
@@ -69,15 +71,21 @@ class ItemListTest {
 		item.setName("Sanity Check");
 
 		list.addItem(item);
-		HashMap<Long, Item> sample = list.getItemList();
+		ObservableMap<Long, Item> sample = list.getItemList();
 		assertEquals(list.getItemList(), sample);
 	}// End of the 'testGetItemList' method
 
 	@Test
 	void testSetItemList() {
 		HashMap<Long, Item> sample = new HashMap();
-		list.setItemList(sample);
-		assertEquals(sample, list.getItemList());
+
+		ObservableMap<Long, Item> theSample = FXCollections
+				.observableMap(sample);
+
+		list.setItemList(theSample);
+
+		assertEquals(theSample, list.getItemList());
+
 	}// End of the 'testSetItemList' method
 
 	@Test

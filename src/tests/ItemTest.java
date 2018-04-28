@@ -54,19 +54,6 @@ class ItemTest {
 	}// End of the 'testSetName' method
 
 	@Test
-	void testSetAttributes() {
-
-		/*
-		 * I think there is a class in the JUnit5 with the name
-		 * 'Attributes'. Because, it will not let me use the
-		 * Attributes class in this test.
-		 */
-
-		assertNotNull(item.getAttributes());
-
-	}// End of the 'testSetAttributes' method
-
-	@Test
 	void testSetID() {
 
 		assertNotNull(item.getID());
