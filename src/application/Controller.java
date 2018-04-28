@@ -22,6 +22,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import model.Admin;
 import model.Employee;
@@ -51,6 +53,16 @@ public class Controller {
 	private JFXButton			loginBtn;
 
 	// >>>>>>>>>>>>Inventory Scene Instance variables<<<<<<<<<<<<<<<<<
+	@FXML
+	private TableView		tableView;
+	@FXML
+	private TableColumn		nameColumn;
+	@FXML
+	private TableColumn		catagoryColumn;
+	@FXML
+	private TableColumn		sizeColumn;
+	@FXML
+	private TableColumn		quantityColumn;
 	@FXML
 	private MenuItem		menuExitItem;
 	@FXML
@@ -140,6 +152,8 @@ public class Controller {
 			itemList = new ItemList();
 
 		}
+
+		// Invoke the method that will initialize the table
 
 	}// End of the 'initialize' method
 
@@ -449,6 +463,10 @@ public class Controller {
 			err.printStackTrace();
 		}
 	}// End of the 'save' method
+
+	private void initTable() {
+
+	}
 
 	/**
 	 * This is a private helper method that will load the inventory

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXRadioButton?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -23,7 +24,7 @@
           </Menu>
           <Menu mnemonicParsing="false" onShown="#menuEditClicked" text="Edit">
             <items>
-                  <MenuItem fx:id="menuAddEmployee" onAction="#menuAddEmployeeClicked" mnemonicParsing="false" text="Add Employee" />
+                  <MenuItem fx:id="menuAddEmployee" mnemonicParsing="false" onAction="#menuAddEmployeeClicked" text="Add Employee" />
                   <MenuItem fx:id="menuRemoveEmployee" mnemonicParsing="false" text="Remove Employee" />
                   <MenuItem fx:id="menuAddItem" mnemonicParsing="false" text="Add Item" />
                   <MenuItem fx:id="menuRemoveItem" mnemonicParsing="false" text="Remove Item" />
@@ -40,7 +41,12 @@
    <center>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <JFXTreeTableView style="-fx-background-color: #6f2828;" HBox.hgrow="ALWAYS" />
+            <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
          </children>
       </HBox>
    </center>
