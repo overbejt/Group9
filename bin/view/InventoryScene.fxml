@@ -41,9 +41,16 @@
    <center>
       <HBox fx:id="tableBox" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="tableView" style="-fx-background-color: #6f2828;" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-              
-            </TableView>
+            <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #6f2828;" HBox.hgrow="ALWAYS">
+               <columns>
+                  <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
+                  <TableColumn fx:id="catagoryColumn" prefWidth="75.0" text="Catagory" />
+                  <TableColumn fx:id="sizeColumn" prefWidth="75.0" text="Size" />
+                  <TableColumn fx:id="quantityColumn" prefWidth="75.0" text="Quantity" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy></TableView>
          </children>
       </HBox>
    </center>

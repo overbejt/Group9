@@ -56,37 +56,37 @@ public class Controller {
 
 	// >>>>>>>>>>>>Inventory Scene Instance variables<<<<<<<<<<<<<<<<<
 	@FXML
-	private TableView		tableView;
+	private TableView<Item>				tableView;
 	@FXML
-	private HBox			tableBox;
+	private HBox						tableBox;
 	@FXML
-	private TableColumn		nameColumn;
+	private TableColumn<String, Item>	nameColumn;
 	@FXML
-	private TableColumn		catagoryColumn;
+	private TableColumn<String, Item>	catagoryColumn;
 	@FXML
-	private TableColumn		sizeColumn;
+	private TableColumn<String, Item>	sizeColumn;
 	@FXML
-	private TableColumn		quantityColumn;
+	private TableColumn<String, Item>	quantityColumn;
 	@FXML
-	private MenuItem		menuExitItem;
+	private MenuItem					menuExitItem;
 	@FXML
-	private Menu			menuEdit;
+	private Menu						menuEdit;
 	@FXML
-	private MenuItem		menuAddEmployee;
+	private MenuItem					menuAddEmployee;
 	@FXML
-	private MenuItem		menuRemoveEmployee;
+	private MenuItem					menuRemoveEmployee;
 	@FXML
-	private MenuItem		menuAddItem;
+	private MenuItem					menuAddItem;
 	@FXML
-	private MenuItem		menuRemoveItem;
+	private MenuItem					menuRemoveItem;
 	@FXML
-	private JFXRadioButton	sizeRdBtn;
+	private JFXRadioButton				sizeRdBtn;
 	@FXML
-	private JFXRadioButton	priceRdBtn;
+	private JFXRadioButton				priceRdBtn;
 	@FXML
-	private JFXRadioButton	quantityRdBtn;
+	private JFXRadioButton				quantityRdBtn;
 	@FXML
-	private JFXRadioButton	nameRdBtn;
+	private JFXRadioButton				nameRdBtn;
 
 	// >>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<
 	// Instance objects
@@ -475,25 +475,6 @@ public class Controller {
 	 */
 	@FXML
 	private void initTable() {
-
-		// Initializing the columns
-		nameColumn = new TableColumn("Name");
-		catagoryColumn = new TableColumn("Catagory");
-		sizeColumn = new TableColumn("Size");
-		quantityColumn = new TableColumn("quantity");
-
-		// Initialize tableView
-		tableView = new TableView<Item>();
-
-		// Adding all of the columns to the table
-		tableView.getColumns().addAll(nameColumn, catagoryColumn,
-				sizeColumn, quantityColumn);
-
-		// didn't work
-		tableView.refresh();
-
-		// tableBox.getChildren().addAll(tableView);
-		// ((Group) scene.getRoot()).getChildren().addAll(tableBox);
 
 	}// End of the 'initTable' method
 
