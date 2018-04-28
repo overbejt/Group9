@@ -2,6 +2,8 @@ package model;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
@@ -103,5 +105,37 @@ public class ItemList implements Serializable {
 		map.clear();
 
 	}// End of the 'clearList' method
+
+	/**
+	 * This is the method that will concatenate all of the items in
+	 * the Item List and return them as a string.
+	 * 
+	 * @return
+	 */
+	public String show() {
+
+		// Declare instance of String to hold concatenation
+		String result = "";
+
+		// Get Entry set
+		Set<Entry<Long, Item>> entries = map.entrySet();
+
+		result += "(";
+
+		// Loop through all entries in the inventory
+		for (Entry<Long, Item> e : entries) {
+
+			// Concatenate
+			result += e.getValue().toString();
+			result += ", ";
+
+		}
+
+		result += ")";
+
+		// Send the concatenated string back
+		return result;
+
+	}// End of the 'show' method
 
 }// End of the 'ItemList' class

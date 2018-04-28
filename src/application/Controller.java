@@ -125,10 +125,21 @@ public class Controller {
 			// Adding 'Guest' to the EmployeeList
 			employeeList.addEmployee(guest);
 
-			// !!Needs Tested for weakness
 		}
 
 		// Check if ItemList file exists
+		if (persistence.itemListExists()) {
+
+			itemList = persistence.readItemList();
+
+			System.out.println("Item List: " + itemList.show());
+
+		} else {
+
+			// When a file does not exist, create a new Item List
+			itemList = new ItemList();
+
+		}
 
 	}// End of the 'initialize' method
 
