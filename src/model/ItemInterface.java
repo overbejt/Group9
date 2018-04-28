@@ -15,11 +15,27 @@ public interface ItemInterface {
 	public void setName(String name);
 
 	/**
-	 * This is the method that will assign the attributes to the item.
+	 * This is the method that will set the category of the Item. For
+	 * example, pants, or shorts, or a shirt, etc.
 	 * 
-	 * @param attributes
+	 * @param catagory
 	 */
-	public void setAttributes(Attributes attributes);
+	public void setCatagory(String catagory);
+
+	/**
+	 * This is the method that will set the quantity of an item that
+	 * is in the inventory.
+	 * 
+	 * @param quantity
+	 */
+	public void setQuantity(int quantity);
+
+	/**
+	 * This is the method that will set the size of the item.
+	 * 
+	 * @param size
+	 */
+	public void setSize(String size);
 
 	/**
 	 * This is the method that will return the item's name.
@@ -30,13 +46,30 @@ public interface ItemInterface {
 	public String getName() throws NullPointerException;
 
 	/**
-	 * This is the method that will return the Attributes object
-	 * associated with this item.
+	 * This is the method that will return the item's category.
 	 * 
 	 * @return
 	 * @throws NullPointerException
 	 */
-	public Attributes getAttributes() throws NullPointerException;
+	public String getCatagory() throws NullPointerException;
+
+	/**
+	 * This is the method that returns the quantity of the item from
+	 * the inventory.
+	 * 
+	 * @return
+	 * @throws NullPointerException
+	 */
+	public int getQuantity() throws NullPointerException;
+
+	/**
+	 * This is the method that returns the size of the item. Ex: S, M,
+	 * L, XL, XXL.
+	 * 
+	 * @return
+	 * @throws NullPointerException
+	 */
+	public String getSize() throws NullPointerException;
 
 	/**
 	 * This is the method that will return the employee's ID number.

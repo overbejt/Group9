@@ -11,19 +11,36 @@ import java.time.Instant;
 public class Item implements ItemInterface {
 
 	// To store the attributes of this item
-	private Attributes	attributes;
-	private Instant		id;			// To store the id of this item
-	private String		name;		// To store the name of this item
+	private Instant	id;			// To store the id of this item
+	private String	name;		// To store the name of this item
+	private String	catagory;	// eg: Pants, shoes, shirt, etc.
+	private int		quantity;	// The amount of item in the inventory
+	private String	size;		// The size of the item
 
 	/**
 	 * Constructor
 	 */
 	public Item() {
 		// Initializing instance variables and objects
-		attributes = new Attributes();
-		name = "";
+		this.name = "";
+		this.catagory = "";
+		this.quantity = 0;
+		this.size = "";
 		id = Instant.now();
 	}// End of the Constructor
+
+	/**
+	 * Overloaded Constructor
+	 */
+	public Item(String name, String catagory, int quantity,
+			String size) {
+		// Initializing instance variables with given data
+		this.name = name;
+		this.catagory = catagory;
+		this.quantity = quantity;
+		this.size = size;
+		id = Instant.now();
+	}// End of the overloaded Constructor
 
 	/**
 	 * This is the method that will set an item's name.
@@ -32,18 +49,48 @@ public class Item implements ItemInterface {
 	 */
 	@Override
 	public void setName(String name) {
+
 		this.name = name;
+
 	}// End of the 'setName' method
 
 	/**
-	 * This is the method that will assign the attributes to the item.
+	 * This is the method that will set the category of the Item. For
+	 * example, pants, or shorts, or a shirt, etc.
 	 * 
-	 * @param attributes
+	 * @param catagory
 	 */
 	@Override
-	public void setAttributes(Attributes attributes) {
-		this.attributes = attributes;
-	}// End of the 'setAttributes' method
+	public void setCatagory(String catagory) {
+
+		this.catagory = catagory;
+
+	}// End of the 'setCatagory' method
+
+	/**
+	 * This is the method that will set the quantity of an item that
+	 * is in the inventory.
+	 * 
+	 * @param quantity
+	 */
+	@Override
+	public void setQuantity(int quantity) {
+
+		this.quantity = quantity;
+
+	}// End of the 'setQuantity' method
+
+	/**
+	 * This is the method that will set the size of the item.
+	 * 
+	 * @param size
+	 */
+	@Override
+	public void setSize(String size) {
+
+		this.size = size;
+
+	}// End of the 'setSize' method
 
 	/**
 	 * This is the method that will return the item's name.
@@ -53,20 +100,10 @@ public class Item implements ItemInterface {
 	 */
 	@Override
 	public String getName() throws NullPointerException {
-		return name;
-	}// End of the 'getName' method
 
-	/**
-	 * This is the method that will return the Attributes object
-	 * associated with this item.
-	 * 
-	 * @return
-	 * @throws NullPointerException
-	 */
-	@Override
-	public Attributes getAttributes() throws NullPointerException {
-		return attributes;
-	}// End of the 'getAttributes' method
+		return this.name;
+
+	}// End of the 'getName' method
 
 	/**
 	 * This is the method that will return the employee's ID number.
@@ -77,7 +114,50 @@ public class Item implements ItemInterface {
 	 */
 	@Override
 	public long getID() throws NullPointerException {
+
 		return this.id.getEpochSecond();
+
 	}// End of the 'getID' method
+
+	/**
+	 * This is the method that will return the item's category.
+	 * 
+	 * @return
+	 * @throws NullPointerException
+	 */
+	@Override
+	public String getCatagory() throws NullPointerException {
+
+		return this.catagory;
+
+	}// End of the 'getCatagory' method
+
+	/**
+	 * This is the method that returns the quantity of the item from
+	 * the inventory.
+	 * 
+	 * @return
+	 * @throws NullPointerException
+	 */
+	@Override
+	public int getQuantity() throws NullPointerException {
+
+		return this.quantity;
+
+	}// End of the 'getQuantity' method
+
+	/**
+	 * This is the method that returns the size of the item. Ex: S, M,
+	 * L, XL, XXL.
+	 * 
+	 * @return
+	 * @throws NullPointerException
+	 */
+	@Override
+	public String getSize() throws NullPointerException {
+
+		return this.size;
+
+	}// End of the 'getSize' method
 
 }// End of the 'Item' class
