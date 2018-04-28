@@ -24,12 +24,14 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import model.Admin;
 import model.Employee;
 import model.EmployeeList;
 import model.EmployeePopupNode;
 import model.Guest;
+import model.Item;
 import model.ItemList;
 import model.Persistence;
 import view.AddEmployeeDialog;
@@ -55,6 +57,8 @@ public class Controller {
 	// >>>>>>>>>>>>Inventory Scene Instance variables<<<<<<<<<<<<<<<<<
 	@FXML
 	private TableView		tableView;
+	@FXML
+	private HBox			tableBox;
 	@FXML
 	private TableColumn		nameColumn;
 	@FXML
@@ -86,6 +90,7 @@ public class Controller {
 
 	// >>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<
 	// Instance objects
+	private Scene			scene;
 	private Stage			primaryStage;
 	private FXMLLoader		fxmlLoader;
 	private Parent			parent;
@@ -154,6 +159,7 @@ public class Controller {
 		}
 
 		// Invoke the method that will initialize the table
+		initTable();
 
 	}// End of the 'initialize' method
 
@@ -464,9 +470,32 @@ public class Controller {
 		}
 	}// End of the 'save' method
 
+	/**
+	 * This is the method that will initialize the table
+	 */
+	@FXML
 	private void initTable() {
 
-	}
+		// Initializing the columns
+		nameColumn = new TableColumn("Name");
+		catagoryColumn = new TableColumn("Catagory");
+		sizeColumn = new TableColumn("Size");
+		quantityColumn = new TableColumn("quantity");
+
+		// Initialize tableView
+		tableView = new TableView<Item>();
+
+		// Adding all of the columns to the table
+		tableView.getColumns().addAll(nameColumn, catagoryColumn,
+				sizeColumn, quantityColumn);
+
+		// didn't work
+		tableView.refresh();
+
+		// tableBox.getChildren().addAll(tableView);
+		// ((Group) scene.getRoot()).getChildren().addAll(tableBox);
+
+	}// End of the 'initTable' method
 
 	/**
 	 * This is a private helper method that will load the inventory
@@ -483,7 +512,7 @@ public class Controller {
 
 			parent = fxmlLoader.load();// Loading the new FXML file
 
-			Scene scene = new Scene(parent, 600, 400);
+			scene = new Scene(parent, 600, 400);
 			scene.getStylesheets()
 					.add(getClass()
 							.getResource("/view/application.css")
