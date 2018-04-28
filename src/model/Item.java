@@ -2,6 +2,10 @@ package model;
 
 import java.time.Instant;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 /**
  * This is the class that will hold information about each item in the
  * inventory.
@@ -11,22 +15,28 @@ import java.time.Instant;
 public class Item implements ItemInterface {
 
 	// To store the attributes of this item
-	private Instant	id;			// To store the id of this item
-	private String	name;		// To store the name of this item
-	private String	catagory;	// eg: Pants, shoes, shirt, etc.
-	private int		quantity;	// The amount of item in the inventory
-	private String	size;		// The size of the item
+	private Instant						instant;
+	private final SimpleLongProperty	id;
+	// To store the name of this item
+	private final SimpleStringProperty name;
+	// eg: Pants, shoes, shirt, etc.
+	private final SimpleStringProperty catagory;
+	// The amount of item in the inventory
+	private final SimpleIntegerProperty quantity;
+	// The size of the item
+	private final SimpleStringProperty size;
 
 	/**
 	 * Constructor
 	 */
 	public Item() {
 		// Initializing instance variables and objects
-		this.name = "";
-		this.catagory = "";
-		this.quantity = 0;
-		this.size = "";
-		id = Instant.now();
+		this.name = new SimpleStringProperty("");
+		this.catagory = new SimpleStringProperty("");
+		this.quantity = new SimpleIntegerProperty(0);
+		this.size = new SimpleStringProperty("");
+		this.instant = Instant.now();
+		this.id = new SimpleLongProperty(instant.toEpochMilli());
 	}// End of the Constructor
 
 	/**
@@ -34,12 +44,15 @@ public class Item implements ItemInterface {
 	 */
 	public Item(String name, String catagory, int quantity,
 			String size) {
+
 		// Initializing instance variables with given data
-		this.name = name;
-		this.catagory = catagory;
-		this.quantity = quantity;
-		this.size = size;
-		id = Instant.now();
+		this.name = new SimpleStringProperty(name);
+		this.catagory = new SimpleStringProperty(catagory);
+		this.quantity = new SimpleIntegerProperty(quantity);
+		this.size = new SimpleStringProperty(size);
+		this.instant = Instant.now();
+		this.id = new SimpleLongProperty(instant.toEpochMilli());
+
 	}// End of the overloaded Constructor
 
 	/**
@@ -50,7 +63,7 @@ public class Item implements ItemInterface {
 	@Override
 	public void setName(String name) {
 
-		this.name = name;
+		this.name.set(name);
 
 	}// End of the 'setName' method
 
@@ -63,7 +76,7 @@ public class Item implements ItemInterface {
 	@Override
 	public void setCatagory(String catagory) {
 
-		this.catagory = catagory;
+		this.catagory.set(catagory);
 
 	}// End of the 'setCatagory' method
 
@@ -76,7 +89,7 @@ public class Item implements ItemInterface {
 	@Override
 	public void setQuantity(int quantity) {
 
-		this.quantity = quantity;
+		this.quantity.set(quantity);
 
 	}// End of the 'setQuantity' method
 
@@ -88,7 +101,7 @@ public class Item implements ItemInterface {
 	@Override
 	public void setSize(String size) {
 
-		this.size = size;
+		this.size.set(size);
 
 	}// End of the 'setSize' method
 
@@ -101,7 +114,7 @@ public class Item implements ItemInterface {
 	@Override
 	public String getName() throws NullPointerException {
 
-		return this.name;
+		return this.name.get();
 
 	}// End of the 'getName' method
 
@@ -115,7 +128,7 @@ public class Item implements ItemInterface {
 	@Override
 	public long getID() throws NullPointerException {
 
-		return this.id.getEpochSecond();
+		return this.id.get();
 
 	}// End of the 'getID' method
 
@@ -128,7 +141,7 @@ public class Item implements ItemInterface {
 	@Override
 	public String getCatagory() throws NullPointerException {
 
-		return this.catagory;
+		return this.catagory.get();
 
 	}// End of the 'getCatagory' method
 
@@ -142,7 +155,7 @@ public class Item implements ItemInterface {
 	@Override
 	public int getQuantity() throws NullPointerException {
 
-		return this.quantity;
+		return this.quantity.get();
 
 	}// End of the 'getQuantity' method
 
@@ -156,7 +169,7 @@ public class Item implements ItemInterface {
 	@Override
 	public String getSize() throws NullPointerException {
 
-		return this.size;
+		return this.size.get();
 
 	}// End of the 'getSize' method
 
@@ -172,13 +185,13 @@ public class Item implements ItemInterface {
 		result += "[";
 		result += getID();
 		result += " : ";
-		result += this.name;
+		result += this.name.get();
 		result += " : ";
-		result += this.catagory;
+		result += this.catagory.get();
 		result += " : ";
-		result += this.quantity;
+		result += this.quantity.get();
 		result += " : ";
-		result += this.size;
+		result += this.size.get();
 		result += "]";
 
 		// Sending back the concatenated string
