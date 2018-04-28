@@ -160,4 +160,30 @@ public class Item implements ItemInterface {
 
 	}// End of the 'getSize' method
 
+	/**
+	 * Overriding the default toString() method. The format will be:
+	 * [ID: name: category: quantity: size]
+	 */
+	public String toString() {
+
+		// Declaring a string to concatenate all of the attributes
+		String result = "";
+
+		result += "[";
+		result += getID();
+		result += " : ";
+		result += this.name;
+		result += " : ";
+		result += this.catagory;
+		result += " : ";
+		result += this.quantity;
+		result += " : ";
+		result += this.size;
+		result += "]";
+
+		// Sending back the concatenated string
+		return result;
+
+	}// End of the 'toString' method
+
 }// End of the 'Item' class
