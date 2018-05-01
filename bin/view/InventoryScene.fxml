@@ -53,6 +53,6 @@
       </HBox>
    </center>
    <right>
-      <VBox prefHeight="375.0" prefWidth="250.0" style="-fx-background-color: #282222;" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="375.0" prefWidth="264.0" style="-fx-background-color: #282222;" BorderPane.alignment="CENTER" />
    </right>
 </BorderPane>
