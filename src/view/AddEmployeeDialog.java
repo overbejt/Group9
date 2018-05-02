@@ -136,7 +136,7 @@ public class AddEmployeeDialog {
 	private void assemble() {
 
 		// Invoke the function that will style the pop up
-		setStyle();
+		// setStyle();
 
 		// Adding the buttons
 		employeeAdded.getDialogPane().getButtonTypes()

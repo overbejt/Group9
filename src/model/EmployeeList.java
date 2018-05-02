@@ -75,7 +75,7 @@ public class EmployeeList implements Serializable {
 		// Formating input
 		id = id.toLowerCase();
 		id = id.trim();
-		id.replaceAll("\\s", "");
+		id = id.replaceAll("\\s", "");
 
 		// Check to make sure that it is an Employee object
 		if (list.get(id) instanceof Employee) {

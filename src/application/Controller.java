@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 
+import AbucusExceptions.InvalidRemovalException;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
@@ -35,6 +37,7 @@ import model.Item;
 import model.ItemList;
 import model.Persistence;
 import view.AddEmployeeDialog;
+import view.RemoveEmployeeDialog;
 
 /**
  * This is the controller class. For now, it will be the go-between
@@ -421,6 +424,78 @@ public class Controller {
 		System.out.println("Employee List: " + employeeList.show());
 
 	}// End of the 'menuAddEmployeeClicked' method
+
+	/**
+	 * This is the method that will be called when the user clicks on
+	 * the Remove Employee menu item.
+	 */
+	@FXML
+	public void menuRemoveEmployeeClicked() {
+
+		// TMP
+		System.out.println("The Remove Employee button was clicked");
+
+		// Creating a remove employee pop up object
+		RemoveEmployeeDialog removeEmployee = new RemoveEmployeeDialog(
+				employeeList);
+
+		ChoiceDialog dialog = removeEmployee.getRemoveEmployeePopup();
+
+		Optional<String> result = dialog.showAndWait();
+
+		// Make sure there is input to validate
+		if (result.isPresent()) {
+			System.out
+					.println("Selected for removal: " + result.get());
+
+			// Test for if the user selected the default value
+			if (!result.get().equals("-Select an employee-")) {
+
+				// Handle errors
+				try {
+					employeeList.removeEmployee(result.get());
+
+					System.out.println(employeeList.show());// For
+															// testing
+
+					// Update the employee list file
+					persistence.writeEmployeeList(employeeList);
+
+					System.out.println(
+							"Employee list was updated and saved");
+
+				} catch (Exception er) {
+
+					// Declaring a string to hold the message to tell
+					// the employee
+					String msg = "";
+
+					// Test if there is an Invalid Removal Exception
+					if (er instanceof InvalidRemovalException) {
+						// Alert the user to employee not removed
+						msg = "Employee not removed.";
+
+					} else {
+						// Alert the user that there was a problem
+						// saving the employee list
+						msg = "There was a problem saving the employee list";
+					}
+
+					System.out.println(msg);
+					Alert err = new Alert(AlertType.CONFIRMATION,
+							msg);
+					err.show();
+				} // End of exception handling
+
+			} // End of if result present test
+
+			// For testing
+			System.out
+					.println("Employee List: " + employeeList.show());
+
+		} // End of the test for default value
+
+	}// End of the 'menuRemoveEmployeeClicked' method
 
 	// <<<<<<<<<<<<<<<<<Helper Methods>>>>>>>>>>>>>>>>
 
