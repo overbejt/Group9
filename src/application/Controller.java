@@ -11,6 +11,8 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 
 import AbucusExceptions.InvalidRemovalException;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,6 +28,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import model.Admin;
@@ -35,11 +38,11 @@ import model.EmployeePopupNode;
 import model.Guest;
 import model.Item;
 import model.ItemList;
+import model.ItemPopupNode;
 import model.Persistence;
 import view.AddEmployeeDialog;
-import view.RemoveEmployeeDialog;
-import model.ItemPopupNode;
 import view.AddItemDialog;
+import view.RemoveEmployeeDialog;
 
 /**
  * This is the controller class. For now, it will be the go-between
@@ -65,13 +68,13 @@ public class Controller {
 	@FXML
 	private HBox						tableBox;
 	@FXML
-	private TableColumn<String, Item>	nameColumn;
+	private TableColumn<Item, String>	nameColumn;
 	@FXML
-	private TableColumn<String, Item>	catagoryColumn;
+	private TableColumn<Item, String>	priceColumn;
 	@FXML
-	private TableColumn<String, Item>	sizeColumn;
+	private TableColumn<Item, String>	sizeColumn;
 	@FXML
-	private TableColumn<String, Item>	quantityColumn;
+	private TableColumn<Item, String>	quantityColumn;
 	@FXML
 	private MenuItem					menuExitItem;
 	@FXML
@@ -92,6 +95,7 @@ public class Controller {
 	private JFXRadioButton				quantityRdBtn;
 	@FXML
 	private JFXRadioButton				nameRdBtn;
+	private ObservableMap				itemMap;
 
 	// >>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<
 	// Instance objects
@@ -498,7 +502,7 @@ public class Controller {
 		} // End of the test for default value
 
 	}// End of the 'menuRemoveEmployeeClicked' method
-	
+
 	/**
 	 * This is the method that will handle an event where a user
 	 * clicked the add Item button.
@@ -522,7 +526,6 @@ public class Controller {
 		System.out.println("Item List: " + itemList.show());
 
 	}// End of the 'menuAddItemClicked' method
-
 
 	// <<<<<<<<<<<<<<<<<Helper Methods>>>>>>>>>>>>>>>>
 
@@ -577,6 +580,31 @@ public class Controller {
 	 */
 	@FXML
 	private void initTable() {
+
+		tableView = new TableView<Item>();
+
+		itemMap = itemList.getItemList();
+
+		nameColumn = new TableColumn("Name");
+		nameColumn.setCellValueFactory(
+				new PropertyValueFactory<Item, String>("name"));
+
+		priceColumn = new TableColumn("Price");
+		priceColumn.setCellValueFactory(
+				new PropertyValueFactory<Item, String>("price"));
+
+		quantityColumn = new TableColumn("Quantity");
+		quantityColumn.setCellValueFactory(
+				new PropertyValueFactory<Item, String>("quantity"));
+
+		sizeColumn = new TableColumn("Size");
+		sizeColumn.setCellValueFactory(
+				new PropertyValueFactory<Item, String>("size"));
+
+		tableView.setItems((ObservableList<Item>) itemMap);
+
+		tableView.getColumns().addAll(nameColumn, priceColumn,
+				quantityColumn, sizeColumn);
 
 	}// End of the 'initTable' method
 
@@ -783,7 +811,7 @@ public class Controller {
 		} // End of test for cancel button
 
 	}// End of the 'validateNewEmployee' method
-	
+
 	/**
 	 * This is the method that will validate the input from the add
 	 * item pop-up. It will take in an optional node that should
@@ -791,8 +819,7 @@ public class Controller {
 	 * 
 	 * @return
 	 */
-	private void
-			validateNewItem(Optional<ItemPopupNode> input) {
+	private void validateNewItem(Optional<ItemPopupNode> input) {
 		// Test for empty input
 		if (input.isPresent()) {
 			// Getting the node for processing
@@ -802,25 +829,22 @@ public class Controller {
 			String size = node.getSize();
 			String price = node.getPrice();
 			String quantity = node.getQuantity();
-	
-									
-									Item newItem = new Item();
-									newItem.setName(itemName);
-									newItem.setSize(size);
-									newItem.setPrice(price);
-									//newItem.setQuantity(quantity);
-									
-									
-									// Add the new item to the list
-									itemList.addItem(newItem);
 
-									// Save the itemList
-									try {
-										persistence.writeItemList(
-												itemList);
-									} catch (IOException e) {
-										e.printStackTrace();
-									}
+			Item newItem = new Item();
+			newItem.setName(itemName);
+			newItem.setSize(size);
+			newItem.setPrice(price);
+			// newItem.setQuantity(quantity);
+
+			// Add the new item to the list
+			itemList.addItem(newItem);
+
+			// Save the itemList
+			try {
+				persistence.writeItemList(itemList);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }// End of the 'Controller' class

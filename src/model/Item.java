@@ -42,7 +42,8 @@ public class Item implements ItemInterface {
 	/**
 	 * Overloaded Constructor
 	 */
-	public Item(String name, String price, int quantity, String size) {
+	public Item(String name, String price, int quantity,
+			String size) {
 
 		// Initializing instance variables with given data
 		this.name = new SimpleStringProperty(name);
