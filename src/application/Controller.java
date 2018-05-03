@@ -11,8 +11,8 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 
 import AbucusExceptions.InvalidRemovalException;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -65,6 +65,7 @@ public class Controller {
 	// >>>>>>>>>>>>Inventory Scene Instance variables<<<<<<<<<<<<<<<<<
 	@FXML
 	private TableView<Item>				tableView;
+	private ObservableList<Item>		oList;
 	@FXML
 	private HBox						tableBox;
 	@FXML
@@ -95,7 +96,7 @@ public class Controller {
 	private JFXRadioButton				quantityRdBtn;
 	@FXML
 	private JFXRadioButton				nameRdBtn;
-	private ObservableMap				itemMap;
+	private ObservableList				itemMap;
 
 	// >>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<
 	// Instance objects
@@ -168,7 +169,7 @@ public class Controller {
 		}
 
 		// Invoke the method that will initialize the table
-		initTable();
+		// initTable();
 
 	}// End of the 'initialize' method
 
@@ -581,9 +582,10 @@ public class Controller {
 	@FXML
 	private void initTable() {
 
-		tableView = new TableView<Item>();
+		// tableView = new TableView<Item>();
 
-		itemMap = itemList.getItemList();
+		oList = oList = FXCollections
+				.observableArrayList(itemList.getItemList());
 
 		nameColumn = new TableColumn("Name");
 		nameColumn.setCellValueFactory(
@@ -601,10 +603,13 @@ public class Controller {
 		sizeColumn.setCellValueFactory(
 				new PropertyValueFactory<Item, String>("size"));
 
-		tableView.setItems((ObservableList<Item>) itemMap);
+		tableView.setItems(oList);
 
-		tableView.getColumns().addAll(nameColumn, priceColumn,
+		tableView.getColumns().setAll(nameColumn, priceColumn,
 				quantityColumn, sizeColumn);
+		tableView.setItems(oList);
+
+		tableView.refresh();
 
 	}// End of the 'initTable' method
 
@@ -839,12 +844,14 @@ public class Controller {
 			// Add the new item to the list
 			itemList.addItem(newItem);
 
-			// Save the itemList
-			try {
-				persistence.writeItemList(itemList);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			tableView.refresh();
+
+			// // Save the itemList
+			// try {
+			// persistence.writeItemList(itemList);
+			// } catch (IOException e) {
+			// e.printStackTrace();
+			// }
 		}
 	}
 }// End of the 'Controller' class

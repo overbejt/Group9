@@ -1,12 +1,9 @@
 package model;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map.Entry;
-import java.util.Set;
+import java.util.ArrayList;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableMap;
+import javafx.collections.ObservableList;
 
 /**
  * This is going to be the class that will store the inventory.
@@ -21,15 +18,15 @@ public class ItemList implements Serializable {
 	private static final long serialVersionUID = 1359781794835268746L;
 
 	// The inventory will be stored in a hashmap
-	private static HashMap<Long, Item>	list;
-	private ObservableMap<Long, Item>	map;
+	private static ArrayList<Item>	list;
+	private ObservableList<Item>	oList;
 
 	// Constructor
 	public ItemList() {
 
 		// Initializing the item list
-		list = new HashMap<Long, Item>();
-		map = FXCollections.observableMap(list);
+		list = new ArrayList<Item>();
+		// oList = FXCollections.observableArrayList(list);
 
 	}// End of the Constructor
 
@@ -42,7 +39,7 @@ public class ItemList implements Serializable {
 	 */
 	public void addItem(Item newItem) {
 
-		map.put(newItem.getID(), newItem);
+		list.add(newItem);
 
 	}// End of the 'addItem' method
 
@@ -52,9 +49,9 @@ public class ItemList implements Serializable {
 	 * @param id
 	 *            The id of the item to be removed from the inventory
 	 */
-	public void removeItem(Long id) {
+	public void removeItem(Item item) {
 
-		map.remove(id);
+		list.remove(item);
 
 	}// End of the 'removeItem' method
 
@@ -66,9 +63,9 @@ public class ItemList implements Serializable {
 	 *            The ID of the item requested
 	 * @return The requested item
 	 */
-	public Item getItem(Long id) {
+	public Item getItem(int index) {
 
-		return map.get(id);
+		return list.get(index);
 
 	}// End of the 'getItem' method
 
@@ -78,9 +75,9 @@ public class ItemList implements Serializable {
 	 * 
 	 * @return The item list
 	 */
-	public ObservableMap<Long, Item> getItemList() {
+	public ArrayList<Item> getItemList() {
 
-		return this.map;
+		return this.list;
 
 	}// End of the 'getItemList' method
 
@@ -91,9 +88,9 @@ public class ItemList implements Serializable {
 	 * 
 	 * @param inList
 	 */
-	public void setItemList(ObservableMap<Long, Item> inList) {
+	public void setItemList(ArrayList<Item> inList) {
 
-		this.map = inList;
+		this.list = inList;
 
 	}// End of the 'setItemList' method
 
@@ -102,7 +99,7 @@ public class ItemList implements Serializable {
 	 */
 	public void clearList() {
 
-		map.clear();
+		list.clear();
 
 	}// End of the 'clearList' method
 
@@ -118,15 +115,22 @@ public class ItemList implements Serializable {
 		String result = "";
 
 		// Get Entry set
-		Set<Entry<Long, Item>> entries = map.entrySet();
+		// Set<Entry<Long, Item>> entries = oList.entrySet();
 
 		result += "(";
 
-		// Loop through all entries in the inventory
-		for (Entry<Long, Item> e : entries) {
+		// // Loop through all entries in the inventory
+		// for (Entry<Long, Item> e : entries) {
+		//
+		// // Concatenate
+		// result += e.getValue().toString();
+		// result += ", ";
+		//
+		// }
 
+		for (Item i : list) {
 			// Concatenate
-			result += e.getValue().toString();
+			result += i.toString();
 			result += ", ";
 
 		}
