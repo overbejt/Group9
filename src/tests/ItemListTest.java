@@ -3,14 +3,12 @@ package tests;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableMap;
 import model.Item;
 import model.ItemList;
 
@@ -44,14 +42,14 @@ class ItemListTest {
 	void testAddItem() {
 		Item original = new Item();
 		list.addItem(original);
-		assertEquals(original, list.getItem(original.getID()));
+		assertEquals(original, list.getItem(0));
 	}// End of the 'testAddItem' method
 
 	@Test
 	void testRemoveItem() {
 		Item item = new Item();
 		list.addItem(item);
-		list.removeItem(item.getID());
+		list.removeItem(item);
 		boolean isEmpty = list.getItemList().isEmpty();
 		assertEquals(true, isEmpty);
 	}// End of the 'testRemoveItem' method
@@ -60,7 +58,7 @@ class ItemListTest {
 	void testGetItem() {
 		Item original = new Item();
 		list.addItem(original);
-		Item sample = list.getItem(original.getID());
+		Item sample = list.getItem(0);
 		assertEquals(original, sample);
 	}// End of the 'testGetItem' method
 
@@ -71,20 +69,20 @@ class ItemListTest {
 		item.setName("Sanity Check");
 
 		list.addItem(item);
-		ObservableMap<Long, Item> sample = list.getItemList();
+		ArrayList<Item> sample = list.getItemList();
 		assertEquals(list.getItemList(), sample);
 	}// End of the 'testGetItemList' method
 
 	@Test
 	void testSetItemList() {
-		HashMap<Long, Item> sample = new HashMap();
+		ArrayList<Item> sample = new ArrayList();
 
-		ObservableMap<Long, Item> theSample = FXCollections
-				.observableMap(sample);
+		// ObservableMap<Long, Item> theSample = FXCollections
+		// .observableMap(sample);
 
-		list.setItemList(theSample);
+		list.setItemList(sample);
 
-		assertEquals(theSample, list.getItemList());
+		assertEquals(sample, list.getItemList());
 
 	}// End of the 'testSetItemList' method
 
