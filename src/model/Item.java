@@ -20,7 +20,7 @@ public class Item implements ItemInterface {
 	// To store the name of this item
 	private final SimpleStringProperty name;
 	// eg: Pants, shoes, shirt, etc.
-	private final SimpleStringProperty catagory;
+	private final SimpleStringProperty price;
 	// The amount of item in the inventory
 	private final SimpleIntegerProperty quantity;
 	// The size of the item
@@ -32,7 +32,7 @@ public class Item implements ItemInterface {
 	public Item() {
 		// Initializing instance variables and objects
 		this.name = new SimpleStringProperty("");
-		this.catagory = new SimpleStringProperty("");
+		this.price = new SimpleStringProperty("");
 		this.quantity = new SimpleIntegerProperty(0);
 		this.size = new SimpleStringProperty("");
 		this.instant = Instant.now();
@@ -42,12 +42,11 @@ public class Item implements ItemInterface {
 	/**
 	 * Overloaded Constructor
 	 */
-	public Item(String name, String catagory, int quantity,
-			String size) {
+	public Item(String name, String price, int quantity, String size) {
 
 		// Initializing instance variables with given data
 		this.name = new SimpleStringProperty(name);
-		this.catagory = new SimpleStringProperty(catagory);
+		this.price = new SimpleStringProperty(price);
 		this.quantity = new SimpleIntegerProperty(quantity);
 		this.size = new SimpleStringProperty(size);
 		this.instant = Instant.now();
@@ -74,9 +73,9 @@ public class Item implements ItemInterface {
 	 * @param catagory
 	 */
 	@Override
-	public void setCatagory(String catagory) {
+	public void setPrice(String price) {
 
-		this.catagory.set(catagory);
+		this.price.set(price);
 
 	}// End of the 'setCatagory' method
 
@@ -139,9 +138,9 @@ public class Item implements ItemInterface {
 	 * @throws NullPointerException
 	 */
 	@Override
-	public String getCatagory() throws NullPointerException {
+	public String getPrice() throws NullPointerException {
 
-		return this.catagory.get();
+		return this.price.get();
 
 	}// End of the 'getCatagory' method
 
@@ -187,7 +186,7 @@ public class Item implements ItemInterface {
 		result += " : ";
 		result += this.name.get();
 		result += " : ";
-		result += this.catagory.get();
+		result += this.price.get();
 		result += " : ";
 		result += this.quantity.get();
 		result += " : ";

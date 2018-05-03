@@ -20,7 +20,7 @@ public interface ItemInterface {
 	 * 
 	 * @param catagory
 	 */
-	public void setCatagory(String catagory);
+	public void setPrice(String price);
 
 	/**
 	 * This is the method that will set the quantity of an item that
@@ -51,7 +51,7 @@ public interface ItemInterface {
 	 * @return
 	 * @throws NullPointerException
 	 */
-	public String getCatagory() throws NullPointerException;
+	public String getPrice() throws NullPointerException;
 
 	/**
 	 * This is the method that returns the quantity of the item from
