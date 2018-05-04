@@ -195,8 +195,13 @@ public class Controller {
 		} else {
 			// Test if a user name was entered
 			if (userNameField.getText().trim().length() == 0) {
-				userNameField.pseudoClassStateChanged(errorClass,
-						true);
+
+				// Alert the user to missing user name
+				String msg = "Must Enter a User Name";
+				System.out.println(msg);
+				Alert err = new Alert(AlertType.CONFIRMATION, msg);
+				err.show();
+
 			} else {
 				// Test if user name entered exists
 				String inputName = userNameField.getText();
@@ -208,6 +213,10 @@ public class Controller {
 					isAdmin = true;// Might not be the best place
 
 				} else if (employeeList.contains(inputName)) {
+
+					// Preventing from being able to login with admin
+					// password
+					isAdmin = false;
 
 					currentEmployee = (Employee) employeeList
 							.getEmployee(inputName);
@@ -221,10 +230,16 @@ public class Controller {
 					err.show();
 				}
 			} // End of user name verification
-				// Test if a password was entered
+
+			// Test if a password was entered
 			if (passwordField.getText().trim().length() == 0) {
-				passwordField.pseudoClassStateChanged(errorClass,
-						true);
+
+				// Alert the user to missing password
+				String msg = "Must Enter a Password";
+				System.out.println(msg);
+				Alert err = new Alert(AlertType.CONFIRMATION, msg);
+				err.show();
+
 			} else {
 				String inPassword = passwordField.getText();
 				inPassword = inPassword.trim();//
@@ -241,6 +256,7 @@ public class Controller {
 								msg);
 						err.show();
 					}
+					// End of isAdmin test
 				} else if (inPassword
 						.equals(currentEmployee.getPassword())) {
 
