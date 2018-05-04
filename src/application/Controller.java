@@ -35,11 +35,11 @@ import model.EmployeePopupNode;
 import model.Guest;
 import model.Item;
 import model.ItemList;
+import model.ItemPopupNode;
 import model.Persistence;
 import view.AddEmployeeDialog;
-import view.RemoveEmployeeDialog;
-import model.ItemPopupNode;
 import view.AddItemDialog;
+import view.RemoveEmployeeDialog;
 
 /**
  * This is the controller class. For now, it will be the go-between
@@ -498,7 +498,7 @@ public class Controller {
 		} // End of the test for default value
 
 	}// End of the 'menuRemoveEmployeeClicked' method
-	
+
 	/**
 	 * This is the method that will handle an event where a user
 	 * clicked the add Item button.
@@ -522,7 +522,6 @@ public class Controller {
 		System.out.println("Item List: " + itemList.show());
 
 	}// End of the 'menuAddItemClicked' method
-
 
 	// <<<<<<<<<<<<<<<<<Helper Methods>>>>>>>>>>>>>>>>
 
@@ -783,7 +782,7 @@ public class Controller {
 		} // End of test for cancel button
 
 	}// End of the 'validateNewEmployee' method
-	
+
 	/**
 	 * This is the method that will validate the input from the add
 	 * item pop-up. It will take in an optional node that should
@@ -791,8 +790,7 @@ public class Controller {
 	 * 
 	 * @return
 	 */
-	private void
-			validateNewItem(Optional<ItemPopupNode> input) {
+	private void validateNewItem(Optional<ItemPopupNode> input) {
 		// Test for empty input
 		if (input.isPresent()) {
 			// Getting the node for processing
@@ -802,25 +800,23 @@ public class Controller {
 			String size = node.getSize();
 			String price = node.getPrice();
 			String quantity = node.getQuantity();
-	
-									
-									Item newItem = new Item();
-									newItem.setName(itemName);
-									newItem.setSize(size);
-									newItem.setPrice(price);
-									//newItem.setQuantity(quantity);
-									
-									
-									// Add the new item to the list
-									itemList.addItem(newItem);
 
-									// Save the itemList
-									try {
-										persistence.writeItemList(
-												itemList);
-									} catch (IOException e) {
-										e.printStackTrace();
-									}
+			Item newItem = new Item();
+			newItem.setName(itemName);
+			newItem.setSize(size);
+			newItem.setPrice(price);
+			// newItem.setQuantity(quantity);
+
+			// Add the new item to the list
+			itemList.addItem(newItem);
+
+			// Save the itemList
+			// try {
+			// persistence.writeItemList(
+			// itemList);
+			// } catch (IOException e) {
+			// e.printStackTrace();
+			// }
 		}
 	}
 }// End of the 'Controller' class
