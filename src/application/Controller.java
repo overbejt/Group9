@@ -212,8 +212,13 @@ public class Controller {
 					currentEmployee = (Employee) employeeList
 							.getEmployee(inputName);
 				} else {
+
 					// Alert the user to not a valid user name
-					System.out.println("Invalid User Name");
+					String msg = "Invalid User Name";
+					System.out.println(msg);
+					Alert err = new Alert(AlertType.CONFIRMATION,
+							msg);
+					err.show();
 				}
 			} // End of user name verification
 				// Test if a password was entered
@@ -228,6 +233,13 @@ public class Controller {
 						isAdmin = true;// Setting the user sate
 						// Invoke the 'loadInventoryScene' method
 						loadInventoryScene();
+					} else {
+						// Alert the user to not a valid user name
+						String msg = "Invalid Password";
+						System.out.println(msg);
+						Alert err = new Alert(AlertType.CONFIRMATION,
+								msg);
+						err.show();
 					}
 				} else if (inPassword
 						.equals(currentEmployee.getPassword())) {
@@ -247,8 +259,12 @@ public class Controller {
 					loadInventoryScene();
 
 				} else {
-					// Alert the user to bad input
-					System.out.println("Invalid Input");
+					// Alert the user to not a valid password
+					String msg = "Invalid Password";
+					System.out.println(msg);
+					Alert err = new Alert(AlertType.CONFIRMATION,
+							msg);
+					err.show();
 				}
 
 			} // End of password verification
