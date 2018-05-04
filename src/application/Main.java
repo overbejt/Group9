@@ -20,13 +20,19 @@ public class Main extends Application {
 			FXMLLoader loader = new FXMLLoader(
 					getClass().getResource("/view/LoginBeta.fxml"));
 
+			// Creating an instance of the controller class
+			Controller controller = new Controller();
+
+			// Setting the controller for the login scene
+			loader.setController(controller);
+
 			// FXMLLoader loader = new FXMLLoader(
 			// getClass().getResource("/view/LoginScene.fxml"));
 
 			Parent root = loader.load();
 
 			// Getting the controller
-			Controller controller = loader.getController();
+			// Controller controller = loader.getController();
 
 			// Giving the controller this instance of the primary
 			// stage

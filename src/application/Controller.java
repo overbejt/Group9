@@ -412,6 +412,20 @@ public class Controller {
 	}// End of the 'nameRadioClicked' method
 
 	/**
+	 * This is the mehtod that will invoke the switch to log in scene
+	 * method
+	 */
+	@FXML
+	public void logoutClicked() {
+
+		System.out.println("The logout button was clicked");
+
+		// Invoking the method that will switch to the login scene
+		loadLoginScene();
+
+	}// End of the 'logoutClicked' method
+
+	/**
 	 * This is the method that will filter Edit options based on which
 	 * user is logged in.
 	 * 
@@ -610,6 +624,41 @@ public class Controller {
 	private void initTable() {
 
 	}// End of the 'initTable' method
+
+	/**
+	 * This is a private helper method that will reset the current
+	 * user states and load the login scene.
+	 */
+	private void loadLoginScene() {
+
+		// Invoking the method that will reset the current user states
+		resetUserState();
+
+		try {
+			// Switching to the inventory scene
+			fxmlLoader = new FXMLLoader(
+					getClass().getResource("/view/LoginBeta.fxml"));
+
+			// To keep the states of everything in this controller
+			fxmlLoader.setController(this);
+
+			parent = fxmlLoader.load();// Loading the new FXML file
+
+			scene = new Scene(parent, 600, 400);
+			scene.getStylesheets()
+					.add(getClass()
+							.getResource("/view/application.css")
+							.toExternalForm());
+			primaryStage.setScene(scene);
+			primaryStage.setTitle("Abacus");
+			primaryStage.setMaximized(true);// Maximizing
+			primaryStage.setFullScreen(true);// Setting to full screen
+			primaryStage.show();
+		} catch (Exception err) {
+			// It should catch this
+			System.out.println(err);
+		}
+	}// End of the 'loadLoginScene' method
 
 	/**
 	 * This is a private helper method that will load the inventory

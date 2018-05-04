@@ -17,7 +17,7 @@
             <items>
               <MenuItem mnemonicParsing="false" onAction="#menuItemSaveClicked" text="Save" />
                 <!--    <MenuItem mnemonicParsing="false" text="Save as..." /> -->
-                  <MenuItem fx:id="menuLogoutItem" mnemonicParsing="false" onAction="#menuItemCloseClicked" text="Logout" />
+                  <MenuItem fx:id="menuLogoutItem" mnemonicParsing="false" onAction="#logoutClicked" text="Logout" />
                   <MenuItem fx:id="menuExitItem" mnemonicParsing="false" onAction="#menuItemCloseClicked" text="Exit" />
             </items>
           </Menu>
