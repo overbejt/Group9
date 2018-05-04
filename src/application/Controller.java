@@ -672,6 +672,7 @@ public class Controller {
 		isGuest = false;
 		isAdmin = false;
 		isEmployee = false;
+		isManager = false;
 	}// End of the 'resetUserState' method
 
 	/**
