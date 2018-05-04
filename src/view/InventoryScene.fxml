@@ -24,7 +24,11 @@
             <items>
                   <MenuItem fx:id="menuAddEmployee" mnemonicParsing="false" onAction="#menuAddEmployeeClicked" text="Add Employee" />
                   <MenuItem fx:id="menuRemoveEmployee" onAction="#menuRemoveEmployeeClicked" mnemonicParsing="false" text="Remove Employee" />
+<<<<<<< HEAD
+                  <MenuItem fx:id="menuAddItem" onAction="#menuAddItemClicked" mnemonicParsing="false" text="Add Item" />
+=======
                   <MenuItem fx:id="menuAddItem"  onAction="#menuAddItemClicked" mnemonicParsing="false" text="Add Item" />
+>>>>>>> 44d4819b674c6a062d0496c7c2b1435911e758dc
                   <MenuItem fx:id="menuRemoveItem" mnemonicParsing="false" text="Remove Item" />
             </items>
           </Menu>
