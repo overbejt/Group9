@@ -184,109 +184,137 @@ public class Controller {
 
 		boolean correctPassword = false;
 
-		// Test if logging in as a guest
-		if (guestToggle.isSelected()) {
+		// Handling null pointer exception when logging in as a non
+		// existing employee
+		try {
 
-			isGuest = true;// Setting the user state
+			// Test if logging in as a guest
+			if (guestToggle.isSelected()) {
 
-			// Switch to Inventory scene
-			loadInventoryScene();
+				isGuest = true;// Setting the user state
 
-		} else {
-			// Test if a user name was entered
-			if (userNameField.getText().trim().length() == 0) {
-
-				// Alert the user to missing user name
-				String msg = "Must Enter a User Name";
-				System.out.println(msg);
-				Alert err = new Alert(AlertType.CONFIRMATION, msg);
-				err.show();
+				// Switch to Inventory scene
+				loadInventoryScene();
 
 			} else {
-				// Test if user name entered exists
-				String inputName = userNameField.getText();
-				// Format input
-				inputName = inputName.replaceAll("\\s", "");
+				// Test if a user name was entered
+				if (userNameField.getText().trim().length() == 0) {
 
-				// Test if in the employee list
-				if (inputName.equals("admin")) {
-					isAdmin = true;// Might not be the best place
-
-				} else if (employeeList.contains(inputName)) {
-
-					// Preventing from being able to login with admin
-					// password
-					isAdmin = false;
-
-					currentEmployee = (Employee) employeeList
-							.getEmployee(inputName);
-				} else {
-
-					// Alert the user to not a valid user name
-					String msg = "Invalid User Name";
+					// Alert the user to missing user name
+					String msg = "Must Enter a User Name";
 					System.out.println(msg);
 					Alert err = new Alert(AlertType.CONFIRMATION,
 							msg);
 					err.show();
-				}
-			} // End of user name verification
 
-			// Test if a password was entered
-			if (passwordField.getText().trim().length() == 0) {
+				} else {
+					// Test if user name entered exists
+					String inputName = userNameField.getText();
+					// Format input
+					inputName = inputName.replaceAll("\\s", "");
 
-				// Alert the user to missing password
-				String msg = "Must Enter a Password";
-				System.out.println(msg);
-				Alert err = new Alert(AlertType.CONFIRMATION, msg);
-				err.show();
+					// Test if in the employee list
+					if (inputName.equals("admin")) {
+						isAdmin = true;// Might not be the best place
 
-			} else {
-				String inPassword = passwordField.getText();
-				inPassword = inPassword.trim();//
-				if (isAdmin) {
-					if (inPassword.equals("admin")) {
-						isAdmin = true;// Setting the user sate
+					} else if (employeeList.contains(inputName)) {
+
+						// Preventing from being able to login with
+						// admin
+						// password
+						isAdmin = false;
+
+						currentEmployee = (Employee) employeeList
+								.getEmployee(inputName);
+					} else {
+
+						// Alert the user to not a valid user name
+						String msg = "Invalid User Name";
+						System.out.println(msg);
+						Alert err = new Alert(AlertType.CONFIRMATION,
+								msg);
+						err.show();
+					}
+				} // End of user name verification
+
+				// Test if a password was entered
+				if (passwordField.getText().trim().length() == 0) {
+
+					// Alert the user to missing password
+					String msg = "Must Enter a Password";
+					System.out.println(msg);
+					Alert err = new Alert(AlertType.CONFIRMATION,
+							msg);
+					err.show();
+
+				} else {
+					String inPassword = passwordField.getText();
+					inPassword = inPassword.trim();//
+					if (isAdmin) {
+						if (inPassword.equals("admin")) {
+							isAdmin = true;// Setting the user sate
+							// Invoke the 'loadInventoryScene' method
+							loadInventoryScene();
+						} else {
+							// Alert the user to not a valid user name
+							String msg = "Invalid Password";
+							System.out.println(msg);
+							Alert err = new Alert(
+									AlertType.CONFIRMATION, msg);
+							err.show();
+						}
+						// End of isAdmin test
+					} else if (inPassword
+							.equals(currentEmployee.getPassword())) {
+
+						// Test if good password
+
+						// Test if manager
+						if (currentEmployee.getAccessLevel() == 10) {
+							isManager = true;
+						}
+						// Test if Employee
+						if (currentEmployee.getAccessLevel() == 100) {
+							isEmployee = true; // Setting the user
+												// state
+						}
+
 						// Invoke the 'loadInventoryScene' method
 						loadInventoryScene();
+
 					} else {
-						// Alert the user to not a valid user name
+						// Alert the user to not a valid password
 						String msg = "Invalid Password";
 						System.out.println(msg);
 						Alert err = new Alert(AlertType.CONFIRMATION,
 								msg);
 						err.show();
 					}
-					// End of isAdmin test
-				} else if (inPassword
-						.equals(currentEmployee.getPassword())) {
 
-					// Test if good password
+				} // End of password verification
 
-					// Test if manager
-					if (currentEmployee.getAccessLevel() == 10) {
-						isManager = true;
-					}
-					// Test if Employee
-					if (currentEmployee.getAccessLevel() == 100) {
-						isEmployee = true; // Setting the user state
-					}
+			} // End of guest test
 
-					// Invoke the 'loadInventoryScene' method
-					loadInventoryScene();
+			// Handle null pointer exception when trying to log in as
+			// non existing employee
+		} catch (Exception er) {
 
-				} else {
-					// Alert the user to not a valid password
-					String msg = "Invalid Password";
-					System.out.println(msg);
-					Alert err = new Alert(AlertType.CONFIRMATION,
-							msg);
-					err.show();
-				}
+			// Declaring a string to hold the message for the user
+			String msg = "";
 
-			} // End of password verification
-		} // End of guest test
+			// Test if employee does not exist
+			if (er instanceof NullPointerException) {
+				// Alert the user to not a valid password
+				msg = "Employee Does Not Exist";
+			} else {
+				msg = "Invalid Input";
+			}
 
-		System.out.println("?");
+			System.out.println(msg);
+			Alert err = new Alert(AlertType.CONFIRMATION, msg);
+			err.show();
+
+		} // End of the catch statement
 
 	}// End of the 'loginBtnClicked' method
 
