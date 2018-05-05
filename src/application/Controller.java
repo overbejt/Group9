@@ -109,6 +109,10 @@ public class Controller {
 	private boolean	isAdmin		= false;
 	private boolean	isGuest		= false;
 
+	private final String	LOGIN_SCENE		= "/view/LoginBeta.fxml";
+	private final String	INVENTORY_SCENE	= "/view/InventoryScene.fxml";
+	private final String	CSS				= "/view/application.css";
+
 	// >>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<
 	private final PseudoClass errorClass = PseudoClass
 			.getPseudoClass("error");// For input validation
@@ -194,7 +198,7 @@ public class Controller {
 				isGuest = true;// Setting the user state
 
 				// Switch to Inventory scene
-				loadInventoryScene();
+				loadScene(INVENTORY_SCENE);
 
 			} else {
 				// Test if a user name was entered
@@ -253,8 +257,9 @@ public class Controller {
 					if (isAdmin) {
 						if (inPassword.equals("admin")) {
 							isAdmin = true;// Setting the user sate
-							// Invoke the 'loadInventoryScene' method
-							loadInventoryScene();
+							// Invoke the method to load the inventory
+							// scene
+							loadScene(INVENTORY_SCENE);
 						} else {
 							// Alert the user to not a valid user name
 							String msg = "Invalid Password";
@@ -280,7 +285,7 @@ public class Controller {
 						}
 
 						// Invoke the 'loadInventoryScene' method
-						loadInventoryScene();
+						loadScene(INVENTORY_SCENE);
 
 					} else {
 						// Alert the user to not a valid password
@@ -449,7 +454,7 @@ public class Controller {
 		System.out.println("The logout button was clicked");
 
 		// Invoking the method that will switch to the login scene
-		loadLoginScene();
+		loadScene(LOGIN_SCENE);
 
 	}// End of the 'logoutClicked' method
 
@@ -655,9 +660,9 @@ public class Controller {
 
 	/**
 	 * This is a private helper method that will reset the current
-	 * user states and load the login scene.
+	 * user states and load the indicated scene.
 	 */
-	private void loadLoginScene() {
+	private void loadScene(String newScene) {
 
 		// Invoking the method that will reset the current user states
 		resetUserState();
@@ -665,7 +670,7 @@ public class Controller {
 		try {
 			// Switching to the inventory scene
 			fxmlLoader = new FXMLLoader(
-					getClass().getResource("/view/LoginBeta.fxml"));
+					getClass().getResource(newScene));
 
 			// To keep the states of everything in this controller
 			fxmlLoader.setController(this);
@@ -673,10 +678,8 @@ public class Controller {
 			parent = fxmlLoader.load();// Loading the new FXML file
 
 			scene = new Scene(parent, 600, 400);
-			scene.getStylesheets()
-					.add(getClass()
-							.getResource("/view/application.css")
-							.toExternalForm());
+			scene.getStylesheets().add(
+					getClass().getResource(CSS).toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Abacus");
 			primaryStage.setMaximized(true);// Maximizing
@@ -686,37 +689,7 @@ public class Controller {
 			// It should catch this
 			System.out.println(err);
 		}
-	}// End of the 'loadLoginScene' method
-
-	/**
-	 * This is a private helper method that will load the inventory
-	 * scene.
-	 */
-	private void loadInventoryScene() {
-		try {
-			// Switching to the inventory scene
-			fxmlLoader = new FXMLLoader(getClass()
-					.getResource("/view/InventoryScene.fxml"));
-
-			// To keep the states of everything in this controller
-			fxmlLoader.setController(this);
-
-			parent = fxmlLoader.load();// Loading the new FXML file
-
-			scene = new Scene(parent, 600, 400);
-			scene.getStylesheets()
-					.add(getClass()
-							.getResource("/view/application.css")
-							.toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.setTitle("Abacus");
-			primaryStage.setMaximized(true);// Maximizing
-			primaryStage.setFullScreen(true);// Setting to full screen
-			primaryStage.show();
-		} catch (Exception err) {
-			// It should catch this
-		}
-	}// End of the 'loadInventoryScene' method
+	}// End of the 'loadScene' method
 
 	/**
 	 * This is a private helper class that will prevent anyone but
