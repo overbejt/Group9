@@ -108,6 +108,7 @@ public class Controller {
 	private boolean	isManager	= false;
 	private boolean	isAdmin		= false;
 	private boolean	isGuest		= false;
+	private boolean	isLogin		= true;
 
 	private final String	LOGIN_SCENE		= "/view/LoginBeta.fxml";
 	private final String	INVENTORY_SCENE	= "/view/InventoryScene.fxml";
@@ -622,15 +623,20 @@ public class Controller {
 	public void end() {
 		System.out.println("Controller/end method");
 
-		// The alert box
-		String msg = "Would you like to save the inventory?";
-		Alert alert = new Alert(AlertType.CONFIRMATION, msg);
+		// Test if the login scene is in focus
+		if (!isLogin) {
 
-		// If click yes, then save and exit. Else exit
-		alert.showAndWait()
-				.filter(response -> response
-						.getButtonData() == ButtonData.OK_DONE)
-				.ifPresent(response -> save());
+			// The alert box
+			String msg = "Would you like to save the inventory?";
+			Alert alert = new Alert(AlertType.CONFIRMATION, msg);
+
+			// If click yes, then save and exit. Else exit
+			alert.showAndWait()
+					.filter(response -> response
+							.getButtonData() == ButtonData.OK_DONE)
+					.ifPresent(response -> save());
+
+		} // End of the test for if on the login scene
 
 		System.exit(0);// Exiting the program
 
@@ -669,7 +675,15 @@ public class Controller {
 		// Invoking the method that will reset the current user states
 		resetUserState();
 
+		// Test for if Login scene is loaded
+		if (newScene.equals(LOGIN_SCENE)) {
+			isLogin = true;
+		} else {
+			isLogin = false;
+		}
+
 		try {
+
 			// Switching to the inventory scene
 			fxmlLoader = new FXMLLoader(
 					getClass().getResource(newScene));
