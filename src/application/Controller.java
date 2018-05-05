@@ -19,7 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Menu;
@@ -626,10 +626,12 @@ public class Controller {
 		String msg = "Would you like to save the inventory?";
 		Alert alert = new Alert(AlertType.CONFIRMATION, msg);
 
-		// If click yes, then save. Else exit
+		// If click yes, then save and exit. Else exit
 		alert.showAndWait()
-				.filter(response -> response == ButtonType.OK)
+				.filter(response -> response
+						.getButtonData() == ButtonData.OK_DONE)
 				.ifPresent(response -> save());
+
 		System.exit(0);// Exiting the program
 
 	}// End of the 'end' method
