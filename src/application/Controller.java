@@ -599,7 +599,7 @@ public class Controller {
 		validateNewItem(result);// Validate input
 
 		// TEMP
-		System.out.println("Item List: " + itemList.show());
+		System.out.println("Item List: " + itemList.toString());
 
 	}// End of the 'menuAddItemClicked' method
 
@@ -652,6 +652,9 @@ public class Controller {
 		try {
 			// Saving the Employee List
 			persistence.writeEmployeeList(employeeList);
+			// Saving the Item List
+			persistence.writeItemList(itemList);
+
 		} catch (IOException err) {
 			// TODO Auto-generated catch block
 			err.printStackTrace();

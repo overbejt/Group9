@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.time.Instant;
 
 import javafx.beans.property.SimpleIntegerProperty;
@@ -12,19 +13,24 @@ import javafx.beans.property.SimpleStringProperty;
  * 
  * @version 1.1
  */
-public class Item implements ItemInterface {
+public class Item implements ItemInterface, Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	// To store the attributes of this item
-	private Instant						instant;
-	private final SimpleLongProperty	id;
+	private Instant							instant;
+	private transient SimpleLongProperty	id;
 	// To store the name of this item
-	private final SimpleStringProperty name;
+	private transient SimpleStringProperty name;
 	// eg: Pants, shoes, shirt, etc.
-	private final SimpleStringProperty price;
+	private transient SimpleStringProperty price;
 	// The amount of item in the inventory
-	private final SimpleIntegerProperty quantity;
+	private transient SimpleIntegerProperty quantity;
 	// The size of the item
-	private final SimpleStringProperty size;
+	private transient SimpleStringProperty size;
 
 	/**
 	 * Constructor
@@ -42,7 +48,8 @@ public class Item implements ItemInterface {
 	/**
 	 * Overloaded Constructor
 	 */
-	public Item(String name, String price, int quantity, String size) {
+	public Item(String name, String price, int quantity,
+			String size) {
 
 		// Initializing instance variables with given data
 		this.name = new SimpleStringProperty(name);
@@ -183,13 +190,13 @@ public class Item implements ItemInterface {
 
 		result += "[";
 		result += getID();
-		result += " : ";
+		result += " , ";
 		result += this.name.get();
-		result += " : ";
+		result += " , ";
 		result += this.price.get();
-		result += " : ";
+		result += " , ";
 		result += this.quantity.get();
-		result += " : ";
+		result += " , ";
 		result += this.size.get();
 		result += "]";
 

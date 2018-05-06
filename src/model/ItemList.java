@@ -138,4 +138,35 @@ public class ItemList implements Serializable {
 
 	}// End of the 'show' method
 
+	/**
+	 * This is the method that will override the toString() method
+	 * from java.lang. It will also be used to generate a csv file of
+	 * the inventory.
+	 */
+	public String toString() {
+
+		// Declare instance of String to hold concatenation
+		String result = "";
+
+		// Get Entry set
+		Set<Entry<Long, Item>> entries = map.entrySet();
+
+		// result += "(";
+
+		// Loop through all entries in the inventory
+		for (Entry<Long, Item> e : entries) {
+
+			// Concatenate
+			result += e.getValue().toString();
+			result += "\n";
+
+		}
+
+		// result += ")";
+
+		// Send the concatenated string back
+		return result;
+
+	}// End of the 'toString' method
+
 }// End of the 'ItemList' class

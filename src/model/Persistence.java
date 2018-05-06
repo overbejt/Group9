@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 
 /**
  * This is the class that will be responsible for handling all of the
@@ -69,18 +70,33 @@ public class Persistence {
 	 * @throws IOException
 	 */
 	public void writeItemList(ItemList list) throws IOException {
+		//
+		// fileOutputStream = new FileOutputStream(itemList);
+		//
+		// bufferedOutputStream = new BufferedOutputStream(
+		// fileOutputStream);
+		//
+		// objectOutputStream = new ObjectOutputStream(
+		// bufferedOutputStream);
+		//
+		// objectOutputStream.writeObject(list);
+		//
+		// // Get Entry set
+		// Set<Entry<Long, Item>> entries = list.getItemList()
+		// .entrySet();
+		//
+		// // Loop through the list
+		// for (Entry<Long, Item> e : entries) {
+		// // Write the id
+		// objectOutputStream.writeLong(e.getValue().getID());
+		// }
+		//
+		// objectOutputStream.close();
 
-		fileOutputStream = new FileOutputStream(itemList);
+		PrintWriter writer = new PrintWriter(itemList);
 
-		bufferedOutputStream = new BufferedOutputStream(
-				fileOutputStream);
-
-		objectOutputStream = new ObjectOutputStream(
-				bufferedOutputStream);
-
-		objectOutputStream.writeObject(list);
-
-		objectOutputStream.close();
+		writer.write(list.toString());
+		writer.close();
 
 	}// End of the 'writeItemList' method
 
