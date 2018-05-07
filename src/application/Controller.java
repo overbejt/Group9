@@ -692,6 +692,9 @@ public class Controller {
 		tableView.setItems(obsList);
 		tableView.getColumns().addAll(nameColumn, priceColumn,
 				sizeColumn, quantityColumn);
+
+		tableView.refresh();
+
 		// tableView.getItems().setAll(obsList);
 
 	}// End of the 'initTable' method
