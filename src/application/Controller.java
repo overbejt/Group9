@@ -11,7 +11,7 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 
 import AbucusExceptions.InvalidRemovalException;
-import javafx.collections.ObservableMap;
+import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -63,48 +63,49 @@ public class Controller {
 
 	// >>>>>>>>>>>>Inventory Scene Instance variables<<<<<<<<<<<<<<<<<
 	@FXML
-	private TableView<ObservableMap<Long, Item>>	tableView;
+	private TableView<Item>				tableView;
 	@FXML
-	private HBox									tableBox;
+	private HBox						tableBox;
 	@FXML
-	private TableColumn<Item, String>				nameColumn;
+	private TableColumn<Item, String>	nameColumn;
 	@FXML
-	private TableColumn<Item, String>				categoryColumn;
+	private TableColumn<Item, String>	categoryColumn;
 	@FXML
-	private TableColumn<Item, String>				sizeColumn;
+	private TableColumn<Item, String>	sizeColumn;
 	@FXML
-	private TableColumn<Item, String>				quantityColumn;
+	private TableColumn<Item, String>	quantityColumn;
 	@FXML
-	private MenuItem								menuExitItem;
+	private MenuItem					menuExitItem;
 	@FXML
-	private Menu									menuEdit;
+	private Menu						menuEdit;
 	@FXML
-	private MenuItem								menuAddEmployee;
+	private MenuItem					menuAddEmployee;
 	@FXML
-	private MenuItem								menuRemoveEmployee;
+	private MenuItem					menuRemoveEmployee;
 	@FXML
-	private MenuItem								menuAddItem;
+	private MenuItem					menuAddItem;
 	@FXML
-	private MenuItem								menuRemoveItem;
+	private MenuItem					menuRemoveItem;
 	@FXML
-	private JFXRadioButton							sizeRdBtn;
+	private JFXRadioButton				sizeRdBtn;
 	@FXML
-	private JFXRadioButton							priceRdBtn;
+	private JFXRadioButton				priceRdBtn;
 	@FXML
-	private JFXRadioButton							quantityRdBtn;
+	private JFXRadioButton				quantityRdBtn;
 	@FXML
-	private JFXRadioButton							nameRdBtn;
+	private JFXRadioButton				nameRdBtn;
 
 	// >>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<
 	// Instance objects
-	private Scene			scene;
-	private Stage			primaryStage;
-	private FXMLLoader		fxmlLoader;
-	private Parent			parent;
-	private Persistence		persistence;
-	private EmployeeList	employeeList;
-	private Employee		currentEmployee;
-	private ItemList		itemList;
+	private Scene					scene;
+	private Stage					primaryStage;
+	private FXMLLoader				fxmlLoader;
+	private Parent					parent;
+	private Persistence				persistence;
+	private EmployeeList			employeeList;
+	private Employee				currentEmployee;
+	private ItemList				itemList;
+	private ObservableList<Item>	obsList;
 
 	private boolean	isEmployee	= false;
 	private boolean	isManager	= false;
@@ -681,9 +682,20 @@ public class Controller {
 
 		initColumns();
 
-		tableView.getItems().setAll(itemList.getItemList());
+		// Initialize the observable list
+		initObservableList();
+
+		tableView.getItems().setAll(obsList);
 
 	}// End of the 'initTable' method
+
+	/**
+	 * This is the method that will initialize the observable list for
+	 * the table view
+	 */
+	private void initObservableList() {
+
+	}// End of the 'initObservableList' method
 
 	/**
 	 * This is the method that will initialize the table columns with
