@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 
 import AbucusExceptions.InvalidRemovalException;
+import javafx.collections.ObservableMap;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,6 +27,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import model.Admin;
@@ -61,37 +63,37 @@ public class Controller {
 
 	// >>>>>>>>>>>>Inventory Scene Instance variables<<<<<<<<<<<<<<<<<
 	@FXML
-	private TableView<Item>				tableView;
+	private TableView<ObservableMap<Long, Item>>	tableView;
 	@FXML
-	private HBox						tableBox;
+	private HBox									tableBox;
 	@FXML
-	private TableColumn<String, Item>	nameColumn;
+	private TableColumn<Item, String>				nameColumn;
 	@FXML
-	private TableColumn<String, Item>	categoryColumn;
+	private TableColumn<Item, String>				categoryColumn;
 	@FXML
-	private TableColumn<String, Item>	sizeColumn;
+	private TableColumn<Item, String>				sizeColumn;
 	@FXML
-	private TableColumn<String, Item>	quantityColumn;
+	private TableColumn<Item, String>				quantityColumn;
 	@FXML
-	private MenuItem					menuExitItem;
+	private MenuItem								menuExitItem;
 	@FXML
-	private Menu						menuEdit;
+	private Menu									menuEdit;
 	@FXML
-	private MenuItem					menuAddEmployee;
+	private MenuItem								menuAddEmployee;
 	@FXML
-	private MenuItem					menuRemoveEmployee;
+	private MenuItem								menuRemoveEmployee;
 	@FXML
-	private MenuItem					menuAddItem;
+	private MenuItem								menuAddItem;
 	@FXML
-	private MenuItem					menuRemoveItem;
+	private MenuItem								menuRemoveItem;
 	@FXML
-	private JFXRadioButton				sizeRdBtn;
+	private JFXRadioButton							sizeRdBtn;
 	@FXML
-	private JFXRadioButton				priceRdBtn;
+	private JFXRadioButton							priceRdBtn;
 	@FXML
-	private JFXRadioButton				quantityRdBtn;
+	private JFXRadioButton							quantityRdBtn;
 	@FXML
-	private JFXRadioButton				nameRdBtn;
+	private JFXRadioButton							nameRdBtn;
 
 	// >>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<
 	// Instance objects
@@ -674,7 +676,73 @@ public class Controller {
 	@FXML
 	private void initTable() {
 
+		// ((TableView<Item>) tableView.getItems())
+		// .setItems(itemList.getItemList());
+
+		initColumns();
+
+		tableView.getItems().setAll(itemList.getItemList());
+
 	}// End of the 'initTable' method
+
+	/**
+	 * This is the method that will initialize the table columns with
+	 * the data from the item list.
+	 */
+	@FXML
+	private void initColumns() {
+
+		// use fully detailed type for Map.Entry<String, String>
+		// TableColumn<Map.Entry<String, String>, String> column1 =
+		// new TableColumn<>(
+		// "Key");
+		// column1.setCellValueFactory(
+		// new Callback<TableColumn.CellDataFeatures<Map.Entry<String,
+		// String>, String>, ObservableValue<String>>() {
+		//
+		// @Override
+		// public ObservableValue<String> call(
+		// TableColumn.CellDataFeatures<Map.Entry<String, String>,
+		// String> p) {
+		// // this callback returns property for just one
+		// // cell, you can't use a loop here
+		// // for first column we use key
+		// return new SimpleStringProperty(
+		// p.getValue().getKey());
+		// }
+		// });
+
+		// use fully detailed type for Map.Entry<String, String>
+		// nameColumn = new TableColumn<>("Name");
+		// nameColumn.setCellValueFactory(
+		// new Callback<TableColumn.CellDataFeatures<Map.Entry<Long,
+		// Item>, String>, ObservableValue<String>>() {
+		//
+		// @Override
+		// public ObservableValue<String> call(
+		// TableColumn.CellDataFeatures<Map.Entry<String, String>,
+		// String> p) {
+		// // this callback returns property for just one
+		// // cell, you can't use a loop here
+		// // for first column we use key
+		// return new SimpleStringProperty(
+		// p.getValue().getKey());
+		// }
+		// });
+
+		nameColumn.setCellValueFactory(
+				new PropertyValueFactory<Item, String>("name"));
+
+		categoryColumn.setCellValueFactory(
+				new PropertyValueFactory<Item, String>("catagory"));
+
+		sizeColumn.setCellValueFactory(
+				new PropertyValueFactory<Item, String>("size"));
+
+		sizeColumn.setCellValueFactory(
+				new PropertyValueFactory<Item, String>("size"));
+
+	}// End of the 'initColumns' method
 
 	/**
 	 * This is a private helper method that will reset the current
