@@ -684,8 +684,7 @@ public class Controller {
 
 		// Invoking the method that will reset the current user states
 		
-		// Commenting this method out fixes the guest being able to add/remove bug
-		// resetUserState();
+		resetUserState();
 
 		// Test for if Login scene is loaded
 		if (newScene.equals(LOGIN_SCENE)) {
