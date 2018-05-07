@@ -158,7 +158,8 @@ public class ItemList implements Serializable {
 
 			// Concatenate
 			result += e.getValue().toString();
-			result += "\n";
+			result += ", ";
+			// result += "\n";
 
 		}
 

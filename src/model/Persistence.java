@@ -135,16 +135,18 @@ public class Persistence {
 	public ItemList readItemList()
 			throws ClassNotFoundException, IOException {
 
-		fileInputStream = new FileInputStream(itemList);
-		bufferedInputStream = new BufferedInputStream(
-				fileInputStream);
-		objectInputStream = new ObjectInputStream(
-				bufferedInputStream);
+		// fileInputStream = new FileInputStream(itemList);
+		// bufferedInputStream = new BufferedInputStream(
+		// fileInputStream);
+		// objectInputStream = new ObjectInputStream(
+		// bufferedInputStream);
+		//
+		// // Getting the EmployeeList from the file
+		// ItemList list = (ItemList) objectInputStream.readObject();
+		// // Closing off the inputStream
+		// objectInputStream.close();
 
-		// Getting the EmployeeList from the file
-		ItemList list = (ItemList) objectInputStream.readObject();
-		// Closing off the inputStream
-		objectInputStream.close();
+		ItemList list = new ItemList();
 
 		// Sending the EmployeeList back
 		return list;
