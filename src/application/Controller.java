@@ -656,8 +656,15 @@ public class Controller {
 			persistence.writeItemList(itemList);
 
 		} catch (IOException err) {
-			// TODO Auto-generated catch block
-			err.printStackTrace();
+			// The alert box
+			String msg = "There was an issue with saving...";
+			Alert alert = new Alert(AlertType.CONFIRMATION, msg);
+
+			// If click yes, then save and exit. Else exit
+			alert.showAndWait()
+					.filter(response -> response
+							.getButtonData() == ButtonData.OK_DONE)
+					.ifPresent(response -> save());
 		}
 	}// End of the 'save' method
 
@@ -920,13 +927,6 @@ public class Controller {
 			// Add the new item to the list
 			itemList.addItem(newItem);
 
-			// Save the itemList
-			// try {
-			// persistence.writeItemList(
-			// itemList);
-			// } catch (IOException e) {
-			// e.printStackTrace();
-			// }
 		}
 	}
 }// End of the 'Controller' class

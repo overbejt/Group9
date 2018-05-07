@@ -10,7 +10,7 @@ import model.ItemPopupNode;
 
 /**
  * This is the class that will handle the dialog pop-up when a user
- * wants to add an item. 
+ * wants to add an item.
  */
 public class AddItemDialog {
 
@@ -41,7 +41,7 @@ public class AddItemDialog {
 		new AddItemDialog();
 		return itemAdded;
 	}
-	
+
 	/**
 	 * This is the method that will initialize the grid pane.
 	 */
@@ -98,7 +98,7 @@ public class AddItemDialog {
 	 * layout, and add the to the dialog box.
 	 */
 	private void assemble() {
-		setStyle();
+		// setStyle();
 
 		// Adding the buttons
 		itemAdded.getDialogPane().getButtonTypes()
@@ -110,7 +110,6 @@ public class AddItemDialog {
 		// Adding children to parent
 		itemAdded.getDialogPane().setContent(grid);
 
-
 		itemAdded.setResultConverter(dialogButton -> {
 			if (dialogButton == okDoneBtnType) {
 				return new ItemPopupNode(itemName.getText(),
@@ -121,7 +120,6 @@ public class AddItemDialog {
 		});
 
 	}// End of the 'assemble' method
-
 
 	private void setStyle() {
 
