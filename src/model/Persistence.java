@@ -150,10 +150,12 @@ public class Persistence {
 		ItemList list = new ItemList();
 		Scanner sc = new Scanner(itemList);
 
-		String data = sc.next();
+		String data = sc.nextLine();
 		System.out.println("From the file: " + data);
 
-		String[] items = data.split("\\,");
+		sc.close();
+
+		String[] items = data.split("\\]");
 
 		for (String s : items) {
 
@@ -161,26 +163,46 @@ public class Persistence {
 			s = s.replaceAll("\\]", "");
 			s = s.trim();
 
-			String[] attributes = s.split("\\,");
-			// Clean up all attributes
-			for (String a : attributes) {
-				a = a.trim();
+			System.out.println("Item: " + s);
+
+			if (s.startsWith(",")) {
+				s = s.substring(1);
 			}
 
-			long id = Long.parseLong(attributes[0]);
-			String name = attributes[1];
-			String price = attributes[2];
-			int quantity = Integer.parseInt(attributes[3]);
-			String size = attributes[4];
+			String[] attributes = s.split("\\,");
+			// Clean up all attributes
+			// for (String a : attributes) {
+			// a = a.trim();
+			// // a += 9;
+			// System.out.println(a);
+			// }
 
-			Item item = new Item();
-			item.setId(id);
-			item.setName(name);
-			item.setPrice(price);
-			item.setQuantity(quantity);
-			item.setSize(size);
+			// Handling the last null item
+			try {
+				attributes[0] = attributes[0].trim();
+				long id = Long.parseLong(attributes[0]);
+				attributes[1] = attributes[1].trim();
+				String name = attributes[1];
+				attributes[2] = attributes[2].trim();
+				String price = attributes[2];
+				attributes[3] = attributes[3].trim();
+				int quantity = Integer.parseInt(attributes[3]);
+				attributes[4] = attributes[4].trim();
+				String size = attributes[4];
 
-			list.addItem(item);
+				Item item = new Item();
+				item.setId(id);
+				item.setName(name);
+				item.setPrice(price);
+				item.setQuantity(quantity);
+				item.setSize(size);
+
+				list.addItem(item);
+
+				System.out.println("item done: " + item.toString());
+			} catch (Exception err) {
+				System.out.println(err);
+			}
 
 		} // end of loop
 
