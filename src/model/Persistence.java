@@ -136,17 +136,6 @@ public class Persistence {
 	public ItemList readItemList()
 			throws ClassNotFoundException, IOException {
 
-		// fileInputStream = new FileInputStream(itemList);
-		// bufferedInputStream = new BufferedInputStream(
-		// fileInputStream);
-		// objectInputStream = new ObjectInputStream(
-		// bufferedInputStream);
-		//
-		// // Getting the EmployeeList from the file
-		// ItemList list = (ItemList) objectInputStream.readObject();
-		// // Closing off the inputStream
-		// objectInputStream.close();
-
 		// Creating an instance of ItemList object
 		ItemList list = new ItemList();
 		/*
@@ -187,12 +176,6 @@ public class Persistence {
 			 * quantity, Index 4 = size
 			 */
 			String[] attributes = s.split("\\,");
-			// Clean up all attributes
-			// for (String a : attributes) {
-			// a = a.trim();
-			// // a += 9;
-			// System.out.println(a);
-			// }
 
 			// Handling the last null item
 			try {
@@ -227,7 +210,8 @@ public class Persistence {
 				System.out.println("item done: " + item.toString());
 
 			} catch (Exception err) {
-				System.out.println(err);
+				// The last 'item' in the list will throw an exception
+				// because it is empty
 			}
 
 		} // end of loop
