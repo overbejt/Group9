@@ -682,13 +682,13 @@ public class Controller {
 	 */
 	private void loadScene(String newScene) {
 
-		// Invoking the method that will reset the current user states
-		
-		resetUserState();
-
 		// Test for if Login scene is loaded
 		if (newScene.equals(LOGIN_SCENE)) {
 			isLogin = true;
+
+			// Invoking the method that will reset the current user
+			// states
+			resetUserState();
 		} else {
 			isLogin = false;
 		}
