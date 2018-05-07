@@ -71,32 +71,17 @@ public class Persistence {
 	 * @throws IOException
 	 */
 	public void writeItemList(ItemList list) throws IOException {
-		//
-		// fileOutputStream = new FileOutputStream(itemList);
-		//
-		// bufferedOutputStream = new BufferedOutputStream(
-		// fileOutputStream);
-		//
-		// objectOutputStream = new ObjectOutputStream(
-		// bufferedOutputStream);
-		//
-		// objectOutputStream.writeObject(list);
-		//
-		// // Get Entry set
-		// Set<Entry<Long, Item>> entries = list.getItemList()
-		// .entrySet();
-		//
-		// // Loop through the list
-		// for (Entry<Long, Item> e : entries) {
-		// // Write the id
-		// objectOutputStream.writeLong(e.getValue().getID());
-		// }
-		//
-		// objectOutputStream.close();
 
+		/*
+		 * Declaring a print writer and initializing it to write to
+		 * the itemList file.
+		 */
 		PrintWriter writer = new PrintWriter(itemList);
 
+		// Writing the data to the file
 		writer.write(list.toString());
+
+		// Closing the print writer to free up the resources
 		writer.close();
 
 	}// End of the 'writeItemList' method
@@ -146,7 +131,6 @@ public class Persistence {
 
 		// Getting the data from the file
 		String data = sc.nextLine();
-		System.out.println("From the file: " + data);
 
 		// Closing the scanner to free up resources
 		sc.close();
@@ -162,8 +146,6 @@ public class Persistence {
 			s = s.replaceAll("\\]", "");
 			// Removing any excess white space
 			s = s.trim();
-
-			System.out.println("Item: " + s);
 
 			// Handling a special case from testing
 			if (s.startsWith(",")) {
@@ -206,8 +188,6 @@ public class Persistence {
 
 				// Adding the item to the list
 				list.addItem(item);
-
-				System.out.println("item done: " + item.toString());
 
 			} catch (Exception err) {
 				// The last 'item' in the list will throw an exception
