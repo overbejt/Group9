@@ -112,6 +112,19 @@ public class Item implements ItemInterface, Serializable {
 	}// End of the 'setSize' method
 
 	/**
+	 * This is the method that will allow the id to be set. It is
+	 * meant to be used when reading non serialized objects from a
+	 * file.
+	 * 
+	 * @param id
+	 */
+	public void setId(long id) {
+
+		this.id = new SimpleLongProperty(id);
+
+	}// End of the 'setId' method
+
+	/**
 	 * This is the method that will return the item's name.
 	 * 
 	 * @return

@@ -903,11 +903,19 @@ public class Controller {
 			String price = node.getPrice();
 			String quantity = node.getQuantity();
 
+			int parsedQuantity = 0;
+
+			try {
+				parsedQuantity = Integer.parseInt(quantity);
+			} catch (Exception err) {
+				System.out.println(err);
+			}
+
 			Item newItem = new Item();
 			newItem.setName(itemName);
 			newItem.setSize(size);
 			newItem.setPrice(price);
-			// newItem.setQuantity(quantity);
+			newItem.setQuantity(parsedQuantity);
 
 			// Add the new item to the list
 			itemList.addItem(newItem);

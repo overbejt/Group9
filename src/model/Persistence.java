@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import java.util.Scanner;
 
 /**
  * This is the class that will be responsible for handling all of the
@@ -147,6 +148,41 @@ public class Persistence {
 		// objectInputStream.close();
 
 		ItemList list = new ItemList();
+		Scanner sc = new Scanner(itemList);
+
+		String data = sc.next();
+		System.out.println("From the file: " + data);
+
+		String[] items = data.split("\\,");
+
+		for (String s : items) {
+
+			s = s.replaceAll("\\[", "");
+			s = s.replaceAll("\\]", "");
+			s = s.trim();
+
+			String[] attributes = s.split("\\,");
+			// Clean up all attributes
+			for (String a : attributes) {
+				a = a.trim();
+			}
+
+			long id = Long.parseLong(attributes[0]);
+			String name = attributes[1];
+			String price = attributes[2];
+			int quantity = Integer.parseInt(attributes[3]);
+			String size = attributes[4];
+
+			Item item = new Item();
+			item.setId(id);
+			item.setName(name);
+			item.setPrice(price);
+			item.setQuantity(quantity);
+			item.setSize(size);
+
+			list.addItem(item);
+
+		} // end of loop
 
 		// Sending the EmployeeList back
 		return list;
