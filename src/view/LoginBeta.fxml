@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane id="login-screen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" >
+<BorderPane  id="login-screen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" >
    <center>
       <HBox id="login-screen" alignment="CENTER" fillHeight="false" minHeight="400.0" minWidth="650.0" BorderPane.alignment="CENTER">
          <children>

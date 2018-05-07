@@ -65,7 +65,7 @@ public class Controller {
 
 	// >>>>>>>>>>>>Inventory Scene Instance variables<<<<<<<<<<<<<<<<<
 	@FXML
-	private TableView					tableView;
+	private TableView<Item>				tableView;
 	@FXML
 	private HBox						tableBox;
 	@FXML
