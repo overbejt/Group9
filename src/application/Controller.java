@@ -70,11 +70,11 @@ public class Controller {
 	@FXML
 	private TableColumn<Item, String>	nameColumn;
 	@FXML
-	private TableColumn<Item, String>	priceColumn;
+	private TableColumn<Item, Integer>	priceColumn;
 	@FXML
 	private TableColumn<Item, String>	sizeColumn;
 	@FXML
-	private TableColumn<Item, String>	quantityColumn;
+	private TableColumn<Item, Integer>	quantityColumn;
 	@FXML
 	private MenuItem					menuExitItem;
 	@FXML
@@ -681,10 +681,10 @@ public class Controller {
 		// ((TableView<Item>) tableView.getItems())
 		// .setItems(itemList.getItemList());
 
-		initColumns();
-
 		// Initialize the observable list
 		initObservableList();
+
+		initColumns();
 
 		tableView = new TableView<Item>();
 
@@ -693,7 +693,9 @@ public class Controller {
 		tableView.getColumns().addAll(nameColumn, priceColumn,
 				sizeColumn, quantityColumn);
 
-		tableView.refresh();
+		// tableBox.getChildren().addAll(tableView);
+
+		// tableView.refresh();
 
 		// tableView.getItems().setAll(obsList);
 
@@ -767,21 +769,21 @@ public class Controller {
 		// }
 		// });
 
-		nameColumn = new TableColumn("Name");
+		nameColumn = new TableColumn<Item, String>("Name");
 		nameColumn.setCellValueFactory(
 				new PropertyValueFactory<Item, String>("name"));
 
-		priceColumn = new TableColumn("Price");
+		priceColumn = new TableColumn<Item, Integer>("Price");
 		priceColumn.setCellValueFactory(
-				new PropertyValueFactory<Item, String>("price"));
+				new PropertyValueFactory<Item, Integer>("price"));
 
-		sizeColumn = new TableColumn("Size");
+		sizeColumn = new TableColumn<Item, String>("Size");
 		sizeColumn.setCellValueFactory(
 				new PropertyValueFactory<Item, String>("size"));
 
-		quantityColumn = new TableColumn("Quantity");
+		quantityColumn = new TableColumn<Item, Integer>("Quantity");
 		quantityColumn.setCellValueFactory(
-				new PropertyValueFactory<Item, String>("quantity"));
+				new PropertyValueFactory<Item, Integer>("quantity"));
 
 	}// End of the 'initColumns' method
 
@@ -1035,7 +1037,12 @@ public class Controller {
 			newItem.setQuantity(parsedQuantity);
 
 			// Add the new item to the list
+			obsList.add(newItem);
+
 			itemList.addItem(newItem);
+
+			// Update the table view
+			tableView.refresh();
 
 		}
 	}
