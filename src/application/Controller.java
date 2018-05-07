@@ -2,6 +2,7 @@ package application;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import com.jfoenix.controls.JFXButton;
@@ -29,6 +30,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import model.Admin;
@@ -67,6 +69,8 @@ public class Controller {
 	private TableView<Item>				tableView;
 	@FXML
 	private HBox						tableBox;
+	@FXML
+	private BorderPane					borderPane;			// ?
 	@FXML
 	private TableColumn<Item, String>	nameColumn;
 	@FXML
@@ -135,6 +139,8 @@ public class Controller {
 	public void initialize() throws ClassNotFoundException,
 			FileNotFoundException, IOException {
 
+		System.out.println("Initilizing");
+
 		// Initializing the Persistence object
 		persistence = new Persistence();
 
@@ -173,7 +179,39 @@ public class Controller {
 		}
 
 		// Invoke the method that will initialize the table
-		initTable();
+		// initTable();
+
+		obsList = FXCollections.observableArrayList();
+
+		ArrayList<Item> list = itemList.getItemList();
+
+		for (Item i : list) {
+			obsList.add(i);
+		}
+
+		tableView = new TableView<Item>();
+
+		tableView.setEditable(true);
+		tableView.setItems(obsList);
+
+		nameColumn = new TableColumn<Item, String>("Name");
+		nameColumn.setCellValueFactory(
+				new PropertyValueFactory<Item, String>("name"));
+
+		priceColumn = new TableColumn<Item, Integer>("Price");
+		priceColumn.setCellValueFactory(
+				new PropertyValueFactory<Item, Integer>("price"));
+
+		sizeColumn = new TableColumn<Item, String>("Size");
+		sizeColumn.setCellValueFactory(
+				new PropertyValueFactory<Item, String>("size"));
+
+		quantityColumn = new TableColumn<Item, Integer>("Quantity");
+		quantityColumn.setCellValueFactory(
+				new PropertyValueFactory<Item, Integer>("quantity"));
+
+		tableView.getColumns().addAll(nameColumn, priceColumn,
+				sizeColumn, quantityColumn);
 
 	}// End of the 'initialize' method
 
@@ -708,8 +746,16 @@ public class Controller {
 	private void initObservableList() {
 
 		// Initialize the observable list
-		obsList = FXCollections
-				.observableArrayList(itemList.getItemList());
+		// obsList = FXCollections
+		// .observableArrayList(itemList.getItemList());
+
+		obsList = FXCollections.observableArrayList();
+
+		ArrayList<Item> list = itemList.getItemList();
+
+		for (Item i : list) {
+			obsList.add(i);
+		}
 
 		// // Get Entry set
 		// Set<Entry<Long, Item>> entries = itemList.getItemList()
