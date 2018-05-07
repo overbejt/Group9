@@ -29,7 +29,6 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -66,7 +65,7 @@ public class Controller {
 
 	// >>>>>>>>>>>>Inventory Scene Instance variables<<<<<<<<<<<<<<<<<
 	@FXML
-	private TableView<Item>				tableView;
+	private TableView					tableView;
 	@FXML
 	private HBox						tableBox;
 	@FXML
@@ -179,39 +178,42 @@ public class Controller {
 		}
 
 		// Invoke the method that will initialize the table
-		// initTable();
+		initTable();
 
-		obsList = FXCollections.observableArrayList();
-
-		ArrayList<Item> list = itemList.getItemList();
-
-		for (Item i : list) {
-			obsList.add(i);
-		}
-
-		tableView = new TableView<Item>();
-
-		tableView.setEditable(true);
-		tableView.setItems(obsList);
-
-		nameColumn = new TableColumn<Item, String>("Name");
-		nameColumn.setCellValueFactory(
-				new PropertyValueFactory<Item, String>("name"));
-
-		priceColumn = new TableColumn<Item, Integer>("Price");
-		priceColumn.setCellValueFactory(
-				new PropertyValueFactory<Item, Integer>("price"));
-
-		sizeColumn = new TableColumn<Item, String>("Size");
-		sizeColumn.setCellValueFactory(
-				new PropertyValueFactory<Item, String>("size"));
-
-		quantityColumn = new TableColumn<Item, Integer>("Quantity");
-		quantityColumn.setCellValueFactory(
-				new PropertyValueFactory<Item, Integer>("quantity"));
-
-		tableView.getColumns().addAll(nameColumn, priceColumn,
-				sizeColumn, quantityColumn);
+		// obsList = FXCollections.observableArrayList();
+		//
+		// ArrayList<Item> list = itemList.getItemList();
+		//
+		// for (Item i : list) {
+		// obsList.add(i);
+		// }
+		//
+		// tableView = new TableView<Item>();
+		//
+		// tableView.setEditable(true);
+		// tableView.setItems(obsList);
+		//
+		// nameColumn = new TableColumn<Item, String>("Name");
+		// nameColumn.setCellValueFactory(
+		// new PropertyValueFactory<Item, String>("name"));
+		//
+		// priceColumn = new TableColumn<Item, Integer>("Price");
+		// priceColumn.setCellValueFactory(
+		// new PropertyValueFactory<Item, Integer>("price"));
+		//
+		// sizeColumn = new TableColumn<Item, String>("Size");
+		// sizeColumn.setCellValueFactory(
+		// new PropertyValueFactory<Item, String>("size"));
+		//
+		// quantityColumn = new TableColumn<Item,
+		// Integer>("Quantity");
+		// quantityColumn.setCellValueFactory(
+		// new PropertyValueFactory<Item, Integer>("quantity"));
+		//
+		// tableView.getColumns().addAll(nameColumn, priceColumn,
+		// sizeColumn, quantityColumn);
+		//
+		// tableView.refresh();
 
 	}// End of the 'initialize' method
 
@@ -713,7 +715,7 @@ public class Controller {
 	/**
 	 * This is the method that will initialize the table
 	 */
-	@FXML
+
 	private void initTable() {
 
 		// ((TableView<Item>) tableView.getItems())
@@ -724,12 +726,15 @@ public class Controller {
 
 		initColumns();
 
-		tableView = new TableView<Item>();
+		// tableView = new TableView<Item>();
 
-		tableView.setEditable(true);
-		tableView.setItems(obsList);
-		tableView.getColumns().addAll(nameColumn, priceColumn,
-				sizeColumn, quantityColumn);
+		// tableView.setEditable(true);
+		// tableView.setItems(obsList);
+		// tableView.getColumns().addAll(nameColumn, priceColumn,
+		// sizeColumn, quantityColumn);
+
+		tableView.setVisible(true);
+		tableView.refresh();
 
 		// tableBox.getChildren().addAll(tableView);
 
@@ -745,10 +750,6 @@ public class Controller {
 	 */
 	private void initObservableList() {
 
-		// Initialize the observable list
-		// obsList = FXCollections
-		// .observableArrayList(itemList.getItemList());
-
 		obsList = FXCollections.observableArrayList();
 
 		ArrayList<Item> list = itemList.getItemList();
@@ -756,17 +757,6 @@ public class Controller {
 		for (Item i : list) {
 			obsList.add(i);
 		}
-
-		// // Get Entry set
-		// Set<Entry<Long, Item>> entries = itemList.getItemList()
-		// .entrySet();
-		//
-		// // Loop through all entries in the inventory
-		// for (Entry<Long, Item> e : entries) {
-		//
-		// obsList.add(e.getValue());
-		//
-		// } // end of loop
 
 	}// End of the 'initObservableList' method
 
@@ -777,59 +767,21 @@ public class Controller {
 	@FXML
 	private void initColumns() {
 
-		// use fully detailed type for Map.Entry<String, String>
-		// TableColumn<Map.Entry<String, String>, String> column1 =
-		// new TableColumn<>(
-		// "Key");
-		// column1.setCellValueFactory(
-		// new Callback<TableColumn.CellDataFeatures<Map.Entry<String,
-		// String>, String>, ObservableValue<String>>() {
-		//
-		// @Override
-		// public ObservableValue<String> call(
-		// TableColumn.CellDataFeatures<Map.Entry<String, String>,
-		// String> p) {
-		// // this callback returns property for just one
-		// // cell, you can't use a loop here
-		// // for first column we use key
-		// return new SimpleStringProperty(
-		// p.getValue().getKey());
-		// }
-		// });
-
-		// use fully detailed type for Map.Entry<String, String>
-		// nameColumn = new TableColumn<>("Name");
-		// nameColumn.setCellValueFactory(
-		// new Callback<TableColumn.CellDataFeatures<Map.Entry<Long,
-		// Item>, String>, ObservableValue<String>>() {
-		//
-		// @Override
-		// public ObservableValue<String> call(
-		// TableColumn.CellDataFeatures<Map.Entry<String, String>,
-		// String> p) {
-		// // this callback returns property for just one
-		// // cell, you can't use a loop here
-		// // for first column we use key
-		// return new SimpleStringProperty(
-		// p.getValue().getKey());
-		// }
-		// });
-
 		nameColumn = new TableColumn<Item, String>("Name");
-		nameColumn.setCellValueFactory(
-				new PropertyValueFactory<Item, String>("name"));
+		// nameColumn.setCellValueFactory(
+		// new PropertyValueFactory<Item, String>("name"));
 
 		priceColumn = new TableColumn<Item, Integer>("Price");
-		priceColumn.setCellValueFactory(
-				new PropertyValueFactory<Item, Integer>("price"));
+		// priceColumn.setCellValueFactory(
+		// new PropertyValueFactory<Item, Integer>("price"));
 
 		sizeColumn = new TableColumn<Item, String>("Size");
-		sizeColumn.setCellValueFactory(
-				new PropertyValueFactory<Item, String>("size"));
+		// sizeColumn.setCellValueFactory(
+		// new PropertyValueFactory<Item, String>("size"));
 
 		quantityColumn = new TableColumn<Item, Integer>("Quantity");
-		quantityColumn.setCellValueFactory(
-				new PropertyValueFactory<Item, Integer>("quantity"));
+		// quantityColumn.setCellValueFactory(
+		// new PropertyValueFactory<Item, Integer>("quantity"));
 
 	}// End of the 'initColumns' method
 
