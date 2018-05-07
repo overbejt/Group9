@@ -55,7 +55,7 @@ public class RemoveEmployeeDialog {
 		dialog = new ChoiceDialog<>(list.get(0), list);
 		dialog.setTitle("Remove Employee");
 		dialog.setHeaderText(
-				"Removal of an Employee will take effect imediately");
+				"Removal of an Employee will take effect immediately");
 		dialog.setContentText("Select an employee to remove");
 
 	}// End of the 'initDialog' method

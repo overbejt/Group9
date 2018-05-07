@@ -1,9 +1,12 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.Set;
 
-import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
 
 /**
  * This is going to be the class that will store the inventory.
@@ -18,15 +21,15 @@ public class ItemList implements Serializable {
 	private static final long serialVersionUID = 1359781794835268746L;
 
 	// The inventory will be stored in a hashmap
-	private static ArrayList<Item>	list;
-	private ObservableList<Item>	oList;
+	private static HashMap<Long, Item>	list;
+	private ObservableMap<Long, Item>	map;
 
 	// Constructor
 	public ItemList() {
 
 		// Initializing the item list
-		list = new ArrayList<Item>();
-		// oList = FXCollections.observableArrayList(list);
+		list = new HashMap<Long, Item>();
+		map = FXCollections.observableMap(list);
 
 	}// End of the Constructor
 
@@ -39,7 +42,7 @@ public class ItemList implements Serializable {
 	 */
 	public void addItem(Item newItem) {
 
-		list.add(newItem);
+		map.put(newItem.getID(), newItem);
 
 	}// End of the 'addItem' method
 
@@ -49,9 +52,9 @@ public class ItemList implements Serializable {
 	 * @param id
 	 *            The id of the item to be removed from the inventory
 	 */
-	public void removeItem(Item item) {
+	public void removeItem(Long id) {
 
-		list.remove(item);
+		map.remove(id);
 
 	}// End of the 'removeItem' method
 
@@ -63,9 +66,9 @@ public class ItemList implements Serializable {
 	 *            The ID of the item requested
 	 * @return The requested item
 	 */
-	public Item getItem(int index) {
+	public Item getItem(Long id) {
 
-		return list.get(index);
+		return map.get(id);
 
 	}// End of the 'getItem' method
 
@@ -75,9 +78,9 @@ public class ItemList implements Serializable {
 	 * 
 	 * @return The item list
 	 */
-	public ArrayList<Item> getItemList() {
+	public ObservableMap<Long, Item> getItemList() {
 
-		return this.list;
+		return this.map;
 
 	}// End of the 'getItemList' method
 
@@ -88,9 +91,9 @@ public class ItemList implements Serializable {
 	 * 
 	 * @param inList
 	 */
-	public void setItemList(ArrayList<Item> inList) {
+	public void setItemList(ObservableMap<Long, Item> inList) {
 
-		this.list = inList;
+		this.map = inList;
 
 	}// End of the 'setItemList' method
 
@@ -99,7 +102,7 @@ public class ItemList implements Serializable {
 	 */
 	public void clearList() {
 
-		list.clear();
+		map.clear();
 
 	}// End of the 'clearList' method
 
@@ -115,22 +118,15 @@ public class ItemList implements Serializable {
 		String result = "";
 
 		// Get Entry set
-		// Set<Entry<Long, Item>> entries = oList.entrySet();
+		Set<Entry<Long, Item>> entries = map.entrySet();
 
 		result += "(";
 
-		// // Loop through all entries in the inventory
-		// for (Entry<Long, Item> e : entries) {
-		//
-		// // Concatenate
-		// result += e.getValue().toString();
-		// result += ", ";
-		//
-		// }
+		// Loop through all entries in the inventory
+		for (Entry<Long, Item> e : entries) {
 
-		for (Item i : list) {
 			// Concatenate
-			result += i.toString();
+			result += e.getValue().toString();
 			result += ", ";
 
 		}
@@ -141,5 +137,37 @@ public class ItemList implements Serializable {
 		return result;
 
 	}// End of the 'show' method
+
+	/**
+	 * This is the method that will override the toString() method
+	 * from java.lang. It will also be used to generate a csv file of
+	 * the inventory.
+	 */
+	public String toString() {
+
+		// Declare instance of String to hold concatenation
+		String result = "";
+
+		// Get Entry set
+		Set<Entry<Long, Item>> entries = map.entrySet();
+
+		// result += "(";
+
+		// Loop through all entries in the inventory
+		for (Entry<Long, Item> e : entries) {
+
+			// Concatenate
+			result += e.getValue().toString();
+			result += ", ";
+			// result += "\n";
+
+		}
+
+		// result += ")";
+
+		// Send the concatenated string back
+		return result;
+
+	}// End of the 'toString' method
 
 }// End of the 'ItemList' class

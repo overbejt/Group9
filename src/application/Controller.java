@@ -11,8 +11,6 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 
 import AbucusExceptions.InvalidRemovalException;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,14 +19,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import model.Admin;
@@ -65,17 +62,16 @@ public class Controller {
 	// >>>>>>>>>>>>Inventory Scene Instance variables<<<<<<<<<<<<<<<<<
 	@FXML
 	private TableView<Item>				tableView;
-	private ObservableList<Item>		oList;
 	@FXML
 	private HBox						tableBox;
 	@FXML
-	private TableColumn<Item, String>	nameColumn;
+	private TableColumn<String, Item>	nameColumn;
 	@FXML
-	private TableColumn<Item, String>	priceColumn;
+	private TableColumn<String, Item>	categoryColumn;
 	@FXML
-	private TableColumn<Item, String>	sizeColumn;
+	private TableColumn<String, Item>	sizeColumn;
 	@FXML
-	private TableColumn<Item, String>	quantityColumn;
+	private TableColumn<String, Item>	quantityColumn;
 	@FXML
 	private MenuItem					menuExitItem;
 	@FXML
@@ -96,7 +92,6 @@ public class Controller {
 	private JFXRadioButton				quantityRdBtn;
 	@FXML
 	private JFXRadioButton				nameRdBtn;
-	private ObservableList				itemMap;
 
 	// >>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<
 	// Instance objects
@@ -113,6 +108,11 @@ public class Controller {
 	private boolean	isManager	= false;
 	private boolean	isAdmin		= false;
 	private boolean	isGuest		= false;
+	private boolean	isLogin		= true;
+
+	private final String	LOGIN_SCENE		= "/view/LoginBeta.fxml";
+	private final String	INVENTORY_SCENE	= "/view/InventoryScene.fxml";
+	private final String	CSS				= "/view/application.css";
 
 	// >>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<
 	private final PseudoClass errorClass = PseudoClass
@@ -169,7 +169,7 @@ public class Controller {
 		}
 
 		// Invoke the method that will initialize the table
-		// initTable();
+		initTable();
 
 	}// End of the 'initialize' method
 
@@ -189,77 +189,138 @@ public class Controller {
 
 		boolean correctPassword = false;
 
-		// Test if logging in as a guest
-		if (guestToggle.isSelected()) {
+		// Handling null pointer exception when logging in as a non
+		// existing employee
+		try {
 
-			isGuest = true;// Setting the user state
+			// Test if logging in as a guest
+			if (guestToggle.isSelected()) {
 
-			// Switch to Inventory scene
-			loadInventoryScene();
+				isGuest = true;// Setting the user state
 
-		} else {
-			// Test if a user name was entered
-			if (userNameField.getText().trim().length() == 0) {
-				userNameField.pseudoClassStateChanged(errorClass,
-						true);
+				// Switch to Inventory scene
+				loadScene(INVENTORY_SCENE);
+
 			} else {
-				// Test if user name entered exists
-				String inputName = userNameField.getText();
-				// Format input
-				inputName = inputName.replaceAll("\\s", "");
+				// Test if a user name was entered
+				if (userNameField.getText().trim().length() == 0) {
 
-				// Test if in the employee list
-				if (inputName.equals("admin")) {
-					isAdmin = true;// Might not be the best place
+					// Alert the user to missing user name
+					String msg = "Must Enter a User Name";
+					System.out.println(msg);
+					Alert err = new Alert(AlertType.CONFIRMATION,
+							msg);
+					err.show();
 
-				} else if (employeeList.contains(inputName)) {
-
-					currentEmployee = (Employee) employeeList
-							.getEmployee(inputName);
 				} else {
-					// Alert the user to not a valid user name
-					System.out.println("Invalid User Name");
-				}
-			} // End of user name verification
+					// Test if user name entered exists
+					String inputName = userNameField.getText();
+					// Format input
+					inputName = inputName.replaceAll("\\s", "");
+
+					// Test if in the employee list
+					if (inputName.equals("admin")) {
+						isAdmin = true;// Might not be the best place
+
+					} else if (employeeList.contains(inputName)) {
+
+						// Preventing from being able to login with
+						// admin
+						// password
+						isAdmin = false;
+
+						currentEmployee = (Employee) employeeList
+								.getEmployee(inputName);
+					} else {
+
+						// Alert the user to not a valid user name
+						String msg = "Invalid User Name";
+						System.out.println(msg);
+						Alert err = new Alert(AlertType.CONFIRMATION,
+								msg);
+						err.show();
+					}
+				} // End of user name verification
+
 				// Test if a password was entered
-			if (passwordField.getText().trim().length() == 0) {
-				passwordField.pseudoClassStateChanged(errorClass,
-						true);
-			} else {
-				String inPassword = passwordField.getText();
-				inPassword = inPassword.trim();//
-				if (isAdmin) {
-					if (inPassword.equals("admin")) {
-						isAdmin = true;// Setting the user sate
-						// Invoke the 'loadInventoryScene' method
-						loadInventoryScene();
-					}
-				} else if (inPassword
-						.equals(currentEmployee.getPassword())) {
+				if (passwordField.getText().trim().length() == 0) {
 
-					// Test if good password
-
-					// Test if manager
-					if (currentEmployee.getAccessLevel() == 10) {
-						isManager = true;
-					}
-					// Test if Employee
-					if (currentEmployee.getAccessLevel() == 100) {
-						isEmployee = true; // Setting the user state
-					}
-
-					// Invoke the 'loadInventoryScene' method
-					loadInventoryScene();
+					// Alert the user to missing password
+					String msg = "Must Enter a Password";
+					System.out.println(msg);
+					Alert err = new Alert(AlertType.CONFIRMATION,
+							msg);
+					err.show();
 
 				} else {
-					// Alert the user to bad input
-					System.out.println("Invalid Input");
-				}
+					String inPassword = passwordField.getText();
+					inPassword = inPassword.trim();//
+					if (isAdmin) {
+						if (inPassword.equals("admin")) {
+							isAdmin = true;// Setting the user sate
+							// Invoke the method to load the inventory
+							// scene
+							loadScene(INVENTORY_SCENE);
+						} else {
+							// Alert the user to not a valid user name
+							String msg = "Invalid Password";
+							System.out.println(msg);
+							Alert err = new Alert(
+									AlertType.CONFIRMATION, msg);
+							err.show();
+						}
+						// End of isAdmin test
+					} else if (inPassword
+							.equals(currentEmployee.getPassword())) {
 
-			} // End of password verification
-		} // End of guest test
+						// Test if good password
 
-		System.out.println("?");
+						// Test if manager
+						if (currentEmployee.getAccessLevel() == 10) {
+							isManager = true;
+						}
+						// Test if Employee
+						if (currentEmployee.getAccessLevel() == 100) {
+							isEmployee = true; // Setting the user
+												// state
+						}
+
+						// Invoke the 'loadInventoryScene' method
+						loadScene(INVENTORY_SCENE);
+
+					} else {
+						// Alert the user to not a valid password
+						String msg = "Invalid Password";
+						System.out.println(msg);
+						Alert err = new Alert(AlertType.CONFIRMATION,
+								msg);
+						err.show();
+					}
+
+				} // End of password verification
+
+			} // End of guest test
+
+			// Handle null pointer exception when trying to log in as
+			// non existing employee
+		} catch (Exception er) {
+
+			// Declaring a string to hold the message for the user
+			String msg = "";
+
+			// Test if employee does not exist
+			if (er instanceof NullPointerException) {
+				// Alert the user to not a valid password
+				msg = "Employee Does Not Exist";
+			} else {
+				msg = "Invalid Input";
+			}
+
+			System.out.println(msg);
+			Alert err = new Alert(AlertType.CONFIRMATION, msg);
+			err.show();
+
+		} // End of the catch statement
 
 	}// End of the 'loginBtnClicked' method
 
@@ -383,6 +444,20 @@ public class Controller {
 			System.out.println("The name Radio Button was clicked");
 		}
 	}// End of the 'nameRadioClicked' method
+
+	/**
+	 * This is the mehtod that will invoke the switch to log in scene
+	 * method
+	 */
+	@FXML
+	public void logoutClicked() {
+
+		System.out.println("The logout button was clicked");
+
+		// Invoking the method that will switch to the login scene
+		loadScene(LOGIN_SCENE);
+
+	}// End of the 'logoutClicked' method
 
 	/**
 	 * This is the method that will filter Edit options based on which
@@ -524,7 +599,7 @@ public class Controller {
 		validateNewItem(result);// Validate input
 
 		// TEMP
-		System.out.println("Item List: " + itemList.show());
+		System.out.println("Item List: " + itemList.toString());
 
 	}// End of the 'menuAddItemClicked' method
 
@@ -548,14 +623,21 @@ public class Controller {
 	public void end() {
 		System.out.println("Controller/end method");
 
-		// The alert box
-		String msg = "Would you like to save the inventory?";
-		Alert alert = new Alert(AlertType.CONFIRMATION, msg);
+		// Test if the login scene is in focus
+		if (!isLogin) {
 
-		// If click yes, then save. Else exit
-		alert.showAndWait()
-				.filter(response -> response == ButtonType.OK)
-				.ifPresent(response -> save());
+			// The alert box
+			String msg = "Would you like to save the inventory?";
+			Alert alert = new Alert(AlertType.CONFIRMATION, msg);
+
+			// If click yes, then save and exit. Else exit
+			alert.showAndWait()
+					.filter(response -> response
+							.getButtonData() == ButtonData.OK_DONE)
+					.ifPresent(response -> save());
+
+		} // End of the test for if on the login scene
+
 		System.exit(0);// Exiting the program
 
 	}// End of the 'end' method
@@ -570,9 +652,19 @@ public class Controller {
 		try {
 			// Saving the Employee List
 			persistence.writeEmployeeList(employeeList);
+			// Saving the Item List
+			persistence.writeItemList(itemList);
+
 		} catch (IOException err) {
-			// TODO Auto-generated catch block
-			err.printStackTrace();
+			// The alert box
+			String msg = "There was an issue with saving...";
+			Alert alert = new Alert(AlertType.CONFIRMATION, msg);
+
+			// If click yes, then save and exit. Else exit
+			alert.showAndWait()
+					.filter(response -> response
+							.getButtonData() == ButtonData.OK_DONE)
+					.ifPresent(response -> save());
 		}
 	}// End of the 'save' method
 
@@ -582,46 +674,31 @@ public class Controller {
 	@FXML
 	private void initTable() {
 
-		// tableView = new TableView<Item>();
-
-		oList = oList = FXCollections
-				.observableArrayList(itemList.getItemList());
-
-		nameColumn = new TableColumn("Name");
-		nameColumn.setCellValueFactory(
-				new PropertyValueFactory<Item, String>("name"));
-
-		priceColumn = new TableColumn("Price");
-		priceColumn.setCellValueFactory(
-				new PropertyValueFactory<Item, String>("price"));
-
-		quantityColumn = new TableColumn("Quantity");
-		quantityColumn.setCellValueFactory(
-				new PropertyValueFactory<Item, String>("quantity"));
-
-		sizeColumn = new TableColumn("Size");
-		sizeColumn.setCellValueFactory(
-				new PropertyValueFactory<Item, String>("size"));
-
-		tableView.setItems(oList);
-
-		tableView.getColumns().setAll(nameColumn, priceColumn,
-				quantityColumn, sizeColumn);
-		tableView.setItems(oList);
-
-		tableView.refresh();
-
 	}// End of the 'initTable' method
 
 	/**
-	 * This is a private helper method that will load the inventory
-	 * scene.
+	 * This is a private helper method that will reset the current
+	 * user states and load the indicated scene.
 	 */
-	private void loadInventoryScene() {
+	private void loadScene(String newScene) {
+
+		// Invoking the method that will reset the current user states
+		
+		// Commenting this method out fixes the guest being able to add/remove bug
+		// resetUserState();
+
+		// Test for if Login scene is loaded
+		if (newScene.equals(LOGIN_SCENE)) {
+			isLogin = true;
+		} else {
+			isLogin = false;
+		}
+
 		try {
+
 			// Switching to the inventory scene
-			fxmlLoader = new FXMLLoader(getClass()
-					.getResource("/view/InventoryScene.fxml"));
+			fxmlLoader = new FXMLLoader(
+					getClass().getResource(newScene));
 
 			// To keep the states of everything in this controller
 			fxmlLoader.setController(this);
@@ -629,10 +706,8 @@ public class Controller {
 			parent = fxmlLoader.load();// Loading the new FXML file
 
 			scene = new Scene(parent, 600, 400);
-			scene.getStylesheets()
-					.add(getClass()
-							.getResource("/view/application.css")
-							.toExternalForm());
+			scene.getStylesheets().add(
+					getClass().getResource(CSS).toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Abacus");
 			primaryStage.setMaximized(true);// Maximizing
@@ -640,8 +715,9 @@ public class Controller {
 			primaryStage.show();
 		} catch (Exception err) {
 			// It should catch this
+			System.out.println(err);
 		}
-	}// End of the 'loadInventoryScene' method
+	}// End of the 'loadScene' method
 
 	/**
 	 * This is a private helper class that will prevent anyone but
@@ -674,6 +750,7 @@ public class Controller {
 		isGuest = false;
 		isAdmin = false;
 		isEmployee = false;
+		isManager = false;
 	}// End of the 'resetUserState' method
 
 	/**
@@ -835,23 +912,23 @@ public class Controller {
 			String price = node.getPrice();
 			String quantity = node.getQuantity();
 
+			int parsedQuantity = 0;
+
+			try {
+				parsedQuantity = Integer.parseInt(quantity);
+			} catch (Exception err) {
+				System.out.println(err);
+			}
+
 			Item newItem = new Item();
 			newItem.setName(itemName);
 			newItem.setSize(size);
 			newItem.setPrice(price);
-			// newItem.setQuantity(quantity);
+			newItem.setQuantity(parsedQuantity);
 
 			// Add the new item to the list
 			itemList.addItem(newItem);
 
-			tableView.refresh();
-
-			// // Save the itemList
-			// try {
-			// persistence.writeItemList(itemList);
-			// } catch (IOException e) {
-			// e.printStackTrace();
-			// }
 		}
 	}
 }// End of the 'Controller' class

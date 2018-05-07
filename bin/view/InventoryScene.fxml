@@ -16,7 +16,8 @@
           <Menu mnemonicParsing="false" text="File">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#menuItemSaveClicked" text="Save" />
-                  <MenuItem mnemonicParsing="false" text="Save as..." />
+                <!--    <MenuItem mnemonicParsing="false" text="Save as..." /> -->
+                  <MenuItem fx:id="menuLogoutItem" mnemonicParsing="false" onAction="#logoutClicked" text="Logout" />
                   <MenuItem fx:id="menuExitItem" mnemonicParsing="false" onAction="#menuItemCloseClicked" text="Exit" />
             </items>
           </Menu>
@@ -24,11 +25,7 @@
             <items>
                   <MenuItem fx:id="menuAddEmployee" mnemonicParsing="false" onAction="#menuAddEmployeeClicked" text="Add Employee" />
                   <MenuItem fx:id="menuRemoveEmployee" onAction="#menuRemoveEmployeeClicked" mnemonicParsing="false" text="Remove Employee" />
-<<<<<<< HEAD
                   <MenuItem fx:id="menuAddItem" onAction="#menuAddItemClicked" mnemonicParsing="false" text="Add Item" />
-=======
-                  <MenuItem fx:id="menuAddItem"  onAction="#menuAddItemClicked" mnemonicParsing="false" text="Add Item" />
->>>>>>> 44d4819b674c6a062d0496c7c2b1435911e758dc
                   <MenuItem fx:id="menuRemoveItem" mnemonicParsing="false" text="Remove Item" />
             </items>
           </Menu>
@@ -46,7 +43,7 @@
             <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #6f2828;" HBox.hgrow="ALWAYS">
                <columns>
                   <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
-                  <TableColumn fx:id="catagoryColumn" prefWidth="75.0" text="Catagory" />
+                  <TableColumn fx:id="categoryColumn" prefWidth="75.0" text="Category" />
                   <TableColumn fx:id="sizeColumn" prefWidth="75.0" text="Size" />
                   <TableColumn fx:id="quantityColumn" prefWidth="75.0" text="Quantity" />
                </columns>
