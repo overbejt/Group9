@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 
 import AbucusExceptions.InvalidRemovalException;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
@@ -69,7 +70,7 @@ public class Controller {
 	@FXML
 	private TableColumn<Item, String>	nameColumn;
 	@FXML
-	private TableColumn<Item, String>	categoryColumn;
+	private TableColumn<Item, String>	priceColumn;
 	@FXML
 	private TableColumn<Item, String>	sizeColumn;
 	@FXML
@@ -685,7 +686,13 @@ public class Controller {
 		// Initialize the observable list
 		initObservableList();
 
-		tableView.getItems().setAll(obsList);
+		tableView = new TableView<Item>();
+
+		tableView.setEditable(true);
+		tableView.setItems(obsList);
+		tableView.getColumns().addAll(nameColumn, priceColumn,
+				sizeColumn, quantityColumn);
+		// tableView.getItems().setAll(obsList);
 
 	}// End of the 'initTable' method
 
@@ -694,6 +701,21 @@ public class Controller {
 	 * the table view
 	 */
 	private void initObservableList() {
+
+		// Initialize the observable list
+		obsList = FXCollections
+				.observableArrayList(itemList.getItemList());
+
+		// // Get Entry set
+		// Set<Entry<Long, Item>> entries = itemList.getItemList()
+		// .entrySet();
+		//
+		// // Loop through all entries in the inventory
+		// for (Entry<Long, Item> e : entries) {
+		//
+		// obsList.add(e.getValue());
+		//
+		// } // end of loop
 
 	}// End of the 'initObservableList' method
 
@@ -742,17 +764,21 @@ public class Controller {
 		// }
 		// });
 
+		nameColumn = new TableColumn("Name");
 		nameColumn.setCellValueFactory(
 				new PropertyValueFactory<Item, String>("name"));
 
-		categoryColumn.setCellValueFactory(
-				new PropertyValueFactory<Item, String>("catagory"));
+		priceColumn = new TableColumn("Price");
+		priceColumn.setCellValueFactory(
+				new PropertyValueFactory<Item, String>("price"));
 
+		sizeColumn = new TableColumn("Size");
 		sizeColumn.setCellValueFactory(
 				new PropertyValueFactory<Item, String>("size"));
 
-		sizeColumn.setCellValueFactory(
-				new PropertyValueFactory<Item, String>("size"));
+		quantityColumn = new TableColumn("Quantity");
+		quantityColumn.setCellValueFactory(
+				new PropertyValueFactory<Item, String>("quantity"));
 
 	}// End of the 'initColumns' method
 

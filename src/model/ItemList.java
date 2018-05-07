@@ -1,12 +1,7 @@
 package model;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map.Entry;
-import java.util.Set;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableMap;
+import java.util.ArrayList;
 
 /**
  * This is going to be the class that will store the inventory.
@@ -21,15 +16,17 @@ public class ItemList implements Serializable {
 	private static final long serialVersionUID = 1359781794835268746L;
 
 	// The inventory will be stored in a hashmap
-	private static HashMap<Long, Item>	list;
-	private ObservableMap<Long, Item>	map;
+	// private static HashMap<Long, Item> list;
+	// private ObservableMap<Long, Item> map;
+	private ArrayList<Item> list;
 
 	// Constructor
 	public ItemList() {
 
 		// Initializing the item list
-		list = new HashMap<Long, Item>();
-		map = FXCollections.observableMap(list);
+		// list = new HashMap<Long, Item>();
+		list = new ArrayList<Item>();
+		// map = FXCollections.observableMap(list);
 
 	}// End of the Constructor
 
@@ -42,7 +39,8 @@ public class ItemList implements Serializable {
 	 */
 	public void addItem(Item newItem) {
 
-		map.put(newItem.getID(), newItem);
+		// list.put(newItem.getID(), newItem);
+		list.add(newItem);
 
 	}// End of the 'addItem' method
 
@@ -52,9 +50,15 @@ public class ItemList implements Serializable {
 	 * @param id
 	 *            The id of the item to be removed from the inventory
 	 */
-	public void removeItem(Long id) {
+	public void removeItem(long id) {
 
-		map.remove(id);
+		// list.remove(id);
+
+		for (Item i : list) {
+			if (i.getID() == id) {
+				list.remove(i);
+			}
+		}
 
 	}// End of the 'removeItem' method
 
@@ -66,9 +70,17 @@ public class ItemList implements Serializable {
 	 *            The ID of the item requested
 	 * @return The requested item
 	 */
-	public Item getItem(Long id) {
+	public Item getItem(long id) {
 
-		return map.get(id);
+		Item result = new Item();
+
+		for (Item i : list) {
+			if (i.getID() == id) {
+				result = i;
+			}
+		}
+
+		return result;
 
 	}// End of the 'getItem' method
 
@@ -78,9 +90,9 @@ public class ItemList implements Serializable {
 	 * 
 	 * @return The item list
 	 */
-	public ObservableMap<Long, Item> getItemList() {
+	public ArrayList<Item> getItemList() {
 
-		return this.map;
+		return this.list;
 
 	}// End of the 'getItemList' method
 
@@ -91,9 +103,9 @@ public class ItemList implements Serializable {
 	 * 
 	 * @param inList
 	 */
-	public void setItemList(ObservableMap<Long, Item> inList) {
+	public void setItemList(ArrayList<Item> inList) {
 
-		this.map = inList;
+		this.list = inList;
 
 	}// End of the 'setItemList' method
 
@@ -102,7 +114,7 @@ public class ItemList implements Serializable {
 	 */
 	public void clearList() {
 
-		map.clear();
+		list.clear();
 
 	}// End of the 'clearList' method
 
@@ -118,15 +130,23 @@ public class ItemList implements Serializable {
 		String result = "";
 
 		// Get Entry set
-		Set<Entry<Long, Item>> entries = map.entrySet();
+		// Set<Entry<Long, Item>> entries = list.entrySet();
 
 		result += "(";
 
-		// Loop through all entries in the inventory
-		for (Entry<Long, Item> e : entries) {
+		// // Loop through all entries in the inventory
+		// for (Entry<Long, Item> e : entries) {
+		//
+		// // Concatenate
+		// result += e.getValue().toString();
+		// result += ", ";
+		//
+		// }
+
+		for (Item i : list) {
 
 			// Concatenate
-			result += e.getValue().toString();
+			result += i.toString();
 			result += ", ";
 
 		}
@@ -148,22 +168,26 @@ public class ItemList implements Serializable {
 		// Declare instance of String to hold concatenation
 		String result = "";
 
-		// Get Entry set
-		Set<Entry<Long, Item>> entries = map.entrySet();
+		// // Get Entry set
+		// Set<Entry<Long, Item>> entries = list.entrySet();
+		//
+		// // Loop through all entries in the inventory
+		// for (Entry<Long, Item> e : entries) {
+		//
+		// // Concatenate
+		// result += e.getValue().toString();
+		// result += ", ";
+		// // result += "\n";
+		//
+		// }
 
-		// result += "(";
-
-		// Loop through all entries in the inventory
-		for (Entry<Long, Item> e : entries) {
+		for (Item i : list) {
 
 			// Concatenate
-			result += e.getValue().toString();
+			result += i.toString();
 			result += ", ";
-			// result += "\n";
 
 		}
-
-		// result += ")";
 
 		// Send the concatenated string back
 		return result;
