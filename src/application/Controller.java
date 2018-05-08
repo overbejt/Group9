@@ -751,10 +751,14 @@ public class Controller {
 	 */
 	private void initObservableList() {
 
+		// Initialize the observable list
 		obsList = FXCollections.observableArrayList();
 
+		// Get the array list
 		ArrayList<Item> list = itemList.getItemList();
 
+		// Loop through the array list and add each item to the
+		// observable list
 		for (Item i : list) {
 			obsList.add(i);
 		}
