@@ -629,7 +629,11 @@ public class Controller {
 
 		// Not allowing individual cells to be edited
 		tableView.getSelectionModel().cellSelectionEnabledProperty()
-				.set(true);
+				.set(false);
+
+		tableView.setOnContextMenuRequested(event -> {
+
+		});
 
 		// Refreshing the table view
 		tableView.refresh();
@@ -668,12 +672,12 @@ public class Controller {
 		nameColumn.setCellValueFactory(
 				new PropertyValueFactory<Item, String>("name"));
 
-		nameColumn.setOnEditCommit(
-				(TableColumn.CellEditEvent<Item, String> n) -> {
-					((Item) n.getTableView().getItems()
-							.get(n.getTablePosition().getRow()))
-									.setName(n.getNewValue());
-				});
+		// nameColumn.setOnEditCommit(
+		// (TableColumn.CellEditEvent<Item, String> n) -> {
+		// ((Item) n.getTableView().getItems()
+		// .get(n.getTablePosition().getRow()))
+		// .setName(n.getNewValue());
+		// });
 
 		// Initializing the price column
 		priceColumn = new TableColumn<Item, Integer>("Price");

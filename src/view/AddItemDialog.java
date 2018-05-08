@@ -84,7 +84,7 @@ public class AddItemDialog {
 	private void initDialog() {
 
 		itemAdded = new Dialog<>();
-		itemAdded.setTitle("Add Item");
+		itemAdded.setTitle("Add/Edit Item");
 		itemAdded.setHeaderText("Enter the items properties");
 
 		initBtnType();// Initializing the button
@@ -131,5 +131,24 @@ public class AddItemDialog {
 		// Set the background color?
 		itemAdded.getDialogPane().getStyleClass().add("myDialog");
 	}// End of the 'setStyle' method
+
+	/**
+	 * This is the method that will fill the fields with the values of
+	 * the selected row from the table view.
+	 * 
+	 * @param name
+	 * @param size
+	 * @param price
+	 * @param quantity
+	 */
+	public void setFields(String name, String size, String price,
+			int quantity) {
+
+		this.itemName.setText(name);
+		this.size.setText(size);
+		this.price.setText(price);
+		this.quantity.setText(Integer.toString(quantity));
+
+	}// End of the 'setFields' mehtod
 
 }
