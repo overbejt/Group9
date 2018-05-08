@@ -694,8 +694,21 @@ public class Controller {
 		nameColumn.setOnEditCommit(event -> {
 			// Get the selected item
 			Item selected = event.getRowValue();
-			// Update the name
-			selected.setName(event.getNewValue().toString());
+
+			// Prevent guest from editing
+			if (!isGuest) {
+				// Update the name
+				selected.setName(event.getNewValue().toString());
+			} else {
+				// Alert the user to Insufficient access rights
+				String msg = "Insufficient access rights";
+				System.out.println(msg);
+				Alert err = new Alert(AlertType.CONFIRMATION, msg);
+				err.show();
+
+				// Refreshing the table
+				tableView.refresh();
+			}
 
 		});
 
@@ -714,8 +727,21 @@ public class Controller {
 		priceColumn.setOnEditCommit(event -> {
 			// Get the selected item
 			Item selected = event.getRowValue();
-			// Update the name
-			selected.setPrice(event.getNewValue().toString());
+
+			// Preventing guest from being able to edit items
+			if (!isGuest) {
+				// Update the name
+				selected.setPrice(event.getNewValue().toString());
+			} else {
+				// Alert the user to Insufficient access rights
+				String msg = "Insufficient access rights";
+				System.out.println(msg);
+				Alert err = new Alert(AlertType.CONFIRMATION, msg);
+				err.show();
+
+				// Refreshing the table
+				tableView.refresh();
+			}
 
 		});
 
@@ -732,8 +758,21 @@ public class Controller {
 		sizeColumn.setOnEditCommit(event -> {
 			// Get the selected item
 			Item selected = event.getRowValue();
-			// Update the name
-			selected.setSize(event.getNewValue().toString());
+
+			// Preventing guest from editing table
+			if (!isGuest) {
+				// Update the name
+				selected.setSize(event.getNewValue().toString());
+			} else {
+				// Alert the user to Insufficient access rights
+				String msg = "Insufficient access rights";
+				System.out.println(msg);
+				Alert err = new Alert(AlertType.CONFIRMATION, msg);
+				err.show();
+
+				// Refreshing the table
+				tableView.refresh();
+			}
 
 		});
 
@@ -751,8 +790,21 @@ public class Controller {
 		quantityColumn.setOnEditCommit(event -> {
 			// Get the selected item
 			Item selected = event.getRowValue();
-			// Update the name
-			selected.setQuantity(event.getNewValue().toString());
+
+			// Preventing guest from being able to edit table
+			if (!isGuest) {
+				// Update the name
+				selected.setQuantity(event.getNewValue().toString());
+			} else {
+				// Alert the user to Insufficient access rights
+				String msg = "Insufficient access rights";
+				System.out.println(msg);
+				Alert err = new Alert(AlertType.CONFIRMATION, msg);
+				err.show();
+
+				// Refreshing the table
+				tableView.refresh();
+			}
 
 		});
 
@@ -1044,8 +1096,20 @@ public class Controller {
 		Item selected = tableView.getSelectionModel()
 				.getSelectedItem();
 
-		// Removing the item from the table
-		obsList.remove(selected);
+		// Prevent guest from being able to remove items from the
+		// table
+		if (!isGuest) {
+
+			// Removing the item from the table
+			obsList.remove(selected);
+
+		} else {
+			// Alert the user to missing passwordA
+			String msg = "Insufficient access rights";
+			System.out.println(msg);
+			Alert err = new Alert(AlertType.CONFIRMATION, msg);
+			err.show();
+		}
 
 	}// End of the 'removeItemFromTable' method
 
