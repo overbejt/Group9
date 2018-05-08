@@ -662,6 +662,10 @@ public class Controller {
 		try {
 			// Saving the Employee List
 			persistence.writeEmployeeList(employeeList);
+
+			// Invoke the method that will update the item list
+			updateItemList();
+
 			// Saving the Item List
 			persistence.writeItemList(itemList);
 
@@ -1006,11 +1010,29 @@ public class Controller {
 			// Add the new item to the list
 			obsList.add(newItem);
 
-			itemList.addItem(newItem);
-
 			// Update the table view
 			tableView.refresh();
 
 		}
-	}
+	}// End of the 'validateNewItem' method
+
+	/**
+	 * This is the method that will update the Item List. It will be
+	 * invoked if the user decides that they want to save the changes
+	 * that they have made to the item list.
+	 */
+	private void updateItemList() {
+
+		// Create a new item list so that the old one will be release
+		// for garbage collection
+		itemList = new ItemList();
+
+		// Loop through the observable list and add the items to the
+		// item list
+		for (Item i : obsList) {
+			itemList.addItem(i);
+		}
+
+	}// End of the 'updateItemList' method
+
 }// End of the 'Controller' class
