@@ -30,7 +30,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import model.Admin;
@@ -65,12 +64,13 @@ public class Controller {
 	private JFXButton			loginBtn;
 
 	// >>>>>>>>>>>>Inventory Scene Instance variables<<<<<<<<<<<<<<<<<
+
+	// Initializing it here was the most important part for the table
+	// view
 	@FXML
 	private TableView<Item>				tableView	= new TableView();
 	@FXML
 	private HBox						tableBox;
-	@FXML
-	private BorderPane					borderPane;						// ?
 	@FXML
 	private TableColumn<Item, String>	nameColumn;
 	@FXML
@@ -179,44 +179,42 @@ public class Controller {
 		}
 
 		// Invoke the method that will initialize the table
-		// initTable();
+		initTable();
 
-		obsList = FXCollections.observableArrayList();
-
-		ArrayList<Item> list = itemList.getItemList();
-
-		for (Item i : list) {
-			obsList.add(i);
-		}
+		// obsList = FXCollections.observableArrayList();
 		//
-		// tableView = new TableView<Item>();
+		// ArrayList<Item> list = itemList.getItemList();
 		//
-		// tableView.setEditable(true);
-		tableView.setItems(obsList);
+		// for (Item i : list) {
+		// obsList.add(i);
+		// }
 		//
-		nameColumn = new TableColumn<Item, String>("Name");
-		nameColumn.setCellValueFactory(
-				new PropertyValueFactory<Item, String>("name"));
-
-		priceColumn = new TableColumn<Item, Integer>("Price");
-		priceColumn.setCellValueFactory(
-				new PropertyValueFactory<Item, Integer>("price"));
-
-		sizeColumn = new TableColumn<Item, String>("Size");
-		sizeColumn.setCellValueFactory(
-				new PropertyValueFactory<Item, String>("size"));
-
-		quantityColumn = new TableColumn<Item, Integer>("Quantity");
-		quantityColumn.setCellValueFactory(
-				new PropertyValueFactory<Item, Integer>("quantity"));
-
-		tableView.getColumns().addAll(nameColumn, priceColumn,
-				sizeColumn, quantityColumn);
+		// tableView.setItems(obsList);
+		// //
+		// nameColumn = new TableColumn<Item, String>("Name");
+		// nameColumn.setCellValueFactory(
+		// new PropertyValueFactory<Item, String>("name"));
 		//
+		// priceColumn = new TableColumn<Item, Integer>("Price");
+		// priceColumn.setCellValueFactory(
+		// new PropertyValueFactory<Item, Integer>("price"));
+		//
+		// sizeColumn = new TableColumn<Item, String>("Size");
+		// sizeColumn.setCellValueFactory(
+		// new PropertyValueFactory<Item, String>("size"));
+		//
+		// quantityColumn = new TableColumn<Item,
+		// Integer>("Quantity");
+		// quantityColumn.setCellValueFactory(
+		// new PropertyValueFactory<Item, Integer>("quantity"));
+		//
+		// tableView.getColumns().addAll(nameColumn, priceColumn,
+		// sizeColumn, quantityColumn);
+		// //
+		// // tableView.refresh();
+		//
+		// tableView.setVisible(true);
 		// tableView.refresh();
-
-		tableView.setVisible(true);
-		tableView.refresh();
 
 	}// End of the 'initialize' method
 
@@ -732,9 +730,9 @@ public class Controller {
 		// tableView = new TableView<Item>();
 
 		// tableView.setEditable(true);
-		// tableView.setItems(obsList);
-		// tableView.getColumns().addAll(nameColumn, priceColumn,
-		// sizeColumn, quantityColumn);
+		tableView.setItems(obsList);
+		tableView.getColumns().addAll(nameColumn, priceColumn,
+				sizeColumn, quantityColumn);
 
 		tableView.setVisible(true);
 		tableView.refresh();
@@ -770,21 +768,25 @@ public class Controller {
 	@FXML
 	private void initColumns() {
 
+		// Initializing the name column
 		nameColumn = new TableColumn<Item, String>("Name");
-		// nameColumn.setCellValueFactory(
-		// new PropertyValueFactory<Item, String>("name"));
+		nameColumn.setCellValueFactory(
+				new PropertyValueFactory<Item, String>("name"));
 
+		// Initializing the price column
 		priceColumn = new TableColumn<Item, Integer>("Price");
-		// priceColumn.setCellValueFactory(
-		// new PropertyValueFactory<Item, Integer>("price"));
+		priceColumn.setCellValueFactory(
+				new PropertyValueFactory<Item, Integer>("price"));
 
+		// Initializing the size column
 		sizeColumn = new TableColumn<Item, String>("Size");
-		// sizeColumn.setCellValueFactory(
-		// new PropertyValueFactory<Item, String>("size"));
+		sizeColumn.setCellValueFactory(
+				new PropertyValueFactory<Item, String>("size"));
 
+		// Initializing the quantity column
 		quantityColumn = new TableColumn<Item, Integer>("Quantity");
-		// quantityColumn.setCellValueFactory(
-		// new PropertyValueFactory<Item, Integer>("quantity"));
+		quantityColumn.setCellValueFactory(
+				new PropertyValueFactory<Item, Integer>("quantity"));
 
 	}// End of the 'initColumns' method
 
