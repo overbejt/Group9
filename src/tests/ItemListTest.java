@@ -3,14 +3,12 @@ package tests;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableMap;
 import model.Item;
 import model.ItemList;
 
@@ -71,16 +69,14 @@ class ItemListTest {
 		item.setName("Sanity Check");
 
 		list.addItem(item);
-		ObservableMap<Long, Item> sample = list.getItemList();
+		ArrayList<Item> sample = list.getItemList();
 		assertEquals(list.getItemList(), sample);
 	}// End of the 'testGetItemList' method
 
 	@Test
 	void testSetItemList() {
-		HashMap<Long, Item> sample = new HashMap();
 
-		ObservableMap<Long, Item> theSample = FXCollections
-				.observableMap(sample);
+		ArrayList theSample = new ArrayList();
 
 		list.setItemList(theSample);
 
