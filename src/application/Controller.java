@@ -31,6 +31,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import model.Admin;
 import model.Employee;
@@ -628,12 +629,17 @@ public class Controller {
 				.setSelectionMode(SelectionMode.SINGLE);
 
 		// Not allowing individual cells to be edited
-		tableView.getSelectionModel().cellSelectionEnabledProperty()
-				.set(false);
+		// tableView.getSelectionModel().cellSelectionEnabledProperty()
+		// .set(true);
 
-		tableView.setOnContextMenuRequested(event -> {
-
-		});
+		// tableView.setOnContextMenuRequested(event -> {
+		//
+		// Item selected = tableView.getSelectionModel()
+		// .getSelectedItem();
+		//
+		// System.out
+		// .println("Item Selected: " + selected.toString());
+		// });
 
 		// Refreshing the table view
 		tableView.refresh();
@@ -672,12 +678,24 @@ public class Controller {
 		nameColumn.setCellValueFactory(
 				new PropertyValueFactory<Item, String>("name"));
 
+		nameColumn.setEditable(true);
+		nameColumn
+				.setCellFactory(TextFieldTableCell.forTableColumn());
+
 		// nameColumn.setOnEditCommit(
 		// (TableColumn.CellEditEvent<Item, String> n) -> {
 		// ((Item) n.getTableView().getItems()
 		// .get(n.getTablePosition().getRow()))
 		// .setName(n.getNewValue());
 		// });
+
+		nameColumn.setOnEditCommit(event -> {
+			Item selected = event.getRowValue();
+
+			selected.setName(event.getNewValue().toString());
+			// row[index] = event.getNewValue();
+
+		});
 
 		// Initializing the price column
 		priceColumn = new TableColumn<Item, Integer>("Price");
