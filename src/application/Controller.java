@@ -701,8 +701,8 @@ public class Controller {
 		priceColumn.setEditable(true);
 		// Make a text field pop up when the user double clicks on an
 		// item in the column
-		// priceColumn
-		// .setCellFactory(TextFieldTableCell.forTableColumn());
+		priceColumn
+				.setCellFactory(TextFieldTableCell.forTableColumn());
 		// Handle the user input for changing a value in the table
 		// column
 		priceColumn.setOnEditCommit(event -> {
