@@ -88,8 +88,8 @@ public class Controller {
 	private MenuItem					menuRemoveEmployee;
 	@FXML
 	private MenuItem					menuAddItem;
-	@FXML
-	private MenuItem					menuRemoveItem;
+//	@FXML
+//	private MenuItem					menuRemoveItem;
 	@FXML
 	private JFXRadioButton				sizeRdBtn;
 	@FXML
@@ -803,7 +803,7 @@ public class Controller {
 	@FXML
 	private void disableItemListEdit() {
 		menuAddItem.setDisable(true);
-		menuRemoveItem.setDisable(true);
+		//menuRemoveItem.setDisable(true);
 	}// End of the 'disableItemListEdit' method
 
 	/**
