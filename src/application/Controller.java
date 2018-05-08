@@ -677,23 +677,19 @@ public class Controller {
 		nameColumn = new TableColumn<Item, String>("Name");
 		nameColumn.setCellValueFactory(
 				new PropertyValueFactory<Item, String>("name"));
-
+		// Make the column editable
 		nameColumn.setEditable(true);
+		// Make a text field pop up when the user double clicks on an
+		// item in the column
 		nameColumn
 				.setCellFactory(TextFieldTableCell.forTableColumn());
-
-		// nameColumn.setOnEditCommit(
-		// (TableColumn.CellEditEvent<Item, String> n) -> {
-		// ((Item) n.getTableView().getItems()
-		// .get(n.getTablePosition().getRow()))
-		// .setName(n.getNewValue());
-		// });
-
+		// Handle the user input for changing a value in the table
+		// column
 		nameColumn.setOnEditCommit(event -> {
+			// Get the selected item
 			Item selected = event.getRowValue();
-
+			// Update the name
 			selected.setName(event.getNewValue().toString());
-			// row[index] = event.getNewValue();
 
 		});
 
@@ -701,16 +697,58 @@ public class Controller {
 		priceColumn = new TableColumn<Item, Integer>("Price");
 		priceColumn.setCellValueFactory(
 				new PropertyValueFactory<Item, Integer>("price"));
+		// Make the column editable
+		priceColumn.setEditable(true);
+		// Make a text field pop up when the user double clicks on an
+		// item in the column
+		// priceColumn
+		// .setCellFactory(TextFieldTableCell.forTableColumn());
+		// Handle the user input for changing a value in the table
+		// column
+		priceColumn.setOnEditCommit(event -> {
+			// Get the selected item
+			Item selected = event.getRowValue();
+			// Update the name
+			selected.setName(event.getNewValue().toString());
+
+		});
 
 		// Initializing the size column
 		sizeColumn = new TableColumn<Item, String>("Size");
 		sizeColumn.setCellValueFactory(
 				new PropertyValueFactory<Item, String>("size"));
+		// Make the column editable
+		sizeColumn.setEditable(true);
+		// Make a text field pop up when the user double clicks on an
+		// item in the column
+		sizeColumn
+				.setCellFactory(TextFieldTableCell.forTableColumn());
+		sizeColumn.setOnEditCommit(event -> {
+			// Get the selected item
+			Item selected = event.getRowValue();
+			// Update the name
+			selected.setName(event.getNewValue().toString());
+
+		});
 
 		// Initializing the quantity column
 		quantityColumn = new TableColumn<Item, Integer>("Quantity");
 		quantityColumn.setCellValueFactory(
 				new PropertyValueFactory<Item, Integer>("quantity"));
+		// // Make the column editable
+		// quantityColumn.setEditable(true);
+		// // Make a text field pop up when the user double clicks on
+		// an
+		// // item in the column
+		// quantityColumn
+		// .setCellFactory(TextFieldTableCell.forTableColumn());
+		quantityColumn.setOnEditCommit(event -> {
+			// Get the selected item
+			Item selected = event.getRowValue();
+			// Update the name
+			selected.setName(event.getNewValue().toString());
+
+		});
 
 	}// End of the 'initColumns' method
 
