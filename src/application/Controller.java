@@ -27,6 +27,7 @@ import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -622,7 +623,11 @@ public class Controller {
 		// Making sure that the table view is visible
 		tableView.setVisible(true);
 
-		// Allow individual cells to be edited
+		// Set the table to allow 1 row to be selected at a time
+		tableView.getSelectionModel()
+				.setSelectionMode(SelectionMode.SINGLE);
+
+		// Not allowing individual cells to be edited
 		tableView.getSelectionModel().cellSelectionEnabledProperty()
 				.set(true);
 
@@ -662,6 +667,13 @@ public class Controller {
 		nameColumn = new TableColumn<Item, String>("Name");
 		nameColumn.setCellValueFactory(
 				new PropertyValueFactory<Item, String>("name"));
+
+		nameColumn.setOnEditCommit(
+				(TableColumn.CellEditEvent<Item, String> n) -> {
+					((Item) n.getTableView().getItems()
+							.get(n.getTablePosition().getRow()))
+									.setName(n.getNewValue());
+				});
 
 		// Initializing the price column
 		priceColumn = new TableColumn<Item, Integer>("Price");
