@@ -139,47 +139,54 @@ public class Controller {
 	public void initialize() throws ClassNotFoundException,
 			FileNotFoundException, IOException {
 
-		System.out.println("Initilizing");
+		// Handling anything that might go wrong
+		try {
 
-		// Initializing the Persistence object
-		persistence = new Persistence();
+			System.out.println("Initilizing");
 
-		// Check if EmployeeList file exists
-		if (persistence.employeeListExists()) {
-			employeeList = persistence.readEmployeeList();
-			System.out
-					.println("Employee List: " + employeeList.show());
-		} // End of EmployeeList check
-		else {
-			employeeList = new EmployeeList();
-			// Creating an 'Admin' object
-			Admin admin = Admin.getAdminInstance();
-			// Adding 'Admin' to the EmployeeList
-			employeeList.addEmployee(admin);
+			// Initializing the Persistence object
+			persistence = new Persistence();
 
-			// Creating a 'Guest' object
-			Guest guest = Guest.getGuestInstance();
-			// Adding 'Guest' to the EmployeeList
-			employeeList.addEmployee(guest);
+			// Check if EmployeeList file exists
+			if (persistence.employeeListExists()) {
+				employeeList = persistence.readEmployeeList();
+				System.out.println(
+						"Employee List: " + employeeList.show());
+			} // End of EmployeeList check
+			else {
+				employeeList = new EmployeeList();
+				// Creating an 'Admin' object
+				Admin admin = Admin.getAdminInstance();
+				// Adding 'Admin' to the EmployeeList
+				employeeList.addEmployee(admin);
 
+				// Creating a 'Guest' object
+				Guest guest = Guest.getGuestInstance();
+				// Adding 'Guest' to the EmployeeList
+				employeeList.addEmployee(guest);
+
+			}
+
+			// Check if ItemList file exists
+			if (persistence.itemListExists()) {
+
+				itemList = persistence.readItemList();
+
+				System.out.println("Item List: " + itemList.show());
+
+			} else {
+
+				// When a file does not exist, create a new Item List
+				itemList = new ItemList();
+
+			}
+
+			// Invoke the method that will initialize the table
+			initTable();
+
+		} catch (Exception err) {
+			// Shouldn't need to use this
 		}
-
-		// Check if ItemList file exists
-		if (persistence.itemListExists()) {
-
-			itemList = persistence.readItemList();
-
-			System.out.println("Item List: " + itemList.show());
-
-		} else {
-
-			// When a file does not exist, create a new Item List
-			itemList = new ItemList();
-
-		}
-
-		// Invoke the method that will initialize the table
-		initTable();
 
 	}// End of the 'initialize' method
 
