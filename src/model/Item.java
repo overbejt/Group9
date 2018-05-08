@@ -36,13 +36,17 @@ public class Item implements ItemInterface, Serializable {
 	 * Constructor
 	 */
 	public Item() {
+
 		// Initializing instance variables and objects
 		this.name = new SimpleStringProperty("");
 		this.price = new SimpleStringProperty("");
 		this.quantity = new SimpleIntegerProperty(0);
 		this.size = new SimpleStringProperty("");
+		// Getting the instant
 		this.instant = Instant.now();
+		// Parsing instant to epoch time
 		this.id = new SimpleLongProperty(instant.toEpochMilli());
+
 	}// End of the Constructor
 
 	/**
@@ -56,7 +60,9 @@ public class Item implements ItemInterface, Serializable {
 		this.price = new SimpleStringProperty(price);
 		this.quantity = new SimpleIntegerProperty(quantity);
 		this.size = new SimpleStringProperty(size);
+		// Getting the instant
 		this.instant = Instant.now();
+		// Parsing the instant to epoch time
 		this.id = new SimpleLongProperty(instant.toEpochMilli());
 
 	}// End of the overloaded Constructor
@@ -139,7 +145,6 @@ public class Item implements ItemInterface, Serializable {
 
 	/**
 	 * This is the method that will return the employee's ID number.
-	 * It will serve as the key in a hashmap.
 	 * 
 	 * @return
 	 * @throws NullPointerException
