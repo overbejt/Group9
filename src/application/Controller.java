@@ -1044,8 +1044,20 @@ public class Controller {
 		Item selected = tableView.getSelectionModel()
 				.getSelectedItem();
 
-		// Removing the item from the table
-		obsList.remove(selected);
+		// Prevent guest from being able to remove items from the
+		// table
+		if (!isGuest) {
+
+			// Removing the item from the table
+			obsList.remove(selected);
+
+		} else {
+			// Alert the user to missing passwordA
+			String msg = "Insufficient access rights";
+			System.out.println(msg);
+			Alert err = new Alert(AlertType.CONFIRMATION, msg);
+			err.show();
+		}
 
 	}// End of the 'removeItemFromTable' method
 
