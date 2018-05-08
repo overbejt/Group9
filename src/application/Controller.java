@@ -379,6 +379,15 @@ public class Controller {
 		System.out.println("The logout button was clicked");
 
 		// Invoking the method that will switch to the login scene
+		
+		isEmployee	= false;
+		isManager	= false;
+		isAdmin		= false;
+		isGuest		= false;
+		isLogin		= true;
+		currentEmployee = null;
+
+		
 		loadScene(LOGIN_SCENE);
 
 	}// End of the 'logoutClicked' method
@@ -1052,12 +1061,14 @@ public class Controller {
 			// } catch (Exception err) {
 			// System.out.println(err);
 			// }
+			
+					Item newItem = new Item();
+					newItem.setName(itemName);
+					newItem.setSize(size);
+					newItem.setPrice(price);
+					newItem.setQuantity(quantity);
+			
 
-			Item newItem = new Item();
-			newItem.setName(itemName);
-			newItem.setSize(size);
-			newItem.setPrice(price);
-			newItem.setQuantity(quantity);
 
 			// Add the new item to the list
 			obsList.add(newItem);
