@@ -71,7 +71,7 @@ public class Main extends Application {
 
 		} catch (Exception e) {
 			// Alert the user to missing passwordA
-			String msg = "OOPS!  Well this is embarrasing.  Apparently there was a fatal error.  Please try again";
+			String msg = "OOPS!  Fatal error";
 			System.out.println(msg);
 			Alert err = new Alert(AlertType.CONFIRMATION, msg);
 			err.show();

@@ -7,7 +7,6 @@ import java.util.Optional;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 
@@ -16,6 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,6 +32,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Admin;
 import model.Employee;
@@ -90,14 +92,6 @@ public class Controller {
 	private MenuItem					menuAddItem;
 	@FXML
 	private MenuItem					menuRemoveItem;
-	@FXML
-	private JFXRadioButton				sizeRdBtn;
-	@FXML
-	private JFXRadioButton				priceRdBtn;
-	@FXML
-	private JFXRadioButton				quantityRdBtn;
-	@FXML
-	private JFXRadioButton				nameRdBtn;
 
 	// >>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<
 	// Instance objects
@@ -629,6 +623,32 @@ public class Controller {
 		tableView.getSelectionModel()
 				.setSelectionMode(SelectionMode.SINGLE);
 
+		// Handle user wanting to delete an item
+		tableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent arg0) {
+
+				// Test if it was the right mouse button
+				if (arg0.getButton() == MouseButton.SECONDARY) {
+
+					// Ask user if they want to delete the item
+					String msg = "Would you like to delete this item?";
+					Alert alert = new Alert(AlertType.CONFIRMATION,
+							msg);
+
+					// If click yes, then remove the item
+					alert.showAndWait().filter(response -> response
+							.getButtonData() == ButtonData.OK_DONE)
+							.ifPresent(
+									response -> removeItemFromTable());
+
+				}
+
+			}
+
+		});// End of mouse listener
+
 		// Refreshing the table view
 		tableView.refresh();
 
@@ -1016,5 +1036,19 @@ public class Controller {
 		}
 
 	}// End of the 'updateItemList' method
+
+	/**
+	 * This is the method that will remove an item from the table
+	 */
+	private void removeItemFromTable() {
+
+		// Getting the item that is selected
+		Item selected = tableView.getSelectionModel()
+				.getSelectedItem();
+
+		// Removing the item from the table
+		obsList.remove(selected);
+
+	}// End of the 'removeItemFromTable' method
 
 }// End of the 'Controller' class
