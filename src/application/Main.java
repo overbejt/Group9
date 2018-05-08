@@ -76,6 +76,7 @@ public class Main extends Application {
 			Alert err = new Alert(AlertType.CONFIRMATION, msg);
 			err.show();
 		}
+
 	}// End of the 'start' method
 
 	// The main method
