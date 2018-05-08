@@ -606,6 +606,7 @@ public class Controller {
 	 * This is the method that will initialize the table
 	 */
 
+	@SuppressWarnings("unchecked")
 	private void initTable() {
 
 		// Initialize the observable list
@@ -627,19 +628,6 @@ public class Controller {
 		// Set the table to allow 1 row to be selected at a time
 		tableView.getSelectionModel()
 				.setSelectionMode(SelectionMode.SINGLE);
-
-		// Not allowing individual cells to be edited
-		// tableView.getSelectionModel().cellSelectionEnabledProperty()
-		// .set(true);
-
-		// tableView.setOnContextMenuRequested(event -> {
-		//
-		// Item selected = tableView.getSelectionModel()
-		// .getSelectedItem();
-		//
-		// System.out
-		// .println("Item Selected: " + selected.toString());
-		// });
 
 		// Refreshing the table view
 		tableView.refresh();
