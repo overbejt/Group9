@@ -30,7 +30,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import model.Admin;
 import model.Employee;
@@ -69,8 +68,6 @@ public class Controller {
 	// view
 	@FXML
 	private TableView<Item>				tableView	= new TableView();
-	@FXML
-	private HBox						tableBox;
 	@FXML
 	private TableColumn<Item, String>	nameColumn;
 	@FXML
@@ -371,9 +368,6 @@ public class Controller {
 	 */
 	@FXML
 	public void menuItemSaveClicked(ActionEvent e) {
-		// For Testing and debugging
-		// fieldBtm.setText("The save button was clicked");
-		// fieldBtm.setVisible(true);
 
 		System.out.println("The save button was clicked");
 		// Invoke the save method
@@ -382,88 +376,7 @@ public class Controller {
 	}// End of the 'menuItemSaveClicked' method
 
 	/**
-	 * This is the method that will sort all the items in the
-	 * inventory based on their size.
-	 */
-	@FXML
-	public void sizeRadioClicked() {
-		if (priceRdBtn.isSelected()) {
-			priceRdBtn.setSelected(false);
-		}
-		if (quantityRdBtn.isSelected()) {
-			quantityRdBtn.setSelected(false);
-		}
-		if (nameRdBtn.isSelected()) {
-			nameRdBtn.setSelected(false);
-		}
-		if (sizeRdBtn.isSelected()) {
-			System.out.println("The Size Radio Button was clicked");
-		}
-	}// End of the 'sizeRadioClicked' method
-
-	/**
-	 * This is the method that will sort all the items in the
-	 * inventory based on their price.
-	 */
-	@FXML
-	public void priceRadioClicked() {
-		if (sizeRdBtn.isSelected()) {
-			sizeRdBtn.setSelected(false);
-		}
-		if (quantityRdBtn.isSelected()) {
-			quantityRdBtn.setSelected(false);
-		}
-		if (nameRdBtn.isSelected()) {
-			nameRdBtn.setSelected(false);
-		}
-		if (priceRdBtn.isSelected()) {
-			System.out.println("The Price Radio Button was clicked");
-		}
-	}// End of the 'priceRadioClicked' method
-
-	/**
-	 * This is the method that will sort all the items in the
-	 * inventory based on their quantity.
-	 */
-	@FXML
-	public void quantityRadioClicked() {
-		if (sizeRdBtn.isSelected()) {
-			sizeRdBtn.setSelected(false);
-		}
-		if (priceRdBtn.isSelected()) {
-			priceRdBtn.setSelected(false);
-		}
-		if (nameRdBtn.isSelected()) {
-			nameRdBtn.setSelected(false);
-		}
-		if (quantityRdBtn.isSelected()) {
-			System.out
-					.println("The Quantity Radio Button was clicked");
-		}
-	}// End of the 'quantityRadioClicked' method
-
-	/**
-	 * This is the method that will sort all the items in the
-	 * inventory based on their name.
-	 */
-	@FXML
-	public void nameRadioClicked() {
-		if (priceRdBtn.isSelected()) {
-			priceRdBtn.setSelected(false);
-		}
-		if (quantityRdBtn.isSelected()) {
-			quantityRdBtn.setSelected(false);
-		}
-		if (sizeRdBtn.isSelected()) {
-			sizeRdBtn.setSelected(false);
-		}
-		if (nameRdBtn.isSelected()) {
-			System.out.println("The name Radio Button was clicked");
-		}
-	}// End of the 'nameRadioClicked' method
-
-	/**
-	 * This is the mehtod that will invoke the switch to log in scene
+	 * This is the method that will invoke the switch to log in scene
 	 * method
 	 */
 	@FXML
@@ -514,8 +427,6 @@ public class Controller {
 		// Creating an optional node to hold the input
 		Optional<EmployeePopupNode> result = addEmployeePopup
 				.showAndWait();
-
-		// System.out.println(result.toString());
 
 		validateNewEmployee(result);// Validate input
 
