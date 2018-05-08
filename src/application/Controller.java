@@ -622,6 +622,10 @@ public class Controller {
 		// Making sure that the table view is visible
 		tableView.setVisible(true);
 
+		// Allow individual cells to be edited
+		tableView.getSelectionModel().cellSelectionEnabledProperty()
+				.set(true);
+
 		// Refreshing the table view
 		tableView.refresh();
 
