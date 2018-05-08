@@ -41,26 +41,38 @@ public class EmployeeList implements Serializable {
 
 		// Check if Employee object
 		if (employee instanceof Employee) {
+
 			// Make sure that the employee doesn't already exist
 			if (list.containsKey(((Employee) employee).getID())) {
+
 				throw new EmployeeExistsException();
+
 			} else {
+				// Otherwise, get the employee's id and add them to
+				// the map
 				String id = ((Employee) employee).getID();
 				list.put(id, employee);
 			}
+
 		} else if (employee instanceof Admin) {
+
 			// Make sure that the admin is not already in the list
 			if (!list.containsKey(((Admin) employee).getID())) {
+
 				// Check if 'Admin' object
 				list.put(((Admin) employee).getID(), employee);
+
 			}
 		} else if (employee instanceof Guest) {
+
 			// Make sure that the guest is not already in the list
 			if (!list.containsKey(((Guest) employee).getID())) {
+
 				// Check if 'Guest' object
 				list.put(((Guest) employee).getID(), employee);
 			}
 		}
+
 	}// End of the 'addEmployee' method
 
 	/**
@@ -79,10 +91,15 @@ public class EmployeeList implements Serializable {
 
 		// Check to make sure that it is an Employee object
 		if (list.get(id) instanceof Employee) {
+
 			list.remove(id);
+
 		} else {
+
 			throw new InvalidRemovalException();
+
 		}
+
 	}// End of the 'removeEmployee' method
 
 	/**
@@ -95,12 +112,14 @@ public class EmployeeList implements Serializable {
 	 */
 	public Object getEmployee(String id)
 			throws EmployeeNotFoundException {
+
 		// Formatting Input
 		id = id.toLowerCase();
 		id = id.trim();
 		id.replaceAll("\\s", "");
 
 		return list.get(id);
+
 	}// End of the 'getEmployee' method
 
 	/**
@@ -110,7 +129,9 @@ public class EmployeeList implements Serializable {
 	 * @return The list of employees in the system
 	 */
 	public HashMap<String, Object> getEmployeeList() {
+
 		return list;
+
 	}// End of the 'getEmployeeList' method
 
 	/**
@@ -129,10 +150,15 @@ public class EmployeeList implements Serializable {
 		name.replaceAll("\\s", "");
 
 		Object object = list.get(name);
+
 		if (object == null) {
+
 			return false;
+
 		} else {
+
 			return true;
+
 		}
 
 	}// End of the 'contains' method
@@ -146,14 +172,18 @@ public class EmployeeList implements Serializable {
 	 *            The employee list that is already stored
 	 */
 	public void setEmployeeList(EmployeeList inList) {
+
 		this.list = inList.getEmployeeList();
+
 	}// End of the 'setEmployeeList' method
 
 	/**
 	 * This is the method that will clear the employee list.
 	 */
 	public void clearList() {
+
 		list.clear();
+
 	}// End of the 'clearList' method
 
 	/**
@@ -161,6 +191,7 @@ public class EmployeeList implements Serializable {
 	 * form of [id: object.toString()].
 	 */
 	public String show() {
+
 		// Initializing a String to hold the concatenated results
 		String result = "";
 
