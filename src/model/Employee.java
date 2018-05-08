@@ -86,12 +86,14 @@ public class Employee implements EmployeeInterface, Serializable {
 	 * names.
 	 */
 	private void setId() {
+
 		firstName = firstName.toLowerCase();
 		firstName = firstName.trim();
 		lastName = lastName.toLowerCase();
 		lastName = lastName.trim();
 		id = firstName + lastName;
 		id = id.replaceAll("\\s", "");
+
 	}// End of the 'setId' method
 
 	/**
@@ -111,7 +113,9 @@ public class Employee implements EmployeeInterface, Serializable {
 	 */
 	@Override
 	public String getPassword() {
+
 		return this.password;
+
 	}// End of the 'getPassword' method
 
 	/**
@@ -127,7 +131,9 @@ public class Employee implements EmployeeInterface, Serializable {
 	 */
 	@Override
 	public int getAccessLevel() {
+
 		return this.accessLevel;
+
 	}// End of the 'getAccessLevel' method
 
 	/**
@@ -146,6 +152,7 @@ public class Employee implements EmployeeInterface, Serializable {
 	 * the form of [name: password].
 	 */
 	public String toString() {
+
 		String result = "[";
 		result += firstName.toLowerCase();
 		result += lastName.toLowerCase();
@@ -153,6 +160,7 @@ public class Employee implements EmployeeInterface, Serializable {
 		result += password;
 		result += "]";
 		return result;
+
 	}// End of the 'toString' method
 
 }// End of the 'Employee' class
