@@ -25,7 +25,6 @@
                   <MenuItem fx:id="menuAddEmployee" mnemonicParsing="false" onAction="#menuAddEmployeeClicked" text="Add Employee" />
                   <MenuItem fx:id="menuRemoveEmployee" mnemonicParsing="false" onAction="#menuRemoveEmployeeClicked" text="Remove Employee" />
                   <MenuItem fx:id="menuAddItem" mnemonicParsing="false" onAction="#menuAddItemClicked" text="Add Item" />
-                  <MenuItem fx:id="menuRemoveItem" mnemonicParsing="false" text="Remove Item" />
             </items>
           </Menu>          
         </menus>
