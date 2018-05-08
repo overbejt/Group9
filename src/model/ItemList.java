@@ -15,18 +15,14 @@ public class ItemList implements Serializable {
 	 */
 	private static final long serialVersionUID = 1359781794835268746L;
 
-	// The inventory will be stored in a hashmap
-	// private static HashMap<Long, Item> list;
-	// private ObservableMap<Long, Item> map;
+	// Declaring an instance of an array list
 	private ArrayList<Item> list;
 
 	// Constructor
 	public ItemList() {
 
 		// Initializing the item list
-		// list = new HashMap<Long, Item>();
 		list = new ArrayList<Item>();
-		// map = FXCollections.observableMap(list);
 
 	}// End of the Constructor
 
@@ -39,7 +35,6 @@ public class ItemList implements Serializable {
 	 */
 	public void addItem(Item newItem) {
 
-		// list.put(newItem.getID(), newItem);
 		list.add(newItem);
 
 	}// End of the 'addItem' method
@@ -51,8 +46,6 @@ public class ItemList implements Serializable {
 	 *            The id of the item to be removed from the inventory
 	 */
 	public void removeItem(long id) {
-
-		// list.remove(id);
 
 		for (Item i : list) {
 			if (i.getID() == id) {
@@ -86,7 +79,7 @@ public class ItemList implements Serializable {
 
 	/**
 	 * This is the method that will return the Item list. It will be
-	 * in the form of a HashMap. It can be used for sorting methods.
+	 * in the form of a ArrayList.
 	 * 
 	 * @return The item list
 	 */
@@ -98,7 +91,7 @@ public class ItemList implements Serializable {
 
 	/**
 	 * This is the method that allows you to set the item list. It
-	 * takes in a HashMap object. It can be used to point this
+	 * takes in a ArrayList object. It can be used to point this
 	 * ItemList to an already existing one.
 	 * 
 	 * @param inList
@@ -120,7 +113,9 @@ public class ItemList implements Serializable {
 
 	/**
 	 * This is the method that will concatenate all of the items in
-	 * the Item List and return them as a string.
+	 * the Item List and return them as a string. This is a
+	 * depreciated method. There is a method that overrides the
+	 * toString() method from the Java.lang class
 	 * 
 	 * @return
 	 */
@@ -129,20 +124,9 @@ public class ItemList implements Serializable {
 		// Declare instance of String to hold concatenation
 		String result = "";
 
-		// Get Entry set
-		// Set<Entry<Long, Item>> entries = list.entrySet();
-
 		result += "(";
 
-		// // Loop through all entries in the inventory
-		// for (Entry<Long, Item> e : entries) {
-		//
-		// // Concatenate
-		// result += e.getValue().toString();
-		// result += ", ";
-		//
-		// }
-
+		// Loop through the item list
 		for (Item i : list) {
 
 			// Concatenate
@@ -161,26 +145,14 @@ public class ItemList implements Serializable {
 	/**
 	 * This is the method that will override the toString() method
 	 * from java.lang. It will also be used to generate a csv file of
-	 * the inventory.
+	 * the inventory in a later version.
 	 */
 	public String toString() {
 
 		// Declare instance of String to hold concatenation
 		String result = "";
 
-		// // Get Entry set
-		// Set<Entry<Long, Item>> entries = list.entrySet();
-		//
-		// // Loop through all entries in the inventory
-		// for (Entry<Long, Item> e : entries) {
-		//
-		// // Concatenate
-		// result += e.getValue().toString();
-		// result += ", ";
-		// // result += "\n";
-		//
-		// }
-
+		// Loop through the item list
 		for (Item i : list) {
 
 			// Concatenate
