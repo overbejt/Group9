@@ -73,11 +73,11 @@ public class Controller {
 	@FXML
 	private TableColumn<Item, String>	nameColumn;
 	@FXML
-	private TableColumn<Item, Integer>	priceColumn;
+	private TableColumn<Item, String>	priceColumn;
 	@FXML
 	private TableColumn<Item, String>	sizeColumn;
 	@FXML
-	private TableColumn<Item, Integer>	quantityColumn;
+	private TableColumn<Item, String>	quantityColumn;
 	@FXML
 	private MenuItem					menuExitItem;
 	@FXML
@@ -694,9 +694,9 @@ public class Controller {
 		});
 
 		// Initializing the price column
-		priceColumn = new TableColumn<Item, Integer>("Price");
+		priceColumn = new TableColumn<Item, String>("Price");
 		priceColumn.setCellValueFactory(
-				new PropertyValueFactory<Item, Integer>("price"));
+				new PropertyValueFactory<Item, String>("price"));
 		// Make the column editable
 		priceColumn.setEditable(true);
 		// Make a text field pop up when the user double clicks on an
@@ -709,7 +709,7 @@ public class Controller {
 			// Get the selected item
 			Item selected = event.getRowValue();
 			// Update the name
-			selected.setName(event.getNewValue().toString());
+			selected.setPrice(event.getNewValue().toString());
 
 		});
 
@@ -727,26 +727,26 @@ public class Controller {
 			// Get the selected item
 			Item selected = event.getRowValue();
 			// Update the name
-			selected.setName(event.getNewValue().toString());
+			selected.setSize(event.getNewValue().toString());
 
 		});
 
 		// Initializing the quantity column
-		quantityColumn = new TableColumn<Item, Integer>("Quantity");
+		quantityColumn = new TableColumn<Item, String>("Quantity");
 		quantityColumn.setCellValueFactory(
-				new PropertyValueFactory<Item, Integer>("quantity"));
+				new PropertyValueFactory<Item, String>("quantity"));
 		// // Make the column editable
-		// quantityColumn.setEditable(true);
+		quantityColumn.setEditable(true);
 		// // Make a text field pop up when the user double clicks on
 		// an
 		// // item in the column
-		// quantityColumn
-		// .setCellFactory(TextFieldTableCell.forTableColumn());
+		quantityColumn
+				.setCellFactory(TextFieldTableCell.forTableColumn());
 		quantityColumn.setOnEditCommit(event -> {
 			// Get the selected item
 			Item selected = event.getRowValue();
 			// Update the name
-			selected.setName(event.getNewValue().toString());
+			selected.setQuantity(event.getNewValue().toString());
 
 		});
 
@@ -989,17 +989,17 @@ public class Controller {
 
 			int parsedQuantity = 0;
 
-			try {
-				parsedQuantity = Integer.parseInt(quantity);
-			} catch (Exception err) {
-				System.out.println(err);
-			}
+			// try {
+			// parsedQuantity = Integer.parseInt(quantity);
+			// } catch (Exception err) {
+			// System.out.println(err);
+			// }
 
 			Item newItem = new Item();
 			newItem.setName(itemName);
 			newItem.setSize(size);
 			newItem.setPrice(price);
-			newItem.setQuantity(parsedQuantity);
+			newItem.setQuantity(quantity);
 
 			// Add the new item to the list
 			obsList.add(newItem);

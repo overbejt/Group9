@@ -172,7 +172,7 @@ public class Persistence {
 				String price = attributes[2];
 				attributes[3] = attributes[3].trim();
 				// Parse the quantity
-				int quantity = Integer.parseInt(attributes[3]);
+				String quantity = attributes[3];
 				attributes[4] = attributes[4].trim();
 				// Parse the size
 				String size = attributes[4];

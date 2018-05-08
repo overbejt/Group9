@@ -28,7 +28,7 @@ public interface ItemInterface {
 	 * 
 	 * @param quantity
 	 */
-	public void setQuantity(int quantity);
+	public void setQuantity(String quantity);
 
 	/**
 	 * This is the method that will set the size of the item.
@@ -60,7 +60,7 @@ public interface ItemInterface {
 	 * @return
 	 * @throws NullPointerException
 	 */
-	public int getQuantity() throws NullPointerException;
+	public String getQuantity() throws NullPointerException;
 
 	/**
 	 * This is the method that returns the size of the item. Ex: S, M,

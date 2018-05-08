@@ -3,7 +3,6 @@ package model;
 import java.io.Serializable;
 import java.time.Instant;
 
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -21,14 +20,14 @@ public class Item implements ItemInterface, Serializable {
 	private static final long serialVersionUID = 1L;
 
 	// To store the attributes of this item
-	private Instant							instant;
+	private transient Instant				instant;
 	private transient SimpleLongProperty	id;
 	// To store the name of this item
 	private transient SimpleStringProperty name;
 	// eg: Pants, shoes, shirt, etc.
 	private transient SimpleStringProperty price;
 	// The amount of item in the inventory
-	private transient SimpleIntegerProperty quantity;
+	private transient SimpleStringProperty quantity;
 	// The size of the item
 	private transient SimpleStringProperty size;
 
@@ -40,7 +39,7 @@ public class Item implements ItemInterface, Serializable {
 		// Initializing instance variables and objects
 		this.name = new SimpleStringProperty("");
 		this.price = new SimpleStringProperty("");
-		this.quantity = new SimpleIntegerProperty(0);
+		this.quantity = new SimpleStringProperty("");
 		this.size = new SimpleStringProperty("");
 		// Getting the instant
 		this.instant = Instant.now();
@@ -52,13 +51,14 @@ public class Item implements ItemInterface, Serializable {
 	/**
 	 * Overloaded Constructor
 	 */
-	public Item(String name, String price, int quantity,
+	public Item(String name, String price, String quantity,
 			String size) {
 
 		// Initializing instance variables with given data
 		this.name = new SimpleStringProperty(name);
 		this.price = new SimpleStringProperty(price);
-		this.quantity = new SimpleIntegerProperty(quantity);
+		String parsed = parse(quantity);
+		this.quantity = new SimpleStringProperty(parsed);
 		this.size = new SimpleStringProperty(size);
 		// Getting the instant
 		this.instant = Instant.now();
@@ -99,7 +99,7 @@ public class Item implements ItemInterface, Serializable {
 	 * @param quantity
 	 */
 	@Override
-	public void setQuantity(int quantity) {
+	public void setQuantity(String quantity) {
 
 		this.quantity.set(quantity);
 
@@ -177,7 +177,7 @@ public class Item implements ItemInterface, Serializable {
 	 * @throws NullPointerException
 	 */
 	@Override
-	public int getQuantity() throws NullPointerException {
+	public String getQuantity() throws NullPointerException {
 
 		return this.quantity.get();
 
@@ -222,5 +222,26 @@ public class Item implements ItemInterface, Serializable {
 		return result;
 
 	}// End of the 'toString' method
+
+	/**
+	 * This is a private helper method that will parse the input into
+	 * a string and then return it back
+	 * 
+	 * @param input
+	 * @return
+	 */
+	private String parse(String input) {
+
+		int value = -1;
+
+		try {
+			value = Integer.parseInt(input);
+		} catch (Exception err) {
+
+		}
+
+		return Integer.toString(value);
+
+	}// End of the 'parse' method
 
 }// End of the 'Item' class
