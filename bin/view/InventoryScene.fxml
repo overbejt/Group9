@@ -27,12 +27,7 @@
                   <MenuItem fx:id="menuAddItem" mnemonicParsing="false" onAction="#menuAddItemClicked" text="Add Item" />
                   <MenuItem fx:id="menuRemoveItem" mnemonicParsing="false" text="Remove Item" />
             </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
+          </Menu>          
         </menus>
       </MenuBar>
    </top>
