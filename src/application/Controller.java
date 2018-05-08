@@ -719,29 +719,24 @@ public class Controller {
 
 	private void initTable() {
 
-		// ((TableView<Item>) tableView.getItems())
-		// .setItems(itemList.getItemList());
-
 		// Initialize the observable list
 		initObservableList();
 
+		// Initialize the columns
 		initColumns();
 
-		// tableView = new TableView<Item>();
-
-		// tableView.setEditable(true);
+		// Set the data for the table with the observable list
 		tableView.setItems(obsList);
+
+		// Adding the columns to the table view
 		tableView.getColumns().addAll(nameColumn, priceColumn,
 				sizeColumn, quantityColumn);
 
+		// Making sure that the table view is visible
 		tableView.setVisible(true);
+
+		// Refreshing the table view
 		tableView.refresh();
-
-		// tableBox.getChildren().addAll(tableView);
-
-		// tableView.refresh();
-
-		// tableView.getItems().setAll(obsList);
 
 	}// End of the 'initTable' method
 
